@@ -7,6 +7,7 @@ interface IPropertys {
     fontSize?: string;
     paddingf?: string;
     backgroundColor?: string;
+    className?: string;
 }
 
 const Boton: React.FunctionComponent<IPropertys> = (props) => {

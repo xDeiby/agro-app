@@ -1,18 +1,27 @@
 import styled from "styled-components";
 
-export type TypeButton = "default" | "accept";
+export type TypeButton = "default" | "accept" | "deny";
+
 const TypeStyle: { [key in TypeButton]: IModelButton } = {
     accept: {
-        color: "#fff",
+        color: "white",
+        backgroundColor: "#108128",
+    },
+    deny: {
+        color: "white",
+        backgroundColor: "#D62A2A",
     },
     default: {
-        color: "white",
+        color: "#fff",
+        backgroundColor: "#868383",
     },
 };
 
 interface IModelButton {
     color?: string;
+    backgroundColor?: string;
 }
+
 interface IStyledButton {
     border?: string;
     pit: TypeButton;
@@ -22,6 +31,8 @@ interface IStyledButton {
     fontSize?: string;
     paddingf?: string;
     backgroundColor?: string;
+    margin?: string;
+    className?: string;
 }
 
 const StyledButton = styled.button<IStyledButton>`
@@ -29,14 +40,16 @@ const StyledButton = styled.button<IStyledButton>`
     border-radius: ${(pr) => (pr.borderRadius ? pr.borderRadius : "6")}px;
     color: ${(pr) => TypeStyle[pr.pit].color};
     width: ${(pr) => (pr.width ? pr.width : "150")}px;
+    margin: ${(pr) => (pr.margin ? pr.margin : "10")}px;
     font-size: ${(pr) => (pr.fontSize ? pr.fontSize : "13")}px;
     padding: ${(pr) => (pr.paddingf ? pr.paddingf : "10")}px;
-    background-color: ${(pr) =>
-        pr.backgroundColor ? pr.backgroundColor : "#39b91fc9"};
+    background-color: ${(pr) => TypeStyle[pr.pit].backgroundColor};
     &:hover {
-        color: #fff;
-        background: #2d9917c9;
+        color: white;
+        opacity: 0.8;
         transition: 0.5s;
+        box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.24),
+            0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
 `;
 
