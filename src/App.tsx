@@ -8,6 +8,8 @@ import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
 import { User } from "@styled-icons/fa-solid/User";
 import { Add } from "@styled-icons/material-rounded/Add";
 import { Delete } from "@styled-icons/material-outlined/Delete";
+import MenuView from "./views/menu.view";
+import fondo from "./config/images/dashboard.jpg";
 
 const styloIcon = {
     marginRight: 5,
@@ -45,6 +47,18 @@ const App: React.FunctionComponent = () => {
                 <Delete size="20px" style={styloIcon} />
                 Borrar
             </Button>
+            <header
+                // Provisorio
+                style={{
+                    backgroundImage: `url(${fondo})`,
+                    height: "500px",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+            >
+                <MenuView />
+            </header>
         </div>
     );
 };
