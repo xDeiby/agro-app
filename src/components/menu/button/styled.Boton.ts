@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export type TypeButton = "default" | "accept";
+
 const TypeStyle: { [key in TypeButton]: IModelButton } = {
     accept: {
         color: "#fff",
