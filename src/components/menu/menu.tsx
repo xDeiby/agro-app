@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import StyledMenu from "./menu..style";
+import StyledMenu from "./menu.style";
 
 export type MenuType = "primary" | "secondary" | "default";
 // export type ItemsPosition = "center" | "left" | "right";
