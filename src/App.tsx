@@ -1,26 +1,49 @@
-// import './App.css';
-
 import * as React from "react";
 import Menu from "./components/menu";
 import Button from "./components/menu/button/Button";
-import { AiOutlineCheck } from "react-icons/ai";
-import { IconContext } from "react-icons";
+import styled from "styled-components";
+import { LogIn } from "@styled-icons/boxicons-regular/LogIn";
+import { CancelCircle } from "@styled-icons/icomoon/CancelCircle";
+import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
+import { User } from "@styled-icons/fa-solid/User";
+import { Add } from "@styled-icons/material-rounded/Add";
+import { Delete } from "@styled-icons/material-outlined/Delete";
 
+const styloIcon = {
+    marginRight: 5,
+};
+const pete = () => {
+    console.log("Probando");
+};
 const App: React.FunctionComponent = () => {
     return (
         <div className="app">
             <Menu />
 
-            <Button pit="default">
-                <IconContext.Provider
-                    value={{ color: "blue", className: "global-class-name" }}
-                >
+            <Button typeButton="accept" onClick={pete}>
+                <CheckCircle size="21px" style={styloIcon} />
+                Aceptar
+            </Button>
+            <Button typeButton="deny">
+                <CancelCircle size="19px" style={styloIcon} />
+                Cancelar
+            </Button>
 
-                    <div>
-                        <AiOutlineCheck />
-                    </div>
-                </IconContext.Provider>
-                Boton
+            <Button typeButton="login">
+                <LogIn size="20px" style={styloIcon} />
+                Login
+            </Button>
+            <Button typeButton="usuario">
+                <User size="20px" style={styloIcon} />
+                Usuario
+            </Button>
+            <Button typeButton="accept">
+                <Add size="20px" style={styloIcon} />
+                Agregar
+            </Button>
+            <Button typeButton="deny">
+                <Delete size="20px" style={styloIcon} />
+                Borrar
             </Button>
         </div>
     );
