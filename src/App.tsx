@@ -1,12 +1,11 @@
 import * as React from "react";
-import Menu from "./components/menu";
 import Button from "./components/menu/button/Button";
 import { BiCheck, BiXCircle, BiQuestionMark } from "react-icons/bi";
+import Label from "./components/menu/label/Label";
 
 const App: React.FunctionComponent = () => {
     return (
         <div className="app">
-            <Menu />
             <Button pit="default">
                 DEFAULT
                 <BiQuestionMark size="15px" />
@@ -17,6 +16,8 @@ const App: React.FunctionComponent = () => {
             <Button pit="deny">
                 RECHAZAR <BiXCircle size="15px" />
             </Button>
+
+            <Label />
         </div>
     );
 };
