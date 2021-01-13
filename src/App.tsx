@@ -1,7 +1,5 @@
 import * as React from "react";
-import Menu from "./components/menu";
-import Button from "./components/menu/button/Button";
-import styled from "styled-components";
+import Button from "./components/button/Button";
 import { LogIn } from "@styled-icons/boxicons-regular/LogIn";
 import { CancelCircle } from "@styled-icons/icomoon/CancelCircle";
 import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
@@ -20,8 +18,6 @@ const pete = () => {
 const App: React.FunctionComponent = () => {
     return (
         <div className="app">
-            <Menu />
-
             <Button typeButton="accept" onClick={pete}>
                 <CheckCircle size="21px" style={styloIcon} />
                 Aceptar
