@@ -3,6 +3,7 @@ import Button from "./components/button/Button";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import StyledLabel from "./components/label/index";
+import Alert from "./components/alerts/Alerts";
 
 const pete = () => {
     console.log("Probando");
@@ -18,6 +19,7 @@ const App: React.FunctionComponent = () => {
             <Button typeButton="user">Usuario</Button>
             <Button typeButton="add">Agregar</Button>
             <Button typeButton="delete">Borrar</Button>
+            <Alert> </Alert>
             <div>
                 <StyledLabel>ejemplo3</StyledLabel>
             </div>
