@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-export type TypeButton = "default" | "accept" | "deny" | "login" | "usuario";
+export type TypeButton =
+    | "default"
+    | "accept"
+    | "add"
+    | "deny"
+    | "login"
+    | "user"
+    | "delete";
 
 const TypeStyle: { [key in TypeButton]: IModelButton } = {
     accept: {
@@ -15,7 +22,7 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
         color: "white",
         backgroundColor: " #337aff",
     },
-    usuario: {
+    user: {
         color: "black",
         backgroundColor: "#F2F8F7",
     },
@@ -23,8 +30,18 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
         color: "#fff",
         backgroundColor: "#868383",
     },
+    add: {
+        color: "white",
+        backgroundColor: "#108128",
+    },
+    delete: {
+        color: "white",
+        backgroundColor: "#D62A2A",
+    },
 };
-
+export const styloIcon = {
+    marginRight: 5,
+};
 interface IModelButton {
     color?: string;
     backgroundColor?: string;
