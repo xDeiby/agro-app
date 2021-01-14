@@ -1,11 +1,11 @@
 import * as React from "react";
-import { SectorRoute, HomeRoute } from "../routes/index";
+import { ManteinerRoutes, HomeRoute } from "../routes";
 
 const Views: React.FC = () => {
     return (
         <>
             <HomeRoute />
-            <SectorRoute />
+            <ManteinerRoutes />
         </>
     );
 };

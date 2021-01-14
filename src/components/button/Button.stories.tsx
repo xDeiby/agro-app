@@ -7,9 +7,7 @@ import Button, { IButton } from "./Button";
 export default {
     title: "Example/Button",
     component: Button,
-    argTypes: {
-        //backgroundColor: { control: "color" },
-    },
+    argTypes: {},
 } as Meta;
 
 const Template: Story<IButton> = (args) => <Button {...args} />;
