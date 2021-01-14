@@ -17,7 +17,7 @@ interface IItemProps {
 }
 
 const Item: React.FunctionComponent<IItemProps> = (props) => {
-    const { name, subMenus, active = false, type = "menuItem" } = props;
+    const { name, subMenus, active = false } = props;
     return (
         <StyledListLink>
             <StyledItem active={active}>{name}</StyledItem>

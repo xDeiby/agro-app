@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledItem } from "../item/item.style";
+
 export const StyledSubA = styled.a`
     display: block;
     border-radius: 5px;
