@@ -8,38 +8,52 @@ export default {
     title: "Example/Button",
     component: Button,
     argTypes: {
-        backgroundColor: { control: "color" },
+        //backgroundColor: { control: "color" },
     },
 } as Meta;
 
 const Template: Story<IButton> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Accept = Template.bind({});
+Accept.args = {
+    typeButton: "accept",
+    children: "User",
+};
+
+export const Decline = Template.bind({});
+Decline.args = {
     typeButton: "deny",
-    children: "Example",
-    backgroundColor: "red",
-    color: "white",
+    children: "Decline",
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-    typeButton: "usuario",
-    children: "Example",
+export const user = Template.bind({});
+user.args = {
+    typeButton: "user",
+    children: "User",
 };
 
-export const Three = Template.bind({});
-Three.args = {
+export const Default = Template.bind({});
+Default.args = {
     typeButton: "default",
-    children: "Example 3",
+    children: "Default",
 };
 
-export const Large = Template.bind({});
-Large.args = {
+export const Login = Template.bind({});
+Login.args = {
     typeButton: "login",
-    children: "Example 3",
+    children: "Login",
 };
 
+export const Add = Template.bind({});
+Add.args = {
+    typeButton: "add",
+    children: "Add",
+};
+export const Delete = Template.bind({});
+Delete.args = {
+    typeButton: "delete",
+    children: "Delete",
+};
 // export const Small = Template.bind({});
 // Small.args = {
 //     size: "small",

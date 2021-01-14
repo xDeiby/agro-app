@@ -18,6 +18,6 @@ const StyledForm = styled(Form)`
 `;
 
 // Provisorio
-const StyledInput = styled.input``;
+// const StyledInput = styled.input``;
 
 export default StyledForm;

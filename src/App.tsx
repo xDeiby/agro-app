@@ -3,7 +3,6 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import { BrowserRouter } from "react-router-dom";
 import Views from "./views";
-import { Block } from "@styled-icons/boxicons-regular";
 const App: React.FunctionComponent = () => {
     return (
         <BrowserRouter basename="/">

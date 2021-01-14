@@ -30,7 +30,7 @@ const Test: React.FunctionComponent = () => {
                 <LogIn size="20px" style={styloIcon} />
                 Login
             </Button>
-            <Button typeButton="usuario">
+            <Button typeButton="user">
                 <User size="20px" style={styloIcon} />
                 Usuario
             </Button>
