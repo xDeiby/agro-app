@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { StyledList } from "../menu-item/menuItem..style";
 import { StyledSubUl } from "../sub-menu/subMenu.style";
-import { TypeItem } from "./item";
 
 interface StyledItemProps {
     name?: string;
