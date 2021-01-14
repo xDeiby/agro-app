@@ -65,10 +65,8 @@ export const StyledInput = styled.input<IStyledInput>`
     text-shadow: ${(pr) => (pr.textShadow ? pr.textShadow : "none")};
     padding: ${(pr) => (pr.padding ? pr.padding : "0.5")}px;
     border: ${(pr) => (pr.border ? pr.border : "0")};
-    border-top: ${(pr) =>
-        pr.borderTop ? pr.borderTop : "4px double rgba(0, 0, 0, 0.5)"};
     border-bottom: ${(pr) =>
-        pr.borderBottom ? pr.borderBottom : "4px double rgba(0, 0, 0, 0.5)"};
+        pr.borderBottom ? pr.borderBottom : "1px solid rgba(0, 0, 0, 0.5)"};
     color: ${(pr) => (pr.color ? pr.color : "black")};
     flex: ${(pr) => (pr.flex ? pr.flex : "1 1 auto")};
     order: ${(pr) => (pr.order ? pr.order : "2")};
@@ -81,11 +79,11 @@ export const StyledInput = styled.input<IStyledInput>`
     &:not(:focus) {
         opacity: 0.75;
         border-top: transparent;
-        border-bottom: 1px double rgba(0, 0, 0, 0.25);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     }
 
     &:focus + ${StyledLabel} {
-        color: black;
+        color: #32b24d;
         opacity: 1;
         transform: scale(0.8) translate3d(0, 5px, 0);
     }
