@@ -22,7 +22,10 @@ const App: React.FunctionComponent = () => {
                 <Button typeButton="user">Usuario</Button>
                 <Button typeButton="add">Agregar</Button>
                 <Button typeButton="delete">Borrar</Button>
-                <Alert> </Alert>
+                <Alert typeAlert="succesful">
+                    {" "}
+                    Se ha realizado con exito la alerta{" "}
+                </Alert>
 
                 <StyledLabel>ejemplo3</StyledLabel>
                 <header
