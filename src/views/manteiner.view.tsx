@@ -3,7 +3,6 @@ import Form from "../components/forms";
 import Logo from "../config/logos/aresa.e3676c3d.png";
 import Label from "../components/label/index";
 
-<<<<<<< HEAD
 export type ManteinerType =
     | "sector"
     | "specie"
@@ -267,21 +266,6 @@ const Manteiner: React.FC<IManteinerView> = (props) => {
                 </div>
             );
     }
-=======
-const Manteiner: React.FC = () => {
-    return (
-        <div className="manteiner">
-            <Form
-                message="Formulario Sector"
-                logo={Logo}
-                fields={[
-                    { name: "name_sector", type: "text" },
-                    { name: "wea1", type: "email" },
-                ]}
-            ></Form>
-        </div>
-    );
->>>>>>> db989b0ebed347e2b8ae41b7cb4fca954a0b6355
 };
 
 export default Manteiner;
