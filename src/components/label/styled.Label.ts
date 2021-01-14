@@ -15,10 +15,13 @@ interface IStyledInput {
     textShadow?: string;
 
     border?: string;
+    borderTop?: string;
     borderBottom?: string;
     color?: string;
     flex?: string;
     order?: string;
+    textTransform?: string;
+    padding?: string;
 }
 
 interface IStyledLabel {
@@ -44,19 +47,14 @@ export const StyledContainerLabel = styled.div<IContainer>`
 
 export const StyledLabel = styled.label<IStyledLabel>`
     color: ${(pr) => (pr.color ? pr.color : "#999")};
-    font-weight: ${(pr) => (pr.fontWeight ? pr.fontWeight : "normal")};
-    opacity: ${(pr) => (pr.opacity ? pr.opacity : "0.75")};
+    font-weight: ${(pr) => (pr.fontWeight ? pr.fontWeight : "500")};
+    opacity: ${(pr) => (pr.opacity ? pr.opacity : "0.5")};
     order: ${(pr) => (pr.order ? pr.order : "1")};
     padding-left: ${(pr) => (pr.paddingLeft ? pr.paddingLeft : "2")}px;
-    pointer-events: ${(pr) => (pr.pointerEvents ? pr.pointerEvents : "none")};
-    text-shadow: ${(pr) => (pr.textShadow ? pr.textShadow : "none")};
-    text-transform: ${(pr) =>
-        pr.textTransform ? pr.textTransform : "capitalize"};
+    text-shadow: ${(pr) => (pr.textShadow ? pr.textShadow : "1px 1px #999")};
     transform-origin: ${(pr) =>
         pr.transformOrigin ? pr.transformOrigin : "left top"};
-    transform: ${(pr) =>
-        pr.transform ? pr.transform : "scale(1) translate3d(0, 22px, 0);"};
-    transition: ${(pr) => (pr.transition ? pr.transition : "200ms ease all")};
+    transition: ${(pr) => (pr.transition ? pr.transition : "400ms ease all")};
 `;
 
 export const StyledInput = styled.input<IStyledInput>`
@@ -65,22 +63,27 @@ export const StyledInput = styled.input<IStyledInput>`
     font-size: ${(pr) => (pr.fontSize ? pr.fontSize : "100%")}px;
     line-height: ${(pr) => (pr.lineHeight ? pr.lineHeight : "25px")};
     text-shadow: ${(pr) => (pr.textShadow ? pr.textShadow : "none")};
+    padding: ${(pr) => (pr.padding ? pr.padding : "0.5")}px;
     border: ${(pr) => (pr.border ? pr.border : "0")};
     border-bottom: ${(pr) =>
-        pr.borderBottom ? pr.borderBottom : "1px solid rgba(0, 0, 0, 0.15)"};
-    color: ${(pr) => (pr.color ? pr.color : "#3949ab")};
+        pr.borderBottom ? pr.borderBottom : "1px solid rgba(0, 0, 0, 0.5)"};
+    color: ${(pr) => (pr.color ? pr.color : "black")};
     flex: ${(pr) => (pr.flex ? pr.flex : "1 1 auto")};
     order: ${(pr) => (pr.order ? pr.order : "2")};
+    text-transform: ${(pr) =>
+        pr.textTransform ? pr.textTransform : "capitalize"};
     &:focus {
         outline: 0;
     }
 
     &:not(:focus) {
-        color: transparent;
+        opacity: 0.75;
+        border-top: transparent;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     }
 
     &:focus + ${StyledLabel} {
-        color: #3949ab;
+        color: #32b24d;
         opacity: 1;
         transform: scale(0.8) translate3d(0, 5px, 0);
     }

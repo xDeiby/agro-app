@@ -1,6 +1,7 @@
 import * as React from "react";
 import Form from "../components/forms";
 import Logo from "../config/logos/aresa.e3676c3d.png";
+import Label from "../components/label/index";
 
 const Manteiner: React.FC = () => {
     return (
@@ -12,7 +13,7 @@ const Manteiner: React.FC = () => {
                     { name: "name_sector", type: "text" },
                     { name: "wea1", type: "email" },
                 ]}
-            />
+            ></Form>
         </div>
     );
 };

@@ -33,7 +33,6 @@ const Boton: React.FC<IButton> = (props) => {
                     <CheckCircle size="21px" style={styloIcon} /> {children}
                 </StyledButton>
             );
-            break;
 
         case "deny":
             return (
