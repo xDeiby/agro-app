@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledLabel, StyledInput, StyledContainerLabel } from "./styled.Label";
 
 interface IPropsContainerLabel {
@@ -40,6 +40,7 @@ export type IFloatingLabel = IPropsLabel & IPropsInput & IPropsContainerLabel;
 
 const Label: React.FC<IFloatingLabel> = (props) => {
     const { children } = props;
+
     return (
         <StyledContainerLabel>
             <StyledInput />

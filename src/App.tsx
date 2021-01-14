@@ -3,9 +3,26 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import { BrowserRouter } from "react-router-dom";
 import Views from "./views";
+import Button from "./components/button/Button";
+import Alert from "./components/alerts/Alerts";
+import { StyledLabel } from "./components/label/styled.Label";
+
 const App: React.FunctionComponent = () => {
     return (
         <BrowserRouter basename="/">
+            <Button typeButton="accept">Aceptar</Button>
+            <Button typeButton="deny">Cancelar</Button>
+            <Button typeButton="login">Login</Button>
+            <Button typeButton="user">Usuario</Button>
+            <Button typeButton="add">Agregar</Button>
+            <Button typeButton="delete">Borrar</Button>
+            <Alert typeAlert="succesful">
+                {" "}
+                Se ha realizado con exito la alerta{" "}
+            </Alert>
+
+            <StyledLabel>NOMBRE Y APELLIDOS</StyledLabel>
+
             <header
                 // Provisorio
                 style={{

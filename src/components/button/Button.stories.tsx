@@ -15,7 +15,7 @@ const Template: Story<IButton> = (args) => <Button {...args} />;
 export const Accept = Template.bind({});
 Accept.args = {
     typeButton: "accept",
-    children: "User",
+    children: "Accept",
 };
 
 export const Decline = Template.bind({});
