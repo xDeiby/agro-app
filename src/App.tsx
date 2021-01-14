@@ -22,6 +22,7 @@ const App: React.FunctionComponent = () => {
             </Alert>
 
             <StyledLabel>NOMBRE Y APELLIDOS</StyledLabel>
+
             <header
                 // Provisorio
                 style={{
