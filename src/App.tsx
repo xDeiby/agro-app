@@ -10,6 +10,7 @@ import Views from "./views";
 const pete = () => {
     console.log("Probando");
 };
+
 const App: React.FunctionComponent = () => {
     return (
         <div className="app">
@@ -24,7 +25,7 @@ const App: React.FunctionComponent = () => {
                 <Button typeButton="delete">Borrar</Button>
                 <Alert> </Alert>
 
-                <StyledLabel>ejemplo3</StyledLabel>
+                <StyledLabel>NOMBRE Y APELLIDOS</StyledLabel>
                 <header
                     // Provisorio
                     style={{
