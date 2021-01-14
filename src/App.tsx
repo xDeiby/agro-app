@@ -5,7 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import Views from "./views";
 import Button from "./components/button/Button";
 import Alert from "./components/alerts/Alerts";
-import { StyledLabel } from "./components/label/styled.Label";
+import Label from "./components/label/Label";
+import Dropdown from "./components/dropdown/Dropdown";
 
 const App: React.FunctionComponent = () => {
     return (
@@ -21,7 +22,8 @@ const App: React.FunctionComponent = () => {
                 Se ha realizado con exito la alerta{" "}
             </Alert>
 
-            <StyledLabel>NOMBRE Y APELLIDOS</StyledLabel>
+            <Label>NOMBRE Y APELLIDOS</Label>
+            <Dropdown options={["react"]} id={"2"}></Dropdown>
 
             <header
                 // Provisorio

@@ -47,20 +47,17 @@ interface IModelButton {
     backgroundColor?: string;
 }
 
-interface IStyledButton {
+interface IStyledButton extends IModelButton {
     border?: string;
     typeButton: TypeButton;
     borderRadius?: string;
-    color?: string;
     width?: string;
     fontSize?: string;
     paddingf?: string;
-    backgroundColor?: string;
     margin?: string;
     marginLeft?: string;
     className?: string;
 }
-
 const StyledButton = styled.button<IStyledButton>`
     border: ${(pr) => (pr.border ? pr.border : "none")};
     border-radius: ${(pr) => (pr.borderRadius ? pr.borderRadius : "6")}px;
