@@ -19,14 +19,7 @@ const DataList = ({ id, options }: IDatalist) => (
     </StyledList>
 );
 
-class AutoComplete extends React.Component implements IAutoComplete {
-    options: string[];
-    id: string;
-    constructor(options: string[], id: string) {
-        super(options, id);
-        this.options = options;
-        this.id = id;
-    }
+class AutoComplete extends React.Component<{ options: string[] }> {
     randomId = () =>
         Math.floor((1 + Math.random()) * 0x100000)
             .toString(16)
@@ -35,41 +28,21 @@ class AutoComplete extends React.Component implements IAutoComplete {
     state = { id: this.randomId() };
 
     render() {
-        return this.state.id;
-        /*             <React.Fragment>
-                <DataList
-                    id={this.state.id}
-                    options={[
-                        "React",
-                        "Angular",
-                        "Vue JS",
-                        "Vanilla javascript",
-                    ]}
-                />
+        return (
+            <React.Fragment>
+                <DataList id={this.state.id} options={this.props.options} />
                 <input type="text" list={"data-list-" + this.state.id} />
-            </React.Fragment> */
+            </React.Fragment>
+        );
     }
 }
 
 const Dropdown: React.FC<IAutoComplete> = (props) => {
-    interface ILo {
-        state?: string;
-        id?: string;
-    }
-
-    const state: ILo = "";
-    const id = state;
     return (
         <div className="App">
             <div>Whats your favorite framework?</div>
-            <DataList
-                id={id}
-                options={["React", "Angular", "Vue JS", "Vanilla javascript"]}
-            />
-            <input type="text" list={"data-list-" + this.state.id} />
-            {/* <AutoComplete
-            options={["React", "Angular", "Vue JS", "Vanilla javascript"]}
-            /> */}
+
+            <AutoComplete {...props} />
         </div>
     );
 };

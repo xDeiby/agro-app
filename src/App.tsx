@@ -23,7 +23,24 @@ const App: React.FunctionComponent = () => {
             </Alert>
 
             <Label>NOMBRE Y APELLIDOS</Label>
-            <Dropdown options={["react"]} id={"2"}></Dropdown>
+            <Dropdown
+                options={[
+                    "React",
+                    "Angular",
+                    "Vue JS",
+                    "Vanilla javascript",
+                    "pete cris",
+                ]}
+            ></Dropdown>
+            <Dropdown
+                options={[
+                    "nacho pete",
+                    "claudio pete",
+                    "yo pete",
+                    "Vanilla javascript",
+                    "pete cris",
+                ]}
+            ></Dropdown>
 
             <header
                 // Provisorio
