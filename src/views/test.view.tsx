@@ -1,5 +1,5 @@
 import * as React from "react";
-import Button from "../components/button/Button";
+import Button from "../components/buttons/button/Button";
 import { LogIn } from "@styled-icons/boxicons-regular/LogIn";
 import { CancelCircle } from "@styled-icons/icomoon/CancelCircle";
 import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";

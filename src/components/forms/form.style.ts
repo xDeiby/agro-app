@@ -15,6 +15,7 @@ const StyledForm = styled(Form)`
     display: flex;
     flex-flow: wrap row;
     align-items: center;
+    justify-content: space-around;
 `;
 
 // Provisorio
