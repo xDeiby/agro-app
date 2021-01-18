@@ -14,9 +14,10 @@ interface IStyledInput {
     order?: string;
     textTransform?: string;
     padding?: string;
+    size?: string;
 }
 export const StyledList = styled.datalist`
-    color: #000;
+    color: #111;
 `;
 export const StyledInput = styled.input<IStyledInput>`
     border-radius: ${(pr) => (pr.borderRadius ? pr.borderRadius : "0")};
@@ -33,6 +34,7 @@ export const StyledInput = styled.input<IStyledInput>`
     order: ${(pr) => (pr.order ? pr.order : "2")};
     text-transform: ${(pr) =>
         pr.textTransform ? pr.textTransform : "capitalize"};
+    size: ${(pr) => (pr.size ? pr.size : "50px")};
     &:focus {
         outline: 0;
     }

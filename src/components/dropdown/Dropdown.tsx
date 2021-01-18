@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { StyledList, StyledInput } from "./styled.Dropdown";
 
 interface IDatalist extends IAutoComplete {
     o?: string;
     i?: number;
 }
-interface IAutoComplete {
+export interface IAutoComplete {
     options: string[];
     id?: string;
 }
@@ -19,7 +18,9 @@ const DataList = ({ id, options }: IDatalist) => (
     </StyledList>
 );
 
-class AutoComplete extends React.Component<{ options: string[] }> {
+class AutoComplete extends React.Component<{
+    options: string[];
+}> {
     randomId = () =>
         Math.floor((1 + Math.random()) * 0x100000)
             .toString(16)
@@ -31,7 +32,7 @@ class AutoComplete extends React.Component<{ options: string[] }> {
         return (
             <React.Fragment>
                 <DataList id={this.state.id} options={this.props.options} />
-                <input type="text" list={"data-list-" + this.state.id} />
+                <StyledInput type="text" list={"data-list-" + this.state.id} />
             </React.Fragment>
         );
     }
@@ -39,9 +40,7 @@ class AutoComplete extends React.Component<{ options: string[] }> {
 
 const Dropdown: React.FC<IAutoComplete> = (props) => {
     return (
-        <div className="App">
-            <div>Whats your favorite framework?</div>
-
+        <div>
             <AutoComplete {...props} />
         </div>
     );

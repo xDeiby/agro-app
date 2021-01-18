@@ -7,19 +7,21 @@ import Button from "./components/button/Button";
 import Alert from "./components/alerts/Alerts";
 import Label from "./components/label/Label";
 import Dropdown from "./components/dropdown/Dropdown";
+import Page404 from "./components/pageNotFound/PageNotFound";
 
 const App: React.FunctionComponent = () => {
     return (
-        <BrowserRouter basename="/">
+        <Page404 />
+        /*  <BrowserRouter basename="/">
             <Button typeButton="accept">Aceptar</Button>
             <Button typeButton="deny">Cancelar</Button>
             <Button typeButton="login">Login</Button>
             <Button typeButton="user">Usuario</Button>
             <Button typeButton="add">Agregar</Button>
             <Button typeButton="delete">Borrar</Button>
-            <Alert typeAlert="succesful">
-                {" "}
-                Se ha realizado con exito la alerta{" "}
+
+            <Alert typeAlert="warning">
+                Se ha realizado con exito la alerta
             </Alert>
 
             <Label>NOMBRE Y APELLIDOS</Label>
@@ -32,16 +34,7 @@ const App: React.FunctionComponent = () => {
                     "pete cris",
                 ]}
             ></Dropdown>
-            <Dropdown
-                options={[
-                    "nacho pete",
-                    "claudio pete",
-                    "yo pete",
-                    "Vanilla javascript",
-                    "pete cris",
-                ]}
-            ></Dropdown>
-
+            <br />
             <header
                 // Provisorio
                 style={{
@@ -72,6 +65,7 @@ const App: React.FunctionComponent = () => {
                 AQUI FOOTER (Provisorio)
             </footer>
         </BrowserRouter>
+    */
     );
 };
 
