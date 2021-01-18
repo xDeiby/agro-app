@@ -7,7 +7,8 @@ export type TypeButton =
     | "deny"
     | "login"
     | "user"
-    | "delete";
+    | "delete"
+    | "home";
 
 const TypeStyle: { [key in TypeButton]: IModelButton } = {
     accept: {
@@ -37,6 +38,10 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
     delete: {
         color: "white",
         backgroundColor: "#D62A2A",
+    },
+    home: {
+        color: "white",
+        backgroundColor: "#62bd50",
     },
 };
 export const styloIcon = {

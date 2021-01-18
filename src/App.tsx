@@ -12,6 +12,7 @@ import Page404 from "./components/pageNotFound/PageNotFound";
 const App: React.FunctionComponent = () => {
     return (
         <Page404 />
+
         /*  <BrowserRouter basename="/">
             <Button typeButton="accept">Aceptar</Button>
             <Button typeButton="deny">Cancelar</Button>
