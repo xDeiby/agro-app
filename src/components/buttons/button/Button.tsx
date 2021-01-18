@@ -6,6 +6,7 @@ import { LogIn } from "@styled-icons/boxicons-regular/LogIn";
 import { User } from "@styled-icons/fa-solid/User";
 import { Add } from "@styled-icons/material-rounded/Add";
 import { Delete } from "@styled-icons/material-outlined/Delete";
+import { HomeCircle } from "@styled-icons/boxicons-regular/HomeCircle";
 
 interface IPropertys {
     color?: string;
@@ -71,8 +72,17 @@ const Boton: React.FC<IButton> = (props) => {
                     {children}
                 </StyledButton>
             );
+        case "home":
+            return (
+                <StyledButton {...props}>
+                    <HomeCircle size="20px" style={styloIcon} />
+                    {children}
+                </StyledButton>
+            );
+
         case "default":
             return <StyledButton {...props}>{children}</StyledButton>;
+
         default:
             break;
     }
