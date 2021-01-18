@@ -1,4 +1,4 @@
 import HomeRoute from "./home.route";
-import { SectorRoute } from "./manteiners";
+import ManteinerRoutes from "./manteiner.route";
 
-export { HomeRoute, SectorRoute };
+export { HomeRoute, ManteinerRoutes };

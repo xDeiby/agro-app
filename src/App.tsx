@@ -3,39 +3,10 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import { BrowserRouter } from "react-router-dom";
 import Views from "./views";
-import Button from "./components/button/Button";
-import Alert from "./components/alerts/Alerts";
-import Label from "./components/label/Label";
-import Dropdown from "./components/dropdown/Dropdown";
-import Page404 from "./components/pageNotFound/PageNotFound";
 
 const App: React.FunctionComponent = () => {
     return (
-        <Page404 />
-
-        /*  <BrowserRouter basename="/">
-            <Button typeButton="accept">Aceptar</Button>
-            <Button typeButton="deny">Cancelar</Button>
-            <Button typeButton="login">Login</Button>
-            <Button typeButton="user">Usuario</Button>
-            <Button typeButton="add">Agregar</Button>
-            <Button typeButton="delete">Borrar</Button>
-
-            <Alert typeAlert="warning">
-                Se ha realizado con exito la alerta
-            </Alert>
-
-            <Label>NOMBRE Y APELLIDOS</Label>
-            <Dropdown
-                options={[
-                    "React",
-                    "Angular",
-                    "Vue JS",
-                    "Vanilla javascript",
-                    "pete cris",
-                ]}
-            ></Dropdown>
-            <br />
+        <BrowserRouter basename="/">
             <header
                 // Provisorio
                 style={{
@@ -51,7 +22,7 @@ const App: React.FunctionComponent = () => {
             <div className="react-body">
                 <Views />
             </div>
-            <footer
+            {/* <footer
                 style={{
                     position: "fixed",
                     left: "0px",
@@ -64,9 +35,8 @@ const App: React.FunctionComponent = () => {
                 }}
             >
                 AQUI FOOTER (Provisorio)
-            </footer>
+            </footer> */}
         </BrowserRouter>
-    */
     );
 };
 

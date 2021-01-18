@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledDiv, StyledSection, StyledImage } from "./styled.PageNotFound";
 import shorando from "../../config/images/shorando.gif";
-import Button from "../button/Button";
+import Button from "../buttons/button/Button";
 import "../../../src/index.css";
 import campo from "../../config/images/fondo_404.png";
 

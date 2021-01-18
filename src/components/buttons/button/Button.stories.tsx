@@ -7,9 +7,7 @@ import Button, { IButton } from "./Button";
 export default {
     title: "Example/Button",
     component: Button,
-    argTypes: {
-        //backgroundColor: { control: "color" },
-    },
+    argTypes: {},
 } as Meta;
 
 const Template: Story<IButton> = (args) => <Button {...args} />;
@@ -53,6 +51,11 @@ export const Delete = Template.bind({});
 Delete.args = {
     typeButton: "delete",
     children: "Delete",
+};
+export const Home = Template.bind({});
+Home.args = {
+    typeButton: "home",
+    children: "Home",
 };
 // export const Small = Template.bind({});
 // Small.args = {

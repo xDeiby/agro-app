@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
-import { Field, FormikProps, withFormik } from "formik";
+import { FormikProps, withFormik } from "formik";
 import StyledForm from "./form.style";
+import FormControl from "../form-control";
+import Input from "../input";
+import Select, { SelectOption } from "../select";
 
 // any => generico
 // interface FormValues {
@@ -12,11 +16,22 @@ import StyledForm from "./form.style";
 type OtherValues = {
     message: string;
     fields: IFieldElement[];
+    dropdowns?: IDropdownElement[];
     logo: string;
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
-    const { message, isSubmitting, fields, logo } = props;
+    const {
+        message,
+        isSubmitting,
+        handleChange,
+        setFieldValue,
+        handleBlur,
+        fields,
+        dropdowns,
+        logo,
+        values,
+    } = props;
     return (
         <StyledForm>
             <div
@@ -38,32 +53,78 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
             <h1 style={{ flexBasis: "100%" }}>{message}</h1>
 
             {fields.map((input: IFieldElement) => (
-                <Field
+                // <Field
+                //     key={input.name}
+                //     {...input}
+                //     style={{
+                //         flex: "1 0 50px",
+                //     }}
+                <FormControl
                     key={input.name}
-                    {...input}
-                    style={{
-                        flex: "1 0 50px",
-                    }}
-                />
+                    label={input.label}
+                    htmlFor={input.name}
+                    onBlur={handleBlur}
+                >
+                    <Input
+                        id={input.name}
+                        value={values[input.name]}
+                        placeholder={input.placeholder}
+                        type={input.type}
+                        onChange={handleChange}
+                        width="500px"
+                        size="large"
+                    />
+                </FormControl>
             ))}
+
+            {dropdowns?.map((select: IDropdownElement) => (
+                <FormControl
+                    key={select.name}
+                    label={select.label}
+                    htmlFor={select.name}
+                    // onBlur={handleBlur}
+                >
+                    <Select
+                        id={select.name}
+                        placeholder={select.placeholder}
+                        option={values[select.name]}
+                        listOptions={select.options}
+                        onChange={(e) => setFieldValue(select.name, e)}
+                        width="500px"
+                        size="large"
+                    />
+                </FormControl>
+            ))}
+
             {/* <Field name="name_sector" type="text" />
             <Field name="num_sector" type="number" /> */}
-            <button disabled={isSubmitting} type="submit">
-                Guardar
-            </button>
+            <div className="buttons" style={{ flexBasis: "100%" }}>
+                <button disabled={isSubmitting} type="submit">
+                    Guardar
+                </button>
+            </div>
         </StyledForm>
     );
 };
 
 export interface IFieldElement {
+    label: string;
     name: string;
     placeholder?: string;
     type: "number" | "email" | "text";
 }
 
+export interface IDropdownElement {
+    label: string;
+    name: string;
+    placeholder?: string;
+    options: SelectOption[];
+}
+
 interface InitValues {
     message: string;
     fields: IFieldElement[];
+    dropdowns?: IDropdownElement[];
     logo: string;
 }
 
@@ -72,6 +133,7 @@ const Form = withFormik<InitValues, any>({
         message: props.message,
         field: props.fields,
         logo: props.logo,
+        dropdowns: props.dropdowns,
         // name_sector: "",
         // num_sector: "",
     }),
