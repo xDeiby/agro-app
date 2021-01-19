@@ -52,6 +52,11 @@ Delete.args = {
     typeButton: "delete",
     children: "Delete",
 };
+export const Home = Template.bind({});
+Home.args = {
+    typeButton: "home",
+    children: "Home",
+};
 // export const Small = Template.bind({});
 // Small.args = {
 //     size: "small",
