@@ -1,12 +1,11 @@
 import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
-import { BrowserRouter } from "react-router-dom";
 import Views from "./views";
 
 const App: React.FunctionComponent = () => {
     return (
-        <BrowserRouter basename="/">
+        <div className="app">
             <header
                 // Provisorio
                 style={{
@@ -36,7 +35,7 @@ const App: React.FunctionComponent = () => {
             >
                 AQUI FOOTER (Provisorio)
             </footer> */}
-        </BrowserRouter>
+        </div>
     );
 };
 
