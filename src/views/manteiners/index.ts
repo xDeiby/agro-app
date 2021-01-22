@@ -9,6 +9,7 @@ import Rootstock from "./rootstock.view";
 import Sector from "./sector.view";
 import Species from "./specie.view";
 import Varietys from "./variety.view";
+import Seasons from "./season.view";
 
 export {
     ActiveIngredient,
@@ -22,4 +23,5 @@ export {
     Sector,
     Species,
     Varietys,
+    Seasons,
 };

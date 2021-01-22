@@ -6,6 +6,9 @@ import StyledForm from "./form.style";
 import FormControl from "../form-control";
 import Input from "../input";
 import Select, { SelectOption } from "../select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import es from "date-fns/locale/es";
 
 // any => generico
 // interface FormValues {
@@ -17,6 +20,7 @@ type OtherValues = {
     message: string;
     fields: IFieldElement[];
     dropdowns?: IDropdownElement[];
+    datePicker?: IDatePickerElement[];
     logo: string;
 };
 
@@ -29,6 +33,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
         handleBlur,
         fields,
         dropdowns,
+        datePicker,
         logo,
         values,
     } = props;
@@ -95,6 +100,24 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     />
                 </FormControl>
             ))}
+            {datePicker?.map((dateFields: IDatePickerElement) => (
+                <FormControl
+                    key={dateFields.name}
+                    label={dateFields.label}
+                    htmlFor={dateFields.name}
+                    // onBlur={handleBlur}
+                >
+                    <DatePicker
+                        onChange={(e) => setFieldValue(dateFields.name, e)}
+                        locale={es}
+                        customInput={<Input />}
+                        name={dateFields.name}
+                        value={values[dateFields.name]}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Fecha de inicio"
+                    />
+                </FormControl>
+            ))}
 
             {/* <Field name="name_sector" type="text" />
             <Field name="num_sector" type="number" /> */}
@@ -121,10 +144,16 @@ export interface IDropdownElement {
     options: SelectOption[];
 }
 
+export interface IDatePickerElement {
+    label: string;
+    name: string;
+    placeholder?: string;
+}
 interface InitValues {
     message: string;
     fields: IFieldElement[];
     dropdowns?: IDropdownElement[];
+    datePicker?: IDatePickerElement[];
     logo: string;
 }
 
@@ -134,6 +163,7 @@ const Form = withFormik<InitValues, any>({
         field: props.fields,
         logo: props.logo,
         dropdowns: props.dropdowns,
+        datePicker: props.datePicker,
         // name_sector: "",
         // num_sector: "",
     }),
