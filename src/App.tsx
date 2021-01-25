@@ -2,8 +2,15 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
+import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
 
 const App: React.FunctionComponent = () => {
+    React.useEffect(() => {
+        const wea = new AgroSearch();
+
+        wea.getEntities("1").then((response) => console.log(response));
+    }, []);
+
     return (
         <div className="app">
             <header

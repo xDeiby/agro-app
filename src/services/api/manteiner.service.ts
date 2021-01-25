@@ -1,9 +1,6 @@
 import axios from "axios";
-import { settings } from "../../config/api/settings";
-
+import { localSettings as searchConfig } from "../../config/azure-search/azure-search.conf";
 import { IPostContainer, MessageResult } from "../../model/api";
-
-//import { localSettings as settings } from "../../../settings";
 
 export default class CrudManteinerRequest {
     // private accessToken = sessionStorage.getItem("accessToken");
@@ -14,7 +11,7 @@ export default class CrudManteinerRequest {
     ): Promise<IPostContainer<T>> {
         try {
             const result = await axios.post<IPostContainer<T>>(
-                `${settings.funcUrl}/${path_entity}`,
+                `${searchConfig.funcUrl}/${path_entity}`,
                 data,
                 {
                     headers: {
@@ -45,7 +42,7 @@ export default class CrudManteinerRequest {
     ): Promise<IPostContainer<T>> {
         try {
             const result = await axios.put<IPostContainer<T>>(
-                `${settings.funcUrl}/${path_entity}/${id}`,
+                `${searchConfig.funcUrl}/${path_entity}/${id}`,
                 data,
                 {
                     headers: {
