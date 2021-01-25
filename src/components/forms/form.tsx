@@ -8,7 +8,7 @@ import Input from "../input";
 import Select, { SelectOption } from "../select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import es from "date-fns/locale/es";
+import en from "date-fns/locale/en-AU";
 import { useState } from "react";
 
 // any => generico
@@ -26,8 +26,7 @@ type OtherValues = {
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [pate, setPate] = useState(new Date());
     const {
         message,
         isSubmitting,
@@ -40,6 +39,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
         logo,
         values,
     } = props;
+
     return (
         <StyledForm>
             <div
@@ -103,33 +103,20 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     />
                 </FormControl>
             ))}
-            {datePicker?.map((select: IDatePickerElement) => (
+            {datePicker?.map((dateFields: IDatePickerElement) => (
                 <FormControl
-                    key={select.name}
-                    label={select.label}
-                    htmlFor={select.name}
+                    key={dateFields.name.toString()}
+                    label={dateFields.label}
+                    htmlFor={dateFields.name.toString()}
                     // onBlur={handleBlur}
                 >
                     <DatePicker
-                        selected={startDate}
+                        selected={pate}
+                        onChange={(date: any) => setPate(date)}
+                        locale={en}
                         customInput={<Input />}
-                        onChange={(date: Date) => setStartDate(date)}
-                        selectsStart
-                        startDate={startDate}
-                        endDate={endDate}
-                        dateFormat="dd/MM/yyyy"
+                        name={pate.toString()}
                         placeholderText="Fecha de inicio"
-                    />
-                    <DatePicker
-                        selected={endDate}
-                        customInput={<Input />}
-                        onChange={(date: Date) => setEndDate(date)}
-                        selectsEnd
-                        startDate={startDate}
-                        endDate={endDate}
-                        minDate={startDate}
-                        dateFormat="dd/MM/yyyy"
-                        placeholderText="Fecha de termino"
                     />
                 </FormControl>
             ))}
