@@ -33,14 +33,6 @@ const Varietys: React.FC = () => {
                     ],
                 },
             ]}
-            datePicker={[
-                {
-                    label: "Especie",
-                    name: "idSpecie",
-                    placeholder: "Selecciona una Especia",
-                
-                },
-            ]}
         />
     );
 };

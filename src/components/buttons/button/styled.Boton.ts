@@ -8,6 +8,7 @@ export type TypeButton =
     | "login"
     | "user"
     | "delete"
+    | "save"
     | "home";
 
 const TypeStyle: { [key in TypeButton]: IModelButton } = {
@@ -42,6 +43,10 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
     home: {
         color: "white",
         backgroundColor: "#62bd50",
+    },
+    save: {
+        color: "white",
+        backgroundColor: "#697367",
     },
 };
 export const styloIcon = {
@@ -79,6 +84,18 @@ const StyledButton = styled.button<IStyledButton>`
         box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.24),
             0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+    ${(pr) =>
+        pr.disabled
+            ? `background-color: white;
+            color: black;
+            border: 1.5px solid #697367;
+            &:hover {
+                opacity: 1;
+                transition: 0.5s;
+                box-shadow: none;}
+            `
+            : `
+    `}
 `;
 
 export default StyledButton;
