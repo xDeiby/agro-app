@@ -9,6 +9,7 @@ import Select, { SelectOption } from "../select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
+import { useState } from "react";
 
 // any => generico
 // interface FormValues {
@@ -25,6 +26,8 @@ type OtherValues = {
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
     const {
         message,
         isSubmitting,
@@ -100,21 +103,33 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     />
                 </FormControl>
             ))}
-            {datePicker?.map((dateFields: IDatePickerElement) => (
+            {datePicker?.map((select: IDatePickerElement) => (
                 <FormControl
-                    key={dateFields.name}
-                    label={dateFields.label}
-                    htmlFor={dateFields.name}
+                    key={select.name}
+                    label={select.label}
+                    htmlFor={select.name}
                     // onBlur={handleBlur}
                 >
                     <DatePicker
-                        onChange={(e) => setFieldValue(dateFields.name, e)}
-                        locale={es}
+                        selected={startDate}
                         customInput={<Input />}
-                        name={dateFields.name}
-                        value={values[dateFields.name]}
+                        onChange={(date: Date) => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
                         dateFormat="dd/MM/yyyy"
                         placeholderText="Fecha de inicio"
+                    />
+                    <DatePicker
+                        selected={endDate}
+                        customInput={<Input />}
+                        onChange={(date: Date) => setEndDate(date)}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Fecha de termino"
                     />
                 </FormControl>
             ))}
