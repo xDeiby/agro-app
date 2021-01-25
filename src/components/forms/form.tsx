@@ -8,7 +8,9 @@ import Input from "../input";
 import Select, { SelectOption } from "../select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import es from "date-fns/locale/es";
 import { useState } from "react";
+import Boton from "../buttons/button/Button";
 
 // any => generico
 // interface FormValues {
@@ -25,7 +27,8 @@ type OtherValues = {
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setstartDate] = useState(new Date());
+    const [endDate, setendtDate] = useState(new Date());
 
     const {
         message,
@@ -39,6 +42,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
         logo,
         values,
     } = props;
+
     return (
         <StyledForm>
             <div
@@ -102,27 +106,58 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     />
                 </FormControl>
             ))}
-
-            {datePicker?.map((select: IDatePickerElement) => (
+            {datePicker?.map((dateFields: IDatePickerElement) => (
                 <FormControl
-                    key={select.name}
-                    label={select.label}
-                    htmlFor={select.name}
+                    key={dateFields.name.toString()}
+                    label={dateFields.label}
+                    htmlFor={dateFields.name.toString()}
                     // onBlur={handleBlur}
                 >
                     <DatePicker
                         selected={startDate}
-                        onChange={(date: Date) => setStartDate(date)}
+                        onChange={(date: any) => {
+                            setstartDate(date);
+                            values[dateFields.startDate] = date;
+                        }}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                        locale={es}
+                        customInput={<Input />}
+                        name={startDate.toString()}
+                        placeholderText="Fecha de inicio"
+                        dateFormat="dd/MM/yyyy"
+                    />
+                    <DatePicker
+                        selected={endDate}
+                        onChange={(date: any) => {
+                            setendtDate(date);
+                            values[dateFields.endDate] = date;
+                        }}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                        locale={es}
+                        customInput={<Input />}
+                        name={endDate.toString()}
+                        placeholderText="Fecha de termino"
+                        dateFormat="dd/MM/yyyy"
                     />
                 </FormControl>
             ))}
 
             {/* <Field name="name_sector" type="text" />
             <Field name="num_sector" type="number" /> */}
+
             <div className="buttons" style={{ flexBasis: "100%" }}>
-                <button disabled={isSubmitting} type="submit">
+                <Boton
+                    typeButton="save"
+                    backgroundColor="green"
+                    disabled={isSubmitting}
+                >
                     Guardar
-                </button>
+                </Boton>
             </div>
         </StyledForm>
     );
@@ -146,12 +181,14 @@ export interface IDatePickerElement {
     label: string;
     name: string;
     placeholder?: string;
+    startDate: string;
+    endDate: string;
 }
-
 interface InitValues {
     message: string;
     fields: IFieldElement[];
     dropdowns?: IDropdownElement[];
+    datePicker?: IDatePickerElement[];
     logo: string;
 }
 
@@ -161,6 +198,7 @@ const Form = withFormik<InitValues, any>({
         field: props.fields,
         logo: props.logo,
         dropdowns: props.dropdowns,
+        datePicker: props.datePicker,
         // name_sector: "",
         // num_sector: "",
     }),
