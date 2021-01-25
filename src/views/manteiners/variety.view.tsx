@@ -38,6 +38,7 @@ const Varietys: React.FC = () => {
                     label: "Especie",
                     name: "idSpecie",
                     placeholder: "Selecciona una Especia",
+                
                 },
             ]}
         />

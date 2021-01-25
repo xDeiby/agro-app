@@ -8,7 +8,8 @@ import Input from "../input";
 import Select, { SelectOption } from "../select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import es from "date-fns/locale/es";
+import en from "date-fns/locale/en-AU";
+import { useState } from "react";
 
 // any => generico
 // interface FormValues {
@@ -25,6 +26,7 @@ type OtherValues = {
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
+    const [pate, setPate] = useState(new Date());
     const {
         message,
         isSubmitting,
@@ -37,6 +39,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
         logo,
         values,
     } = props;
+
     return (
         <StyledForm>
             <div
@@ -102,18 +105,17 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
             ))}
             {datePicker?.map((dateFields: IDatePickerElement) => (
                 <FormControl
-                    key={dateFields.name}
+                    key={dateFields.name.toString()}
                     label={dateFields.label}
-                    htmlFor={dateFields.name}
+                    htmlFor={dateFields.name.toString()}
                     // onBlur={handleBlur}
                 >
                     <DatePicker
-                        onChange={(e) => setFieldValue(dateFields.name, e)}
-                        locale={es}
+                        selected={pate}
+                        onChange={(date: any) => setPate(date)}
+                        locale={en}
                         customInput={<Input />}
-                        name={dateFields.name}
-                        value={values[dateFields.name]}
-                        dateFormat="dd/MM/yyyy"
+                        name={pate.toString()}
                         placeholderText="Fecha de inicio"
                     />
                 </FormControl>
