@@ -23,7 +23,8 @@ interface IPropsImage {
 }
 export type IPage404 = IPropsDiv & IPropsSection & IPropsImage;
 
-const Page404: React.FC<IPage404> = () => {
+const Page404: React.FC<IPage404> = (props) => {
+    const { children } = props;
     return (
         <StyledSection
             style={{
@@ -42,7 +43,7 @@ const Page404: React.FC<IPage404> = () => {
                 <StyledImage src={shorando} />
                 {/* <img src={shorando} width="500" height="500" /> */}
                 <h2>Parece que estas perdido</h2>
-                <p>La pagina a la que quiere acceder no esta disponible! </p>
+                <p>{children} </p>
                 <Button typeButton="home" width="200">
                     Volver a la pagina principal
                 </Button>
