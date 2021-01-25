@@ -2,6 +2,7 @@ import * as React from "react";
 import { Route } from "react-router";
 import {
     Rootstock,
+    Seasons,
     Sector,
     Species,
     Varietys,
@@ -137,6 +138,17 @@ const ManteinerRoute: React.FC = () => {
                 ]}
             >
                 <Barracks />
+            </Route>
+
+            {/* Temporadas */}
+            <Route
+                exact
+                path={[
+                    `${base_path}/temporadas/agregar`,
+                    `${base_path}/temporadas/:id`,
+                ]}
+            >
+                <Seasons />
             </Route>
         </>
     );

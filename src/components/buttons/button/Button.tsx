@@ -7,6 +7,7 @@ import { User } from "@styled-icons/fa-solid/User";
 import { Add } from "@styled-icons/material-rounded/Add";
 import { Delete } from "@styled-icons/material-outlined/Delete";
 import { HomeCircle } from "@styled-icons/boxicons-regular/HomeCircle";
+import { Save } from "@styled-icons/feather/Save";
 
 interface IPropertys {
     color?: string;
@@ -17,6 +18,7 @@ interface IPropertys {
     backgroundColor?: string;
     className?: string;
     children?: React.ReactNode;
+    disabled?: boolean;
 }
 interface IMouseEvents {
     onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -76,6 +78,13 @@ const Boton: React.FC<IButton> = (props) => {
             return (
                 <StyledButton {...props}>
                     <HomeCircle size="20px" style={styloIcon} />
+                    {children}
+                </StyledButton>
+            );
+        case "save":
+            return (
+                <StyledButton {...props}>
+                    <Save size="20px" style={styloIcon} />
                     {children}
                 </StyledButton>
             );
