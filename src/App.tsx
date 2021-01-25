@@ -21,20 +21,22 @@ const App: React.FunctionComponent = () => {
             <div className="react-body">
                 <Views />
             </div>
-            {/* <footer
-                style={{
-                    position: "fixed",
-                    left: "0px",
-                    bottom: "0px",
-                    display: "block",
-                    backgroundColor: "rgba(0,0,0,0.8)",
-                    width: "100%",
-                    padding: "10px",
-                    color: "white",
-                }}
-            >
-                AQUI FOOTER (Provisorio)
-            </footer> */}
+            {
+                <footer
+                    style={{
+                        position: "fixed",
+                        left: "0px",
+                        bottom: "0px",
+                        display: "block",
+                        backgroundColor: "rgba(0,0,0,0.8)",
+                        width: "100%",
+                        padding: "10px",
+                        color: "white",
+                    }}
+                >
+                    AQUI FOOTER (Provisorio)
+                </footer>
+            }
         </div>
     );
 };
