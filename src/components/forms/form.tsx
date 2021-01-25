@@ -6,6 +6,9 @@ import StyledForm from "./form.style";
 import FormControl from "../form-control";
 import Input from "../input";
 import Select, { SelectOption } from "../select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useState } from "react";
 
 // any => generico
 // interface FormValues {
@@ -17,10 +20,13 @@ type OtherValues = {
     message: string;
     fields: IFieldElement[];
     dropdowns?: IDropdownElement[];
+    datePicker?: IDatePickerElement[];
     logo: string;
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
+    const [startDate, setStartDate] = useState(new Date());
+
     const {
         message,
         isSubmitting,
@@ -29,6 +35,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
         handleBlur,
         fields,
         dropdowns,
+        datePicker,
         logo,
         values,
     } = props;
@@ -96,6 +103,20 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                 </FormControl>
             ))}
 
+            {datePicker?.map((select: IDatePickerElement) => (
+                <FormControl
+                    key={select.name}
+                    label={select.label}
+                    htmlFor={select.name}
+                    // onBlur={handleBlur}
+                >
+                    <DatePicker
+                        selected={startDate}
+                        onChange={(date: Date) => setStartDate(date)}
+                    />
+                </FormControl>
+            ))}
+
             {/* <Field name="name_sector" type="text" />
             <Field name="num_sector" type="number" /> */}
             <div className="buttons" style={{ flexBasis: "100%" }}>
@@ -119,6 +140,12 @@ export interface IDropdownElement {
     name: string;
     placeholder?: string;
     options: SelectOption[];
+}
+
+export interface IDatePickerElement {
+    label: string;
+    name: string;
+    placeholder?: string;
 }
 
 interface InitValues {
