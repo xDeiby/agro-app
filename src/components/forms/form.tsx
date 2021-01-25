@@ -8,8 +8,9 @@ import Input from "../input";
 import Select, { SelectOption } from "../select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import en from "date-fns/locale/en-AU";
+import es from "date-fns/locale/es";
 import { useState } from "react";
+import Boton from "../buttons/button/Button";
 
 // any => generico
 // interface FormValues {
@@ -26,7 +27,9 @@ type OtherValues = {
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
-    const [selectDate, setSelectDate] = useState(new Date());
+    const [startDate, setstartDate] = useState(new Date());
+    const [endDate, setendtDate] = useState(new Date());
+
     const {
         message,
         isSubmitting,
@@ -111,24 +114,50 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     // onBlur={handleBlur}
                 >
                     <DatePicker
-                        selected={selectDate}
-                        onChange={(date: any) => setSelectDate(date)
-                        values[dateFields.name]=date;
-                    }
-                        locale={en}
+                        selected={startDate}
+                        onChange={(date: any) => {
+                            setstartDate(date);
+                            values[dateFields.startDate] = date;
+                        }}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                        locale={es}
                         customInput={<Input />}
-                        name={dateFields.name}
-                        placeholderText="Fecha"
+                        name={startDate.toString()}
+                        placeholderText="Fecha de inicio"
+                        dateFormat="dd/MM/yyyy"
+                    />
+                    <DatePicker
+                        selected={endDate}
+                        onChange={(date: any) => {
+                            setendtDate(date);
+                            values[dateFields.endDate] = date;
+                        }}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                        locale={es}
+                        customInput={<Input />}
+                        name={endDate.toString()}
+                        placeholderText="Fecha de termino"
+                        dateFormat="dd/MM/yyyy"
                     />
                 </FormControl>
             ))}
 
             {/* <Field name="name_sector" type="text" />
             <Field name="num_sector" type="number" /> */}
+
             <div className="buttons" style={{ flexBasis: "100%" }}>
-                <button disabled={isSubmitting} type="submit">
+                <Boton
+                    typeButton="save"
+                    backgroundColor="green"
+                    disabled={isSubmitting}
+                >
                     Guardar
-                </button>
+                </Boton>
             </div>
         </StyledForm>
     );
@@ -152,6 +181,8 @@ export interface IDatePickerElement {
     label: string;
     name: string;
     placeholder?: string;
+    startDate: string;
+    endDate: string;
 }
 interface InitValues {
     message: string;

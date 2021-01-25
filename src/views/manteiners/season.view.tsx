@@ -20,6 +20,8 @@ const Seasons: React.FC = () => {
                     label: "Temporada",
                     name: "idTemporada",
                     placeholder: "Selecciona una Especia",
+                    startDate: "inicioTemporada",
+                    endDate: "finTemporada",
                 },
             ]}
         />
