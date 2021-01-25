@@ -18,6 +18,7 @@ interface IPropertys {
     backgroundColor?: string;
     className?: string;
     children?: React.ReactNode;
+    disabled?: boolean;
 }
 interface IMouseEvents {
     onClick?: MouseEventHandler<HTMLButtonElement>;

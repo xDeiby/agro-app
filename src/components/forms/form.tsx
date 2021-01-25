@@ -151,9 +151,13 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
             <Field name="num_sector" type="number" /> */}
 
             <div className="buttons" style={{ flexBasis: "100%" }}>
-                <button disabled={isSubmitting} type="submit">
+                <Boton
+                    typeButton="save"
+                    backgroundColor="green"
+                    disabled={isSubmitting}
+                >
                     Guardar
-                </button>
+                </Boton>
             </div>
         </StyledForm>
     );
