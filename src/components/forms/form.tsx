@@ -26,7 +26,7 @@ type OtherValues = {
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
-    const [pate, setPate] = useState(new Date());
+    const [selectDate, setSelectDate] = useState(new Date());
     const {
         message,
         isSubmitting,
@@ -111,12 +111,14 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     // onBlur={handleBlur}
                 >
                     <DatePicker
-                        selected={pate}
-                        onChange={(date: any) => setPate(date)}
+                        selected={selectDate}
+                        onChange={(date: any) => setSelectDate(date)
+                        values[dateFields.name]=date;
+                    }
                         locale={en}
                         customInput={<Input />}
-                        name={pate.toString()}
-                        placeholderText="Fecha de inicio"
+                        name={dateFields.name}
+                        placeholderText="Fecha"
                     />
                 </FormControl>
             ))}
