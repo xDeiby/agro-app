@@ -12,6 +12,7 @@ import es from "date-fns/locale/es";
 import { useState } from "react";
 import Boton from "../buttons/button/Button";
 import CrudManteinerRequest from "../../services/api/manteiner.service";
+import { useParams } from "react-router";
 
 // any => generico
 // interface FormValues {
@@ -186,6 +187,7 @@ interface InitValues {
     dropdowns?: IDropdownElement[];
     datePicker?: IDatePickerElement[];
     logo: string;
+    pathname: string;
 }
 
 const Form = withFormik<InitValues, any>({
@@ -199,10 +201,11 @@ const Form = withFormik<InitValues, any>({
         // num_sector: "",
     }),
 
-    handleSubmit: (values) => {
-        console.log(values);
+    handleSubmit: async (values) => {
+        const wea = useParams();
+        console.log("aaaa", wea);
 
-        CrudManteinerRequest.POST(values, "species");
+        await CrudManteinerRequest.POST(values, "species");
     },
 })(MyForm);
 
