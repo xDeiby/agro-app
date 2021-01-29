@@ -14,7 +14,7 @@ const App: React.FunctionComponent = () => {
     return (
         <div className="app">
             <header
-                // Provisorio
+                // ! Provisorio
                 style={{
                     backgroundImage: `url(${fondo})`,
                     height: "300px",

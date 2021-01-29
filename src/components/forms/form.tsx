@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 import { useState } from "react";
 import Boton from "../buttons/button/Button";
+import CrudManteinerRequest from "../../services/api/manteiner.service";
 
 // any => generico
 // interface FormValues {
@@ -64,12 +65,6 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
             <h1 style={{ flexBasis: "100%" }}>{message}</h1>
 
             {fields.map((input: IFieldElement) => (
-                // <Field
-                //     key={input.name}
-                //     {...input}
-                //     style={{
-                //         flex: "1 0 50px",
-                //     }}
                 <FormControl
                     key={input.name}
                     label={input.label}
@@ -78,7 +73,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                 >
                     <Input
                         id={input.name}
-                        value={values[input.name]}
+                        value={values[input.name] || ""}
                         placeholder={input.placeholder}
                         type={input.type}
                         onChange={handleChange}
@@ -152,6 +147,7 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
 
             <div className="buttons" style={{ flexBasis: "100%" }}>
                 <Boton
+                    // type={"submit"}
                     typeButton="save"
                     backgroundColor="green"
                     disabled={isSubmitting}
@@ -194,17 +190,19 @@ interface InitValues {
 
 const Form = withFormik<InitValues, any>({
     mapPropsToValues: (props) => ({
-        message: props.message,
-        field: props.fields,
-        logo: props.logo,
-        dropdowns: props.dropdowns,
-        datePicker: props.datePicker,
+        // message: props.message,
+        // field: props.fields,
+        // logo: props.logo,
+        // dropdowns: props.dropdowns,
+        // datePicker: props.datePicker,
         // name_sector: "",
         // num_sector: "",
     }),
 
     handleSubmit: (values) => {
         console.log(values);
+
+        CrudManteinerRequest.POST(values, "species");
     },
 })(MyForm);
 

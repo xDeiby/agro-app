@@ -1,8 +1,4 @@
-import {
-    SearchClient,
-    AzureKeyCredential,
-    odata,
-} from "@azure/search-documents";
+import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
 import { IResponse } from "../../model/azure-search/IResponse";
 
 class AzureSearch<T> {
@@ -18,11 +14,10 @@ class AzureSearch<T> {
 
     protected async searchEntities(query: string): Promise<IResponse<T[]>> {
         const results: T[] = [];
-        console.log(`${query}`);
 
         try {
             const searchResults = await this.client.search("*", {
-                filter: odata`${query}`,
+                filter: query,
             });
 
             for await (const result of searchResults.results) {
