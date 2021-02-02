@@ -11,8 +11,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import es from "date-fns/locale/es";
 import { useState } from "react";
 import Boton from "../buttons/button/Button";
-import CrudManteinerRequest from "../../services/api/manteiner.service";
-import { useParams } from "react-router";
+import { path_name } from "../../config/statics/path_names";
+import { EntityRelated } from "@trifenix/agro-data";
+import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
+import { getAllRels, getRelValues } from "../../controllers/manteiner.controller";
+import { getPropertys, IProperty } from "../../controllers/wea";
+import { KindProperty } from "@trifenix/mdm";
 
 // any => generico
 // interface FormValues {
@@ -26,11 +30,23 @@ type OtherValues = {
     dropdowns?: IDropdownElement[];
     datePicker?: IDatePickerElement[];
     logo: string;
+    id_entity?: string;
+    currentEntity: EntityRelated;
 };
 
 const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
     const [startDate, setstartDate] = useState(new Date());
     const [endDate, setendtDate] = useState(new Date());
+    const [loading, setLoading] = useState<boolean>(!!props.dropdowns);
+    const [myAll_options, setMyAllOptions] = useState<{ data: SelectOption[]; option: string }[]>([]);
+    const [defaultInputs, setDefaultInputs] = useState<IProperty[]>([]);
+    const [defaultOptions, setDefaultOptions] = useState<
+        {
+            option: string | undefined;
+            label: string;
+            value: string;
+        }[]
+    >([]);
 
     const {
         message,
@@ -45,7 +61,65 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
         values,
     } = props;
 
-    return (
+    function getOption(key: string, dropdown: string) {
+        const options = myAll_options.filter((op) => op.option === dropdown)[0].data;
+
+        return options.filter((option) => option.value === key)[0];
+    }
+
+    React.useEffect(() => {
+        async function loadData() {
+            setLoading(true);
+            const search = new AgroSearch();
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            // console.log(props.dropdowns);
+
+            const all_options = await Promise.all(
+                props.dropdowns!.map(async (entities) => {
+                    const all_entities = (await search.getEntities(entities.entity)).data;
+                    const options = all_entities.map((entitie) => getRelValues(entitie));
+                    return {
+                        data: options,
+                        option: entities.name,
+                    };
+                })
+            );
+
+            setMyAllOptions(all_options);
+            console.log({ ...all_options }, "AAAA");
+
+            // setMyAllOptions({...all_options});
+
+            if (props.id_entity) {
+                const current_entity = (await search.getSpecificEntitie(props.currentEntity, props.id_entity)).data[0];
+                const all_rels = await getAllRels(props.id_entity, props.currentEntity);
+
+                all_rels.forEach((rel) => {
+                    const wea = props.dropdowns?.filter((dropdown) => dropdown.entity === rel.index)[0].name;
+                    // console.log(wea, getRelValues(rel));
+
+                    setFieldValue(wea as string, getRelValues(rel).value);
+                });
+                const default_inputs = getPropertys(current_entity);
+
+                default_inputs.forEach((input) => setFieldValue(input.label, input.value));
+
+                setDefaultInputs(default_inputs);
+                // setDefaultOptions(default_options);
+
+                // console.log(default_options, "ya lo hice papu");
+                // console.log(default_inputs, "ya lo hice papu");
+            }
+
+            setLoading(false);
+        }
+
+        props.dropdowns && loadData();
+    }, []);
+
+    return loading ? (
+        <h1>loading...</h1>
+    ) : (
         <StyledForm>
             <div
                 className="logo"
@@ -55,23 +129,13 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     alignContent: "center",
                 }}
             >
-                <img
-                    src={logo}
-                    alt="Logo formulario"
-                    width={200}
-                    style={{ margin: "auto" }}
-                />
+                <img src={logo} alt="Logo formulario" width={200} style={{ margin: "auto" }} />
             </div>
 
             <h1 style={{ flexBasis: "100%" }}>{message}</h1>
 
             {fields.map((input: IFieldElement) => (
-                <FormControl
-                    key={input.name}
-                    label={input.label}
-                    htmlFor={input.name}
-                    onBlur={handleBlur}
-                >
+                <FormControl key={input.name} label={input.label} htmlFor={input.name} onBlur={handleBlur}>
                     <Input
                         id={input.name}
                         value={values[input.name] || ""}
@@ -94,9 +158,10 @@ const MyForm: React.FC<OtherValues & FormikProps<any>> = (props) => {
                     <Select
                         id={select.name}
                         placeholder={select.placeholder}
-                        option={values[select.name]}
-                        listOptions={select.options}
-                        onChange={(e) => setFieldValue(select.name, e)}
+                        option={getOption(values[select.name], select.name)}
+                        // option={values[select.name]}
+                        listOptions={myAll_options.filter((options) => options.option === select.name)[0].data}
+                        onChange={(e) => setFieldValue(select.name, e?.value)}
                         width="500px"
                         size="large"
                     />
@@ -172,6 +237,7 @@ export interface IDropdownElement {
     name: string;
     placeholder?: string;
     options: SelectOption[];
+    entity: EntityRelated;
 }
 
 export interface IDatePickerElement {
@@ -181,31 +247,41 @@ export interface IDatePickerElement {
     startDate: string;
     endDate: string;
 }
-interface InitValues {
+export interface InitValuesForm {
     message: string;
     fields: IFieldElement[];
     dropdowns?: IDropdownElement[];
     datePicker?: IDatePickerElement[];
     logo: string;
-    pathname: string;
+    pathname: path_name;
+    id_entity?: string;
+    currentEntity: EntityRelated;
 }
 
-const Form = withFormik<InitValues, any>({
+const Form = withFormik<InitValuesForm, any>({
     mapPropsToValues: (props) => ({
-        // message: props.message,
-        // field: props.fields,
-        // logo: props.logo,
-        // dropdowns: props.dropdowns,
-        // datePicker: props.datePicker,
-        // name_sector: "",
-        // num_sector: "",
+        pathname: props.pathname,
+        id_entity: props.id_entity,
     }),
 
     handleSubmit: async (values) => {
-        const wea = useParams();
-        console.log("aaaa", wea);
+        const pathname = values.pathname;
+        const id = values.id_entity;
 
-        await CrudManteinerRequest.POST(values, "species");
+        delete values.id_entity;
+        delete values.pathname;
+
+        if (id) {
+            console.log("PUTTT");
+
+            // await CrudManteinerRequest.PUT(values, pathname, id);
+        } else {
+            console.log("POSTT");
+
+            // await CrudManteinerRequest.POST(values, pathname);
+        }
+
+        console.log(values, pathname);
     },
 })(MyForm);
 

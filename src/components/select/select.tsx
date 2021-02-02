@@ -1,14 +1,7 @@
 import React, { HTMLAttributes, useRef } from "react";
 import { ComponentSize } from "../../config/styles/constants/sizes";
 import Input from "../input";
-import {
-    StyledWrapper,
-    StyledHeader,
-    StyledArrow,
-    StyledPopover,
-    List,
-    ListItem,
-} from "./select.style";
+import { StyledWrapper, StyledHeader, StyledArrow, StyledPopover, List, ListItem } from "./select.style";
 import { useSelectLogic } from "./use-select-logic";
 
 export type SelectOption = {
@@ -19,10 +12,7 @@ export type SelectOption = {
 export type SelectChangeHandler = (option: SelectOption | undefined) => void;
 
 export interface SelectProps
-    extends Omit<
-        HTMLAttributes<HTMLDivElement>,
-        "className" | "width" | "option" | "onChange"
-    > {
+    extends Omit<HTMLAttributes<HTMLDivElement>, "className" | "width" | "option" | "onChange"> {
     className?: string;
     size?: ComponentSize;
     disabled?: boolean;
@@ -62,36 +52,22 @@ const Select: React.ForwardRefRenderFunction<HTMLDivElement, SelectProps> = (
 
     const headerRef = useRef<HTMLDivElement>(null);
     const popoverRef = useRef<HTMLDivElement>(null);
-    const {
-        onOptionClick,
-        optionsListVisible,
-        setOptionsListVisible,
-    } = useSelectLogic(onChange, { headerRef, popoverRef }, disabled);
+    const { onOptionClick, optionsListVisible, setOptionsListVisible } = useSelectLogic(
+        onChange,
+        { headerRef, popoverRef },
+        disabled
+    );
 
     return (
         <StyledWrapper className={className} width={width} innerSize={size}>
-            <StyledHeader
-                ref={headerRef}
-                onClick={() => setOptionsListVisible(true)}
-            >
-                <Input
-                    value={option ? option.value : ""}
-                    {...textInputStyles}
-                />
+            <StyledHeader ref={headerRef} onClick={() => setOptionsListVisible(true)}>
+                <Input value={option ? option.label : ""} {...textInputStyles} />
                 <StyledArrow innerSize={size} upwards={optionsListVisible} />
             </StyledHeader>
-            <StyledPopover
-                ref={popoverRef}
-                width={width}
-                visible={optionsListVisible}
-            >
+            <StyledPopover ref={popoverRef} width={width} visible={optionsListVisible}>
                 <List>
                     {listOptions?.map((option) => (
-                        <ListItem
-                            key={option.value}
-                            innerSize={size}
-                            onClick={() => onOptionClick(option)}
-                        >
+                        <ListItem key={option.value} innerSize={size} onClick={() => onOptionClick(option)}>
                             {option.label}
                         </ListItem>
                     ))}

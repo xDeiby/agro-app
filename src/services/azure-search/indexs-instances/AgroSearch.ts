@@ -1,10 +1,11 @@
-import { EntityBaseSearch } from "@trifenix/mdm";
+import { EntityBaseSearch, GeoPointTs } from "@trifenix/mdm";
 import { IndexesModel } from "../../../model/azure-search/IndexesModel";
 import { IResponse } from "../../../model/azure-search/IResponse";
 import AzureSearch from "../azure-search";
 
-export default class AgroSearch extends AzureSearch<EntityBaseSearch<string>>
-    implements IndexesModel<EntityBaseSearch<string>> {
+export default class AgroSearch
+    extends AzureSearch<EntityBaseSearch<GeoPointTs>>
+    implements IndexesModel<EntityBaseSearch<GeoPointTs>> {
     public endpoint: string;
     public index_name: string;
     public key: string;
@@ -19,10 +20,24 @@ export default class AgroSearch extends AzureSearch<EntityBaseSearch<string>>
         this.index_name = index_name;
         this.key = key;
     }
+
     public async getEntities(
-        query: string
-    ): Promise<IResponse<EntityBaseSearch<string>[]>> {
-        const res = await this.searchEntities(`index eq ${query}`);
+        entity: number
+    ): Promise<IResponse<EntityBaseSearch<GeoPointTs>[]>> {
+        const res = await this.searchEntities(
+            `index eq ${entity === 23 ? 21 : entity}`
+        );
+
+        return res;
+    }
+
+    public async getSpecificEntitie(
+        entitie_index: number,
+        id: string
+    ): Promise<IResponse<EntityBaseSearch<GeoPointTs>[]>> {
+        const res = await this.searchEntities(
+            `index eq ${entitie_index} and id eq '${id}'`
+        );
 
         return res;
     }

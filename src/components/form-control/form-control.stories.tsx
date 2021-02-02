@@ -29,11 +29,7 @@ export const FormInput: React.FC = () => {
         <FormControl
             label="Email"
             htmlFor="email"
-            error={
-                shouldShowError
-                    ? "Please type a valid email address"
-                    : undefined
-            }
+            error={shouldShowError ? "Please type a valid email address" : undefined}
             hint="You won't be able to change it later"
             onBlur={() => setIsVisited(true)}
         >
@@ -51,12 +47,7 @@ export const FormInput: React.FC = () => {
 
 export const DisabledFormInput: React.FC = () => {
     return (
-        <FormControl
-            label="Username"
-            htmlFor="username"
-            hint="You can't change this field"
-            disabled
-        >
+        <FormControl label="Username" htmlFor="username" hint="You can't change this field" disabled>
             <Input id="username" width="250px" value="john_doe" disabled />
         </FormControl>
     );
@@ -69,9 +60,7 @@ const selectOptions = [
 ];
 
 export const FormSelect = () => {
-    const [option, setOption] = React.useState<SelectOption | undefined>(
-        selectOptions[0]
-    );
+    const [option, setOption] = React.useState<SelectOption | undefined>(selectOptions[0]);
     const [isVisited, setIsVisited] = React.useState(false);
     const shouldShowError = !option && isVisited;
 

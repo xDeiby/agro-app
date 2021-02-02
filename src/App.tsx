@@ -2,14 +2,18 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
 
 const App: React.FunctionComponent = () => {
-    React.useEffect(() => {
-        const wea = new AgroSearch();
+    // React.useEffect(() => {
+    //     const fetchData = async () => {
+    //         const myWea = new AgroSearch();
+    //         const wea = (await myWea.getEntities(1)).data;
 
-        wea.getEntities("1").then((response) => console.log(response));
-    }, []);
+    //         getPropertys(wea[0]);
+    //         console.log(wea);
+    //     };
+    //     fetchData();
+    // }, []);
 
     return (
         <div className="app">
