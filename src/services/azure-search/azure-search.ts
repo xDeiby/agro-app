@@ -5,21 +5,15 @@ class AzureSearch<T> {
     private client: SearchClient<T>;
 
     constructor(endPoint: string, indexName: string, key: string) {
-        this.client = new SearchClient<T>(
-            endPoint,
-            indexName,
-            new AzureKeyCredential(key)
-        );
+        this.client = new SearchClient<T>(endPoint, indexName, new AzureKeyCredential(key));
     }
 
     protected async searchEntities(query: string): Promise<IResponse<T[]>> {
         const results: T[] = [];
-        console.log(`${query}`);
 
         try {
             const searchResults = await this.client.search("*", {
                 filter: query,
-                /* select: select as keyof T[] */
             });
 
             for await (const result of searchResults.results) {

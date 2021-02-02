@@ -1,151 +1,88 @@
 import * as React from "react";
 import { Route } from "react-router";
+import { base_path, path_name } from "../config/statics";
 import {
-    Rootstock,
-    Seasons,
-    Sector,
-    Species,
-    Varietys,
-    Plotlands,
-    CategoryIngredient,
-    CertifiedEntities,
-    PhenologicalEvents,
-    Barracks,
-    AplicationTarget,
-    ActiveIngredient,
-} from "../views/manteiners";
+    BarrackTable,
+    ActiveIngredientTable,
+    SectorTable,
+    CategoryIngredientTable,
+    SpecieTable,
+    PlotlandTable,
+    VarietyTable,
+    SeasonTable,
+    RootstockTable,
+    ApplicationTargetTable,
+    CertiedEntitiesTable,
+    PhenologicalEventTable,
+} from "../views/tableManteiner";
 
-const base_path = "/mantenedor";
-
-const ManteinerRoute: React.FC = () => {
+const ManteinerTableRoute: React.FC = () => {
     return (
         <>
             {/* Sectores */}
-            <Route exact path={`${base_path}/sectores/agregar`}>
-                <Sector />
+            <Route exact path={`/${base_path.manteiner}/${path_name.sectors}`}>
+                <SectorTable />
             </Route>
 
             {/* Especies */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/especies/agregar`,
-                    `${base_path}/especies/:id`,
-                ]}
-            >
-                <Species />
+            <Route exact path={`/${base_path.manteiner}/${path_name.species}`}>
+                <SpecieTable />
             </Route>
 
             {/* Portainjertos */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/portainjertos/agregar`,
-                    `${base_path}/portainjertos/:id`,
-                ]}
-            >
-                <Rootstock />
+            <Route exact path={`/${base_path.manteiner}/${path_name.rootstocks}`}>
+                {" "}
+                <RootstockTable />
             </Route>
 
             {/* Variedades */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/variedades/agregar`,
-                    `${base_path}/variedades/:id`,
-                ]}
-            >
-                <Varietys />
+            <Route exact path={`/${base_path.manteiner}/${path_name.varietys}`}>
+                {" "}
+                <VarietyTable />{" "}
             </Route>
 
             {/* Parcelas */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/parcelas/agregar`,
-                    `${base_path}/parcelas/:id`,
-                ]}
-            >
-                <Plotlands />
+            <Route exact path={`/${base_path.manteiner}/${path_name.plotlands}`}>
+                {" "}
+                <PlotlandTable />
             </Route>
 
             {/* Categorias de Ingredientes */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/categoria_ingredientes/agregar`,
-                    `${base_path}/categoria_ingredientes/:id`,
-                ]}
-            >
-                <CategoryIngredient />
+            <Route exact path={`/${base_path.manteiner}/${path_name.category_ingredients}`}>
+                <CategoryIngredientTable />
             </Route>
 
             {/* Eventos Fenologicos */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/eventos_fenologicos/agregar`,
-                    `${base_path}/eventos_fenologicos/:id`,
-                ]}
-            >
-                <PhenologicalEvents />
+            <Route exact path={`/${base_path.manteiner}/${path_name.phenological_events}`}>
+                <PhenologicalEventTable />
             </Route>
 
             {/* Ingredientes Activos */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/ingrediientes_activos/agregar`,
-                    `${base_path}/ingrediientes_activos/:id`,
-                ]}
-            >
-                <ActiveIngredient />
+            <Route exact path={`/${base_path.manteiner}/${path_name.active_ingredients}`}>
+                <ActiveIngredientTable />
             </Route>
 
             {/* Entidades Certificadas */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/entidades_certificadas/agregar`,
-                    `${base_path}/entidades_certificadas/:id`,
-                ]}
-            >
-                <CertifiedEntities />
+            <Route exact path={`/${base_path.manteiner}/${path_name.certified_entities}`}>
+                {" "}
+                <CertiedEntitiesTable />
             </Route>
 
             {/* Objetivos de Aplicacions */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/objetivos_aplicacion/agregar`,
-                    `${base_path}/objetivos_aplicacion/:id`,
-                ]}
-            >
-                <AplicationTarget />
+            <Route exact path={`/${base_path.manteiner}/${path_name.application_targets}`}>
+                <ApplicationTargetTable />
             </Route>
 
-            <Route
-                exact
-                path={[
-                    `${base_path}/cuarteles/agregar`,
-                    `${base_path}/cuarteles/:id`,
-                ]}
-            >
-                <Barracks />
+            <Route exact path={`/${base_path.manteiner}/${path_name.barracks}`}>
+                <BarrackTable />
             </Route>
 
             {/* Temporadas */}
-            <Route
-                exact
-                path={[
-                    `${base_path}/temporadas/agregar`,
-                    `${base_path}/temporadas/:id`,
-                ]}
-            >
-                <Seasons />
+            <Route exact path={`/${base_path.manteiner}/${path_name.seasons}`}>
+                <SeasonTable />
             </Route>
         </>
     );
 };
 
-export default ManteinerRoute;
+export default ManteinerTableRoute;

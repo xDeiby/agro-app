@@ -6,6 +6,7 @@ export type TypeItem = "menuItem" | "subMenuItem";
 
 export type ISubMenu = {
     name: string;
+    url: string;
     // Mas...
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../../components/forms";
 import Logo from "../../config/logos/aresa.e3676c3d.png";
 import { Meta } from "@storybook/react/types-6-0";
-
+/* 
 export default {
     title: "Components/Form",
     component: Form,
@@ -78,3 +78,4 @@ export const FieldsAndDatepicker: React.FC = () => {
         />
     );
 };
+ */

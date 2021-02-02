@@ -12,7 +12,7 @@ const SubMenu: React.FunctionComponent<ISubMenuProps> = (props) => {
         <StyledSubUl>
             {menus.map((item: ISubMenu) => (
                 <StyledSubLi key={Math.random()}>
-                    <StyledSubA>{item.name}</StyledSubA>
+                    <StyledSubA to={item.url}>{item.name}</StyledSubA>
                 </StyledSubLi>
             ))}
         </StyledSubUl>
