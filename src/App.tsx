@@ -3,8 +3,6 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
-import { mdm } from "@trifenix/agro-data";
-import { KindProperty, PropertyMetadata } from "@trifenix/mdm";
 
 const App: React.FunctionComponent = () => {
     React.useEffect(() => {

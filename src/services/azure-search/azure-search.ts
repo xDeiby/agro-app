@@ -1,8 +1,4 @@
-import {
-    SearchClient,
-    AzureKeyCredential,
-    odata,
-} from "@azure/search-documents";
+import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
 import { IResponse } from "../../model/azure-search/IResponse";
 
 class AzureSearch<T> {

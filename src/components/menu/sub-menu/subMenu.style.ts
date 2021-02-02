@@ -12,6 +12,12 @@ export const StyledSubLi = styled.li`
     // padding: 5px 0px;
     display: inline-block;
     border-bottom: 1px solid rgba(7, 255, 69, 0.8);
+    &:hover {
+        background-color: #6dce0e;
+        color: black;
+        border: 2px solid #6dce0e;
+        border-radius: 10px;
+    }
 `;
 
 export const StyledSubUl = styled.ul`

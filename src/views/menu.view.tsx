@@ -14,7 +14,7 @@ const MenuView: React.FunctionComponent = () => {
                 style={{ cursor: "pointer", marginLeft: "30px" }}
             />
             <MenuItem>
-                <Item name="Inicio" active={true} />
+                <Item name="Inicio" active={false} />
                 <Item
                     name="Ordenes"
                     subMenus={[
