@@ -3,22 +3,27 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
+import { mdm } from "@trifenix/agro-data";
+import { KindProperty, PropertyMetadata } from "@trifenix/mdm";
 
 const App: React.FunctionComponent = () => {
     React.useEffect(() => {
-        const wea = new AgroSearch();
+        async function fetchGetentities(index: string) {
+            const busqueda = new AgroSearch();
+            const entities = await busqueda.getEntities(index);
+            const rels = entities.data.map((entity) => entity.rel);
+            console.log(rels);
+            return rels;
+        }
 
-        wea.getEntities("1").then((response) => console.log(response));
+        fetchGetentities("1");
     }, []);
 
     return (
         <div className="app">
             <header
-                // Provisorio
                 style={{
                     backgroundImage: `url(${fondo})`,
-                    height: "300px",
-                    backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "top",
                 }}

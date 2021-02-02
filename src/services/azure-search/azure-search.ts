@@ -22,7 +22,8 @@ class AzureSearch<T> {
 
         try {
             const searchResults = await this.client.search("*", {
-                filter: odata`${query}`,
+                filter: query,
+                /* select: select as keyof T[] */
             });
 
             for await (const result of searchResults.results) {

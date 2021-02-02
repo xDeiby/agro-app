@@ -26,4 +26,14 @@ export default class AgroSearch extends AzureSearch<EntityBaseSearch<string>>
 
         return res;
     }
+    public async getSpecificEntities(
+        entity: string,
+        id: string
+    ): Promise<IResponse<EntityBaseSearch<string>[]>> {
+        const res = await this.searchEntities(
+            `index eq ${entity} AND id eq ${id}`
+        );
+
+        return res;
+    }
 }
