@@ -2,14 +2,11 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-
 const App: React.FunctionComponent = () => {
     // React.useEffect(() => {
     //     const fetchData = async () => {
     //         const myWea = new AgroSearch();
     //         const wea = (await myWea.getEntities(1)).data;
-
-    //         getPropertys(wea[0]);
     //         console.log(wea);
     //     };
     //     fetchData();

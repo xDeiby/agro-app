@@ -67,7 +67,7 @@ const ManteinerRoute: React.FC = () => {
             <Route
                 exact
                 path={[
-                    `/${base_path.manteiner}/${path_name.plotlands}/agregar`,
+                    `/${base_path.manteiner}/${path_name.plotlands}/add`,
                     `/${base_path.manteiner}/${path_name.plotlands}/:id`,
                 ]}
             >
@@ -100,7 +100,7 @@ const ManteinerRoute: React.FC = () => {
             <Route
                 exact
                 path={[
-                    `/${base_path.manteiner}/${path_name.active_ingredients}/agregar`,
+                    `/${base_path.manteiner}/${path_name.active_ingredients}/add`,
                     `/${base_path.manteiner}/${path_name.active_ingredients}/:id`,
                 ]}
             >
@@ -111,7 +111,7 @@ const ManteinerRoute: React.FC = () => {
             <Route
                 exact
                 path={[
-                    `/${base_path.manteiner}/${path_name.certified_entities}/agregar`,
+                    `/${base_path.manteiner}/${path_name.certified_entities}/add`,
                     `/${base_path.manteiner}/${path_name.certified_entities}/:id`,
                 ]}
             >
@@ -122,7 +122,7 @@ const ManteinerRoute: React.FC = () => {
             <Route
                 exact
                 path={[
-                    `/${base_path.manteiner}/${path_name.application_targets}/agregar`,
+                    `/${base_path.manteiner}/${path_name.application_targets}/add`,
                     `/${base_path.manteiner}/${path_name.application_targets}/:id`,
                 ]}
             >
@@ -132,7 +132,7 @@ const ManteinerRoute: React.FC = () => {
             <Route
                 exact
                 path={[
-                    `/${base_path.manteiner}/${path_name.barracks}/agregar`,
+                    `/${base_path.manteiner}/${path_name.barracks}/add`,
                     `/${base_path.manteiner}/${path_name.barracks}/:id`,
                 ]}
             >
@@ -143,7 +143,7 @@ const ManteinerRoute: React.FC = () => {
             <Route
                 exact
                 path={[
-                    `/${base_path.manteiner}/${path_name.seasons}/agregar`,
+                    `/${base_path.manteiner}/${path_name.seasons}/add`,
                     `/${base_path.manteiner}/${path_name.seasons}/:id`,
                 ]}
             >

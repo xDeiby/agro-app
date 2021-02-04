@@ -1,11 +1,11 @@
-import { EntityBaseSearch, GeoPointTs } from "@trifenix/mdm";
+import { GeographyPoint } from "@azure/search-documents";
+import { EntityBaseSearch } from "@trifenix/mdm";
 import { IndexesModel } from "../../../model/azure-search/IndexesModel";
 import { IResponse } from "../../../model/azure-search/IResponse";
 import AzureSearch from "../azure-search";
 
-export default class AgroSearch
-    extends AzureSearch<EntityBaseSearch<GeoPointTs>>
-    implements IndexesModel<EntityBaseSearch<GeoPointTs>> {
+export default class AgroSearch extends AzureSearch<EntityBaseSearch<GeographyPoint>>
+    implements IndexesModel<EntityBaseSearch<GeographyPoint>> {
     public endpoint: string;
     public index_name: string;
     public key: string;
@@ -22,22 +22,20 @@ export default class AgroSearch
     }
 
     public async getEntities(
-        entity: number
-    ): Promise<IResponse<EntityBaseSearch<GeoPointTs>[]>> {
-        const res = await this.searchEntities(
-            `index eq ${entity === 23 ? 21 : entity}`
-        );
+        entity: number,
+        select?: (keyof EntityBaseSearch<GeographyPoint>)[]
+    ): Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>> {
+        const res = await this.searchEntities(`index eq ${entity}`, select);
 
         return res;
     }
 
     public async getSpecificEntitie(
         entitie_index: number,
-        id: string
-    ): Promise<IResponse<EntityBaseSearch<GeoPointTs>[]>> {
-        const res = await this.searchEntities(
-            `index eq ${entitie_index} and id eq '${id}'`
-        );
+        id: string,
+        select?: (keyof EntityBaseSearch<GeographyPoint>)[]
+    ): Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>> {
+        const res = await this.searchEntities(`index eq ${entitie_index} and id eq '${id}'`, select);
 
         return res;
     }
