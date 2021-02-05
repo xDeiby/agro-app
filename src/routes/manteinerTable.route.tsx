@@ -73,6 +73,7 @@ const ManteinerTableRoute: React.FC = () => {
                 <ApplicationTargetTable />
             </Route>
 
+            {/*Cuarteles*/}
             <Route exact path={`/${base_path.manteiner}/${path_name.barracks}`}>
                 <BarrackTable />
             </Route>

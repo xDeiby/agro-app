@@ -2,6 +2,7 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
+
 const App: React.FunctionComponent = () => {
     // const [nombre, setNombre] = useState<string[][]>();
     // React.useEffect(() => {
