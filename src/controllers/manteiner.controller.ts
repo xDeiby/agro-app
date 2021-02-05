@@ -1,6 +1,5 @@
 import { EntityRelated, StringRelated } from "@trifenix/agro-data";
 import { EntityBaseSearch, GeoPointTs } from "@trifenix/mdm";
-import AgroSearch from "../services/azure-search/indexs-instances/AgroSearch";
 
 // export declare type CompositeComponent<P> =
 //     | React.ComponentClass<P>

@@ -2,21 +2,23 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
-import { EntityRelated } from "@trifenix/agro-data";
+// import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
+// import { EntityRelated, StringRelated } from "@trifenix/agro-data";
+// import { useState } from "react";
 
 const App: React.FunctionComponent = () => {
-    React.useEffect(() => {
-        async function fetchGetentities() {
-            const busqueda = new AgroSearch();
-            const entities = (await busqueda.getEntities(EntityRelated.BARRACK)).data;
-            console.log(entities);
-
-            const res = entities.map((result) => result.str.value);
-            console.log(res);
-        }
-        fetchGetentities();
-    }, []);
+    // const [nombre, setNombre] = useState<string[][]>();
+    // React.useEffect(() => {
+    //     async function fetchGetentities() {
+    //         const busqueda = new AgroSearch();
+    //         const entities = (await busqueda.getEntities(EntityRelated.BARRACK)).data;
+    //         const res = entities.map((result) =>
+    //             result.str.filter((lol) => lol.index === StringRelated.GENERIC_NAME).map((valor) => valor.value)
+    //         );
+    //         setNombre(res);
+    //     }
+    //     fetchGetentities();
+    // }, []);
 
     return (
         <div className="app">
@@ -33,6 +35,9 @@ const App: React.FunctionComponent = () => {
             <div className="react-body">
                 <Views />
             </div>
+            {/* {nombre?.map((pete) => (
+                <div key="1">{pete}</div>
+            ))} */}
             {
                 <footer
                     style={{

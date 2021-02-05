@@ -29,7 +29,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <Sector />
             </Route>
-
             {/* Especies */}
             <Route
                 exact
@@ -40,7 +39,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <Species />
             </Route>
-
             {/* Portainjertos */}
             <Route
                 exact
@@ -51,8 +49,7 @@ const ManteinerRoute: React.FC = () => {
             >
                 <Rootstock />
             </Route>
-
-            {/* Variedades */}
+            {/* Variedades */}()
             <Route
                 exact
                 path={[
@@ -62,7 +59,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <Varietys />
             </Route>
-
             {/* Parcelas */}
             <Route
                 exact
@@ -73,7 +69,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <Plotlands />
             </Route>
-
             {/* Categorias de Ingredientes */}
             <Route
                 exact
@@ -84,7 +79,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <CategoryIngredient />
             </Route>
-
             {/* Eventos Fenologicos */}
             <Route
                 exact
@@ -95,7 +89,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <PhenologicalEvents />
             </Route>
-
             {/* Ingredientes Activos */}
             <Route
                 exact
@@ -106,7 +99,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <ActiveIngredient />
             </Route>
-
             {/* Entidades Certificadas */}
             <Route
                 exact
@@ -117,7 +109,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <CertifiedEntities />
             </Route>
-
             {/* Objetivos de Aplicacions */}
             <Route
                 exact
@@ -128,7 +119,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <AplicationTarget />
             </Route>
-
             <Route
                 exact
                 path={[
@@ -138,7 +128,6 @@ const ManteinerRoute: React.FC = () => {
             >
                 <Barracks />
             </Route>
-
             {/* Temporadas */}
             <Route
                 exact
