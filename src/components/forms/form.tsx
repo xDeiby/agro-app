@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EntityRelated } from "@trifenix/agro-data";
+import { EntityRelated, mdm } from "@trifenix/agro-data";
 import { Formik, FormikProps } from "formik";
 import React from "react";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
@@ -7,7 +7,7 @@ import FormControl from "../form-control";
 import Input from "../input";
 import Select from "../select";
 import StyledForm from "./form.style";
-import getFieldsName from "../../modules/metadata/getFieldsName";
+import getFieldsName, { IFieldDefined } from "../../modules/metadata/getFieldsName";
 import getRelEntities, { getRelOptions, IDropdownOptions } from "../../modules/metadata/getRelEntities";
 import parseRequest from "../../modules/metadata/parseRequest";
 
@@ -21,7 +21,7 @@ export interface IForm {
 export default function IForm<T extends { id: string }>(props: IForm): JSX.Element {
     const { currentEntity, currentId, message, logo } = props;
 
-    const [fields, setFields] = React.useState<(keyof T)[]>([]);
+    const [fields, setFields] = React.useState<IFieldDefined<T>[]>([]);
 
     const [dropdownsOptions, setDropdownOptions] = React.useState<IDropdownOptions>({});
     const [initValues, setInitValues] = React.useState({});
@@ -34,10 +34,13 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 
             // ID
             if (currentId) {
-                const search_entity = (await search.getSpecificEntitie(currentEntity, currentId)).data[0];
-                const current_object = parseRequest<T>(search_entity);
-                setInitValues(current_object);
+                const search_entity = await search.getSpecificEntitie(currentEntity, currentId);
+                const wea = parseRequest<T>(search_entity.data[0]);
+
+                !search_entity.error && setInitValues(wea);
             }
+            console.log(mdm.indexes.find((wea) => wea.index === EntityRelated.ROOTSTOCK));
+
             //
 
             // Options
@@ -97,26 +100,26 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 
                             {fields.map((field) => (
                                 <FormControl
-                                    key={field as string}
-                                    label={field as string}
-                                    htmlFor={field as string}
+                                    key={field.field as string}
+                                    label={field.header as string}
+                                    htmlFor={field.field as string}
                                     // onBlur={handleBlur}
                                 >
-                                    {(field as string).includes("id") ? (
+                                    {(field.field as string).includes("id") ? (
                                         <Select
-                                            id={field as string}
+                                            id={field.field as string}
                                             // placeholder={"Ok"}
-                                            option={getOption(values[field as string], field as string)}
+                                            option={getOption(values[field.field as string], field.field as string)}
                                             // option={values[field.name]}
-                                            listOptions={dropdownsOptions[field as string]}
-                                            onChange={(e) => setFieldValue(field as string, e?.value)}
+                                            listOptions={dropdownsOptions[field.field as string]}
+                                            onChange={(e) => setFieldValue(field.field as string, e?.value)}
                                             width="500px"
                                             size="large"
                                         />
                                     ) : (
                                         <Input
                                             id={field}
-                                            value={values[field] || ""}
+                                            value={values[field.field] || ""}
                                             // placeholder={input.placeholder}
                                             type={field}
                                             onChange={handleChange}

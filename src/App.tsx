@@ -15,7 +15,7 @@ const App: React.FunctionComponent = () => {
     return (
         <div className="app">
             <header
-                // ! Provisorio
+                // TODO: Cambiar
                 style={{
                     backgroundImage: `url(${fondo})`,
                     height: "300px",
