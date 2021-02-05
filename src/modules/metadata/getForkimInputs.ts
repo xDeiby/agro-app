@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mdm } from "@trifenix/agro-data";
 import { EntityBaseSearch, EntityMetadata, GeoPointTs, KindProperty } from "@trifenix/mdm";
 
-/* export interface IProperty {
+export interface IProperty {
     value: string | number | boolean | Date;
     label: string;
     type: KindProperty | null;
@@ -10,7 +9,7 @@ import { EntityBaseSearch, EntityMetadata, GeoPointTs, KindProperty } from "@tri
 
 type EntityKey = keyof EntityBaseSearch<GeoPointTs>;
 
-export function getPropertys(entity: EntityBaseSearch<GeoPointTs>): IProperty[] {
+export function getFormikInputs(entity: EntityBaseSearch<GeoPointTs>): IProperty[] {
     const properties = Array<IProperty>();
 
     console.log(entity);
@@ -19,7 +18,6 @@ export function getPropertys(entity: EntityBaseSearch<GeoPointTs>): IProperty[] 
         const key_property = prop as EntityKey;
 
         if (Array.isArray(entity[key_property])) {
-            // * TypeScript no entiende que es un arreglo, siendo que esta condicionado para serlo.
             const property = (entity[key_property] as []).map((prop: any) =>
                 getDataProperty(key_property, entity, prop.index)
             );
@@ -105,4 +103,15 @@ export function entitieKeyToKindProperty(key: EntityKey): KindProperty | null {
 }
 
 export const getEntityMetadata = (entity: EntityBaseSearch<GeoPointTs>): EntityMetadata =>
-    mdm.indexes.filter((meta_entity) => meta_entity.index === entity.index)[0]; */
+    mdm.indexes.filter((meta_entity) => meta_entity.index === entity.index)[0];
+
+// type EntityKey<T> = {
+//     [K in keyof T]: T[K] extends (infer U)[] ? U : never;
+// }[keyof T];
+
+// type EntityKey2<T> = {
+//     [K in keyof T]: T[K] extends (infer U) ? U : never
+// }[keyof T]
+
+// type T0 = EntityKey<EntityBaseSearch>;
+// type T1 = EntityKey2<EntityBaseSearch>;

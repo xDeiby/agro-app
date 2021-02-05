@@ -1,4 +1,4 @@
-import { SearchClient, AzureKeyCredential } from "@azure/search-documents";
+import { AzureKeyCredential, SearchClient } from "@azure/search-documents";
 import { IResponse } from "../../model/azure-search/IResponse";
 
 class AzureSearch<T> {
@@ -8,12 +8,13 @@ class AzureSearch<T> {
         this.client = new SearchClient<T>(endPoint, indexName, new AzureKeyCredential(key));
     }
 
-    protected async searchEntities(query: string): Promise<IResponse<T[]>> {
+    protected async searchEntities(query: string, selects?: (keyof T)[]): Promise<IResponse<T[]>> {
         const results: T[] = [];
 
         try {
             const searchResults = await this.client.search("*", {
                 filter: query,
+                select: selects,
             });
 
             for await (const result of searchResults.results) {

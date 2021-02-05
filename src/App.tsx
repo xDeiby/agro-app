@@ -2,22 +2,15 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-// import AgroSearch from "./services/azure-search/indexs-instances/AgroSearch";
-// import { EntityRelated, StringRelated } from "@trifenix/agro-data";
-// import { useState } from "react";
-
 const App: React.FunctionComponent = () => {
     // const [nombre, setNombre] = useState<string[][]>();
     // React.useEffect(() => {
-    //     async function fetchGetentities() {
-    //         const busqueda = new AgroSearch();
-    //         const entities = (await busqueda.getEntities(EntityRelated.BARRACK)).data;
-    //         const res = entities.map((result) =>
-    //             result.str.filter((lol) => lol.index === StringRelated.GENERIC_NAME).map((valor) => valor.value)
-    //         );
-    //         setNombre(res);
-    //     }
-    //     fetchGetentities();
+    //     const fetchData = async () => {
+    //         const myWea = new AgroSearch();
+    //         const wea = (await myWea.getEntities(1)).data;
+    //         console.log(wea);
+    //     };
+    //     fetchData();
     // }, []);
 
     return (
