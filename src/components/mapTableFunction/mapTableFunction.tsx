@@ -2,6 +2,7 @@ import * as React from "react";
 import { EntityRelated, StringRelated } from "@trifenix/agro-data";
 import { useState } from "react";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
+import { base_path, path_name } from "../../config/statics";
 
 type TypeEntities =
     | EntityRelated.BARRACK
@@ -19,6 +20,7 @@ type TypeEntities =
 
 interface IMapTableFunction {
     typeEntities: TypeEntities;
+    entys: path_name;
 }
 
 const QuerysView: React.FC<IMapTableFunction> = (props) => {
@@ -53,7 +55,9 @@ const QuerysView: React.FC<IMapTableFunction> = (props) => {
                     return (
                         <tr key={Math.random()}>
                             <td>{pete}</td>
-                            <td>{id_enty[a]}</td>
+                            <td>
+                                <a href={`/${base_path.manteiner}/${props.entys}/${id_enty[a]}`}>Editar</a>
+                            </td>
                         </tr>
                     );
                 })}
