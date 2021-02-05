@@ -6,7 +6,7 @@ const RootstockTable: React.FC = () => {
     return (
         <div>
             Tabla de especies
-            <QuerysView typeEntities={EntityRelated.SPECIE}> </QuerysView>
+            <QuerysView typeEntities={EntityRelated.ROOTSTOCK}> </QuerysView>
         </div>
     );
 };

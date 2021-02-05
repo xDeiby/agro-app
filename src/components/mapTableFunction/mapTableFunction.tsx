@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StyledTable, StyledTd, StyledTh } from "./styled.Table";
 import { EntityRelated, StringRelated } from "@trifenix/agro-data";
 import { useState } from "react";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
@@ -44,20 +45,20 @@ const QuerysView: React.FC<IMapTableFunction> = (props) => {
 
     return (
         <div>
-            <table key={Math.random()}>
+            <StyledTable key={Math.random()}>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Link</th>
+                    <StyledTh>Nombre</StyledTh>
+                    <StyledTh>Link</StyledTh>
                 </tr>
                 {nombre?.map((pete, a) => {
                     return (
                         <tr key={Math.random()}>
-                            <td>{pete}</td>
-                            <td>{id_enty[a]}</td>
+                            <StyledTd>{pete}</StyledTd>
+                            <StyledTd>{id_enty[a]}</StyledTd>
                         </tr>
                     );
                 })}
-            </table>
+            </StyledTable>
         </div>
     );
 };
