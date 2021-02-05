@@ -31,19 +31,16 @@ const ManteinerTableRoute: React.FC = () => {
 
             {/* Portainjertos */}
             <Route exact path={`/${base_path.manteiner}/${path_name.rootstocks}`}>
-                {" "}
                 <RootstockTable />
             </Route>
 
             {/* Variedades */}
             <Route exact path={`/${base_path.manteiner}/${path_name.varietys}`}>
-                {" "}
-                <VarietyTable />{" "}
+                <VarietyTable />
             </Route>
 
             {/* Parcelas */}
             <Route exact path={`/${base_path.manteiner}/${path_name.plotlands}`}>
-                {" "}
                 <PlotlandTable />
             </Route>
 
@@ -64,7 +61,6 @@ const ManteinerTableRoute: React.FC = () => {
 
             {/* Entidades Certificadas */}
             <Route exact path={`/${base_path.manteiner}/${path_name.certified_entities}`}>
-                {" "}
                 <CertiedEntitiesTable />
             </Route>
 
