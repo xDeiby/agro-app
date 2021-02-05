@@ -6,8 +6,9 @@ import { ComponentSize } from "../../../config/styles/constants/sizes";
 export type ButtonType = "default" | "danger" | "ghost" | "secondary";
 
 interface BaseButtonProps {
-    type?: ButtonType;
+    typeButton?: ButtonType;
     icon?: ElementType;
+    type?: "button" | "submit" | "reset";
     size?: ComponentSize;
     className?: string;
     children?: ReactNode;
@@ -36,12 +37,10 @@ type CustomNodeProps = {
 
 export type ButtonProps = HTMLButtonProps & HTMLAnchorProps & CustomNodeProps;
 
-const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (
-    props,
-    ref
-) => {
+const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
     const {
-        type = "default",
+        type = "button",
+        typeButton = "default",
         icon,
         size = "default",
         className,
@@ -55,7 +54,7 @@ const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (
     } = props;
 
     const styles = {
-        innerType: type,
+        innerType: typeButton,
         size,
         disabled,
         withText: children != null,
@@ -77,13 +76,7 @@ const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (
 
     if (as && !disabled) {
         return (
-            <StyledButton
-                as={as}
-                to={to}
-                ref={ref}
-                className={className}
-                {...styles}
-            >
+            <StyledButton type={type} as={as} to={to} ref={ref} className={className} {...styles}>
                 {loading ? (
                     <>
                         Loading
@@ -100,6 +93,7 @@ const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (
         return (
             <StyledButton
                 as="a"
+                type={type}
                 href={href}
                 ref={ref as React.MutableRefObject<HTMLAnchorElement>}
                 className={className}
@@ -120,7 +114,7 @@ const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (
     return (
         <StyledButton
             as="button"
-            type="button"
+            type={type}
             onClick={onClick}
             ref={ref as React.MutableRefObject<HTMLButtonElement>}
             className={className}

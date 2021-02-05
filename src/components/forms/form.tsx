@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EntityRelated, mdm } from "@trifenix/agro-data";
+import { EntityRelated } from "@trifenix/agro-data";
 import { Formik, FormikProps } from "formik";
 import React from "react";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
@@ -10,7 +10,8 @@ import StyledForm from "./form.style";
 import getFieldsName, { IFieldDefined } from "../../modules/metadata/getFieldsName";
 import getRelEntities, { getRelOptions, IDropdownOptions } from "../../modules/metadata/getRelEntities";
 import parseRequest from "../../modules/metadata/parseRequest";
-
+import ButtonLineal from "../buttons/button-lineal";
+import { Save, Trash } from "@styled-icons/boxicons-regular";
 export interface IForm {
     currentEntity: EntityRelated;
     logo: string;
@@ -39,8 +40,6 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 
                 !search_entity.error && setInitValues(wea);
             }
-            console.log(mdm.indexes.find((wea) => wea.index === EntityRelated.ROOTSTOCK));
-
             //
 
             // Options
@@ -81,7 +80,7 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
                 console.log(values);
             }}
         >
-            {({ isSubmitting, values, handleSubmit, handleChange, setFieldValue }: FormikProps<any>) => {
+            {({ isSubmitting, values, handleSubmit, handleChange, setFieldValue, resetForm }: FormikProps<any>) => {
                 return (
                     <div>
                         <StyledForm onSubmit={handleSubmit}>
@@ -130,9 +129,23 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
                                 </FormControl>
                             ))}
 
-                            <button type="submit" disabled={isSubmitting}>
-                                Guardar
-                            </button>
+                            <div
+                                className="buttons"
+                                style={{ flexBasis: "100%", display: "flex", justifyContent: "space-evenly" }}
+                            >
+                                <ButtonLineal type="submit" icon={Save} disabled={isSubmitting} typeButton="danger">
+                                    Guardar
+                                </ButtonLineal>
+                                <ButtonLineal
+                                    type="reset"
+                                    onClick={() => resetForm()}
+                                    icon={Trash}
+                                    disabled={isSubmitting}
+                                    typeButton="default"
+                                >
+                                    Borrar
+                                </ButtonLineal>{" "}
+                            </div>
                         </StyledForm>
                     </div>
                 );
