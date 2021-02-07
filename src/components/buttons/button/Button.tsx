@@ -10,91 +10,91 @@ import { HomeCircle } from "@styled-icons/boxicons-regular/HomeCircle";
 import { Save } from "@styled-icons/feather/Save";
 
 interface IPropertys {
-    color?: string;
-    typeButton: TypeButton;
-    width?: string;
-    fontSize?: string;
-    paddingf?: string;
-    backgroundColor?: string;
-    className?: string;
-    children?: React.ReactNode;
-    disabled?: boolean;
+	color?: string;
+	typeButton: TypeButton;
+	width?: string;
+	fontSize?: string;
+	paddingf?: string;
+	backgroundColor?: string;
+	className?: string;
+	children?: React.ReactNode;
+	disabled?: boolean;
 }
 interface IMouseEvents {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export type IButton = IPropertys & IMouseEvents;
 
 const Boton: React.FC<IButton> = (props) => {
-    const { children } = props;
+	const { children } = props;
 
-    switch (props.typeButton) {
-        case "accept":
-            return (
-                <StyledButton {...props}>
-                    <CheckCircle size="21px" style={styloIcon} /> {children}
-                </StyledButton>
-            );
+	switch (props.typeButton) {
+		case "accept":
+			return (
+				<StyledButton {...props}>
+					<CheckCircle size="21px" style={styloIcon} /> {children}
+				</StyledButton>
+			);
 
-        case "deny":
-            return (
-                <StyledButton {...props}>
-                    <CancelCircle size="19px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
+		case "deny":
+			return (
+				<StyledButton {...props}>
+					<CancelCircle size="19px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
 
-        case "user":
-            return (
-                <StyledButton {...props}>
-                    <User size="20px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
+		case "user":
+			return (
+				<StyledButton {...props}>
+					<User size="20px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
 
-        case "login":
-            return (
-                <StyledButton {...props}>
-                    <LogIn size="20px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
-        case "add":
-            return (
-                <StyledButton {...props}>
-                    <Add size="20px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
-        case "delete":
-            return (
-                <StyledButton {...props}>
-                    <Delete size="20px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
-        case "home":
-            return (
-                <StyledButton {...props}>
-                    <HomeCircle size="20px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
-        case "save":
-            return (
-                <StyledButton {...props}>
-                    <Save size="20px" style={styloIcon} />
-                    {children}
-                </StyledButton>
-            );
+		case "login":
+			return (
+				<StyledButton {...props}>
+					<LogIn size="20px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
+		case "add":
+			return (
+				<StyledButton {...props}>
+					<Add size="20px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
+		case "delete":
+			return (
+				<StyledButton {...props}>
+					<Delete size="20px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
+		case "home":
+			return (
+				<StyledButton {...props}>
+					<HomeCircle size="20px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
+		case "save":
+			return (
+				<StyledButton {...props}>
+					<Save size="20px" style={styloIcon} />
+					{children}
+				</StyledButton>
+			);
 
-        case "default":
-            return <StyledButton {...props}>{children}</StyledButton>;
+		case "default":
+			return <StyledButton {...props}>{children}</StyledButton>;
 
-        default:
-            break;
-    }
-    return <StyledButton {...props}>{children}</StyledButton>;
+		default:
+			break;
+	}
+	return <StyledButton {...props}>{children}</StyledButton>;
 };
 export default Boton;

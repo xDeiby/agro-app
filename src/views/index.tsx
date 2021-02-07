@@ -1,13 +1,14 @@
 import * as React from "react";
-import { ManteinerRoutes, HomeRoute } from "../routes";
+import { ManteinerRoutes, HomeRoute, TablesRoutes } from "../routes";
 
 const Views: React.FC = () => {
-    return (
-        <>
-            <HomeRoute />
-            <ManteinerRoutes />
-        </>
-    );
+	return (
+		<>
+			<HomeRoute />
+			<ManteinerRoutes />
+			<TablesRoutes />
+		</>
+	);
 };
 
 export default Views;

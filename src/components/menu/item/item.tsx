@@ -5,28 +5,29 @@ import { StyledItem, StyledListLink } from "./item.style";
 export type TypeItem = "menuItem" | "subMenuItem";
 
 export type ISubMenu = {
-    name: string;
-    // Mas...
+	name: string;
+	url?: string;
+	// Mas...
 };
 
 interface IItemProps {
-    name?: string;
-    active?: boolean;
-    type?: TypeItem;
-    subMenus?: ISubMenu[];
+	name?: string;
+	active?: boolean;
+	type?: TypeItem;
+	subMenus?: ISubMenu[];
 }
 
 const Item: React.FunctionComponent<IItemProps> = (props) => {
-    const { name, subMenus, active = false } = props;
-    return (
-        <StyledListLink>
-            <StyledItem active={active}>{name}</StyledItem>
+	const { name, subMenus, active = false } = props;
+	return (
+		<StyledListLink>
+			<StyledItem active={active}>{name}</StyledItem>
 
-            {/* Sub Menus */}
+			{/* Sub Menus */}
 
-            {subMenus && <SubMenu menus={subMenus} />}
-        </StyledListLink>
-    );
+			{subMenus && <SubMenu menus={subMenus} />}
+		</StyledListLink>
+	);
 };
 
 export default Item;
