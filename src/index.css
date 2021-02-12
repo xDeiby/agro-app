@@ -2,22 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Arvo&display=swap");
 
 * {
-    box-sizing: border-box;
-    padding: 0px;
-    margin: 0px;
-    font-family: "Roboto", sans-serif;
+	box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+	font-family: "Roboto", sans-serif;
 }
 
 body {
-    background-color: #f0f0f0;
-}
-
-h1 {
-    font-family: "Arvo", serif;
-}
-h2 {
-    font-family: "Arvo", serif;
-}
-p {
-    font-family: "Arvo", serif;
+	background-color: #f0f0f0;
 }

@@ -8,20 +8,26 @@ type KeyFields<T> = {
     [K in keyof T]: T[K] extends { [key: string]: infer U } ? K : never;
 }[keyof T];
 
-export default function getFieldsName<T>(entity: EntityRelated): (keyof T)[] {
+export interface IFieldDefined<T> {
+    field: keyof T;
+    header: string;
+}
+
+export default function getFieldsName<T>(entity: EntityRelated): IFieldDefined<T>[] {
     const entity_metadata = getEntityMetadata(entity);
-    const fields = Array<string>();
+    const fields = Array<IFieldDefined<T>>();
 
     for (const key in entity_metadata) {
         const key_dict = key as KeyFields<EntityMetadata>;
 
         if (entity_metadata[key_dict] instanceof Object && key !== "menus") {
             Object.keys(entity_metadata[key_dict]).forEach((num_key: any) => {
-                const field = entity_metadata[key_dict][num_key].nameProp;
-                !["seasonId", "geographicalPoints", "clientId"].includes(field) && fields.push(field);
+                const field = entity_metadata[key_dict][num_key];
+                !["seasonId", "geographicalPoints", "clientId"].includes(field.nameProp) &&
+                    fields.push({ field: field.nameProp as keyof T, header: field.info.title });
             });
         }
     }
 
-    return fields as (keyof T)[];
+    return fields;
 }

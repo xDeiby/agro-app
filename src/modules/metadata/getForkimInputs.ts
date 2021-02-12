@@ -6,7 +6,6 @@ export interface IProperty {
     label: string;
     type: KindProperty | null;
 }
-
 type EntityKey = keyof EntityBaseSearch<GeoPointTs>;
 
 export function getFormikInputs(entity: EntityBaseSearch<GeoPointTs>): IProperty[] {

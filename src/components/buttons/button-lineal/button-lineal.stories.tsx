@@ -21,19 +21,19 @@ Default.args = {
 export const DangerButton = Template.bind({});
 DangerButton.args = {
     children: "Danger Button",
-    type: "danger",
+    typeButton: "danger",
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
     children: "Ghost Button",
-    type: "ghost",
+    typeButton: "ghost",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
     children: "Secondary Button",
-    type: "secondary",
+    typeButton: "secondary",
 };
 
 export const Disabled = Template.bind({});
@@ -72,35 +72,35 @@ export const Sizes: React.FC = () => {
                 <Button size="small">Small</Button>
             </ButtonRow>
             <ButtonRow>
-                <Button type="danger" size="large">
+                <Button typeButton="danger" size="large">
                     Large
                 </Button>
-                <Button type="danger" size="default">
+                <Button typeButton="danger" size="default">
                     Default
                 </Button>
-                <Button type="danger" size="small">
+                <Button typeButton="danger" size="small">
                     Small
                 </Button>
             </ButtonRow>
             <ButtonRow>
-                <Button type="ghost" size="large">
+                <Button typeButton="ghost" size="large">
                     Large
                 </Button>
-                <Button type="ghost" size="default">
+                <Button typeButton="ghost" size="default">
                     Default
                 </Button>
-                <Button type="ghost" size="small">
+                <Button typeButton="ghost" size="small">
                     Small
                 </Button>
             </ButtonRow>
             <ButtonRow>
-                <Button type="secondary" size="large">
+                <Button typeButton="secondary" size="large">
                     Large
                 </Button>
-                <Button type="secondary" size="default">
+                <Button typeButton="secondary" size="default">
                     Default
                 </Button>
-                <Button type="secondary" size="small">
+                <Button typeButton="secondary" size="small">
                     Small
                 </Button>
             </ButtonRow>
