@@ -1,22 +1,25 @@
 import * as React from "react";
+import Boton from "../components/buttons/button";
 import Menu from "../components/menu";
+import Burger from "../components/menu/burger/burger";
 import Item from "../components/menu/item";
 import MenuItem from "../components/menu/menu-item";
-import logoAresa from "../config/logos/aresa.e3676c3d.png";
 import { base_path, path_name } from "../config/statics";
 
 const MenuView: React.FunctionComponent = () => {
 	return (
 		<Menu>
-			<img
+			<Burger />
+			{/* <img
 				src={logoAresa}
 				alt="Logo de Aresa"
 				width={150}
 				style={{ cursor: "pointer", marginLeft: "30px" }}
-			/>
+			/> */}
 			<MenuItem>
-				<Item name="Inicio" active={true} />
+				<Item name="Inicio" active={true} TypeMenus={"menu"} />
 				<Item
+					TypeMenus={"menu"}
 					name="Ordenes"
 					subMenus={[
 						{ name: "Pre-Ordenes" },
@@ -24,8 +27,9 @@ const MenuView: React.FunctionComponent = () => {
 						{ name: "No Fenologicas" },
 					]}
 				/>
-				<Item name="Monitoreo" />
+				<Item name="Monitoreo" TypeMenus={"menu"} />
 				<Item
+					TypeMenus={"menu"}
 					name="Mantenedores"
 					subMenus={[
 						{ name: "Parcelas", url: `/${base_path.manteiner}/${path_name.plotlands}` },
@@ -58,7 +62,7 @@ const MenuView: React.FunctionComponent = () => {
 					]}
 				/>
 			</MenuItem>
-			USER
+			<Boton typeButton="user"> Usuario</Boton>
 		</Menu>
 	);
 };

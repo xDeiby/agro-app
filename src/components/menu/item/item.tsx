@@ -1,6 +1,6 @@
 import * as React from "react";
 import SubMenu from "../sub-menu";
-import { StyledItem, StyledListLink } from "./item.style";
+import { StyledItem, StyledListLink, TypeMenus } from "./item.style";
 
 export type TypeItem = "menuItem" | "subMenuItem";
 
@@ -15,13 +15,16 @@ interface IItemProps {
 	active?: boolean;
 	type?: TypeItem;
 	subMenus?: ISubMenu[];
+	TypeMenus: TypeMenus;
 }
 
 const Item: React.FunctionComponent<IItemProps> = (props) => {
 	const { name, subMenus, active = false } = props;
 	return (
 		<StyledListLink>
-			<StyledItem active={active}>{name}</StyledItem>
+			<StyledItem active={active} styledItem={props.TypeMenus}>
+				{name}
+			</StyledItem>
 
 			{/* Sub Menus */}
 
