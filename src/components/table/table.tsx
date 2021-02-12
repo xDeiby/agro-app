@@ -9,6 +9,7 @@ import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch"
 import { Edit } from "@styled-icons/boxicons-regular";
 import ButtonLineal from "../buttons/button-lineal";
 import "./table.css";
+import Loading from "../loading/Loading";
 // import IColumnFormat, { myheaders } from "./headers";
 // import { getMetaProperty, getSearchValue } from "./utils";
 // import "./table.css";
@@ -128,7 +129,10 @@ function Table<T>(props: TableProps): JSX.Element {
 	const { headerGroups, rows, prepareRow, getTableBodyProps } = table_instance;
 
 	return loading ? (
-		<h1>loading...</h1>
+		<div>
+			<Loading/>
+		</div>
+		
 	) : (
 		<table>
 			<thead>

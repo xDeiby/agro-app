@@ -1,6 +1,6 @@
 import { GeographyPoint } from "@azure/search-documents";
 import { EntityRelated, mdm, StringRelated } from "@trifenix/agro-data";
-import { EntityBaseSearch } from "@trifenix/mdm";
+import { EntityBaseSearch,PropertyMetadata } from "@trifenix/mdm";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
 import { getEntityMetadata } from "./parseRequest";
 
