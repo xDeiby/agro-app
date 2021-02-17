@@ -9,7 +9,6 @@ import { base_path, path_name } from "../config/statics";
 const MenuView: React.FunctionComponent = () => {
 	return (
 		<Menu>
-			<Burger />
 			{/* <img
 				src={logoAresa}
 				alt="Logo de Aresa"
@@ -63,6 +62,7 @@ const MenuView: React.FunctionComponent = () => {
 				/>
 			</MenuItem>
 			<Boton typeButton="user"> Usuario</Boton>
+			<Burger />
 		</Menu>
 	);
 };

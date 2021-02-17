@@ -20,21 +20,15 @@ export default function getRelEntities(entity: EntityRelated): EntityRelated[] {
 export function getRelName({ str }: EntityBaseSearch<GeographyPoint>): string {
 	// if (entity.index === EntityRelated.POLLINATOR) entity.index = EntityRelated.VARIETY;
 
-	const value = str.filter(
-		(elem) => elem.index === StringRelated.GENERIC_NAME
-	)[0].value;
+	const value = str.filter((elem) => elem.index === StringRelated.GENERIC_NAME)[0].value;
 
 	return value;
 }
-export function getRelLabel(
-	entity: EntityRelated,
-	index: EntityRelated
-): string {
+export function getRelLabel(entity: EntityRelated, index: EntityRelated): string {
 	const metadata = getEntityMetadata(entity);
 
-	return Object.values(metadata.relData).filter(
-		(entitie) => entitie.realIndex === index
-	)[0].nameProp;
+	return Object.values(metadata.relData).filter((entitie) => entitie.realIndex === index)[0]
+		.nameProp;
 }
 
 export interface IPropertyForm {
@@ -55,8 +49,7 @@ export async function getRelOptions(
 
 	const result = await Promise.all(
 		entities.map(
-			async (index) =>
-				(await search.getEntities(index, ["str", "index", "id"])).data
+			async (index) => (await search.getEntities(index, ["str", "index", "id"])).data
 		)
 	);
 
@@ -69,12 +62,10 @@ export async function getRelOptions(
 
 		const option = {
 			value: re.id,
-			label: re.str.filter(
-				(property) => property.index === StringRelated.GENERIC_NAME
-			)[0].value,
+			label: re.str.filter((property) => property.index === StringRelated.GENERIC_NAME)[0]
+				.value,
 		};
-		!acc[key_index].find((prop) => prop.value === option.value) &&
-			acc[key_index].push(option);
+		!acc[key_index].find((prop) => prop.value === option.value) && acc[key_index].push(option);
 
 		return acc;
 	}, {});

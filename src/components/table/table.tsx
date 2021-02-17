@@ -8,7 +8,8 @@ import { parseRequestComplete } from "../../modules/metadata/parseRequest";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
 import { Edit } from "@styled-icons/boxicons-regular";
 import ButtonLineal from "../buttons/button-lineal";
-import "./table.css";
+import Loading from "../loading/Loading";
+import { StyledTable, StyledTh, StyledTd, StyledTr } from "./styled.Table";
 // import IColumnFormat, { myheaders } from "./headers";
 // import { getMetaProperty, getSearchValue } from "./utils";
 // import "./table.css";
@@ -128,16 +129,20 @@ function Table<T>(props: TableProps): JSX.Element {
 	const { headerGroups, rows, prepareRow, getTableBodyProps } = table_instance;
 
 	return loading ? (
-		<h1>loading...</h1>
+		<div>
+			<Loading />
+		</div>
 	) : (
-		<table>
+		<StyledTable>
 			<thead>
 				{headerGroups.map((headerGroup) => (
-					<tr {...headerGroup.getHeaderGroupProps()}>
+					<StyledTr {...headerGroup.getHeaderGroupProps()}>
 						{headerGroup.headers.map((column) => (
-							<th {...column.getHeaderProps()}>{column.render("Header")}</th>
+							<StyledTh {...column.getHeaderProps()}>
+								{column.render("Header")}
+							</StyledTh>
 						))}
-					</tr>
+					</StyledTr>
 				))}
 			</thead>
 
@@ -145,15 +150,15 @@ function Table<T>(props: TableProps): JSX.Element {
 				{rows.map((row) => {
 					prepareRow(row);
 					return (
-						<tr {...row.getRowProps()}>
+						<StyledTr {...row.getRowProps()}>
 							{row.cells.map((cell) => (
-								<td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+								<StyledTd {...cell.getCellProps()}>{cell.render("Cell")}</StyledTd>
 							))}
-						</tr>
+						</StyledTr>
 					);
 				})}
 			</tbody>
-		</table>
+		</StyledTable>
 	);
 }
 
