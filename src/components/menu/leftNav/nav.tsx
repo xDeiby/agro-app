@@ -72,6 +72,7 @@ const Nav: React.FC<INav> = ({ open }) => {
 					/>
 				}
 			</li>
+			<li>{<Item name="Usuarios" TypeMenus={"burger"} />}</li>
 		</Ul>
 	);
 };

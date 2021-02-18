@@ -1,5 +1,13 @@
 import * as React from "react";
-import { ManteinerRoutes, HomeRoute, TablesRoutes } from "../routes";
+import {
+	ManteinerRoutes,
+	HomeRoute,
+	TablesRoutes,
+	MachineRoutes,
+	TableMachineRoutes,
+	NotCategoryFormsRoute,
+	TableNotCategoryRoutes,
+} from "../routes";
 
 const Views: React.FC = () => {
 	return (
@@ -7,6 +15,10 @@ const Views: React.FC = () => {
 			<HomeRoute />
 			<ManteinerRoutes />
 			<TablesRoutes />
+			<MachineRoutes />
+			<TableMachineRoutes />
+			<TableNotCategoryRoutes />
+			<NotCategoryFormsRoute />
 		</>
 	);
 };

@@ -2,6 +2,7 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
+import { mdm } from "@trifenix/agro-data";
 const App: React.FunctionComponent = () => {
 	// React.useEffect(() => {
 	//     const fetchData = async () => {
@@ -11,7 +12,7 @@ const App: React.FunctionComponent = () => {
 	//     };
 	//     fetchData();
 	// }, []);
-
+	console.log(mdm.indexes);
 	return (
 		<div className="app">
 			<header

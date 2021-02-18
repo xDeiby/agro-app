@@ -4,7 +4,7 @@ import Menu from "../components/menu";
 import Burger from "../components/menu/burger/burger";
 import Item from "../components/menu/item";
 import MenuItem from "../components/menu/menu-item";
-import { base_path, path_name } from "../config/statics";
+import { base_path, path_name, path_name_machine, path_name_not_category } from "../config/statics";
 
 const MenuView: React.FunctionComponent = () => {
 	return (
@@ -57,6 +57,42 @@ const MenuView: React.FunctionComponent = () => {
 						{
 							name: "Eventos Fenologicos",
 							url: `/${base_path.manteiner}/${path_name.phenological_events}`,
+						},
+						{
+							name: "Variedades",
+							url: `/${base_path.manteiner}/${path_name.varietys}`,
+						},
+					]}
+				/>
+				<Item
+					TypeMenus={"menu"}
+					name="Maquinas"
+					subMenus={[
+						{
+							name: "Tractores ",
+							url: `/${base_path.machine}/${path_name_machine.tractors}`,
+						},
+						{
+							name: "Nebulizador",
+							url: `/${base_path.machine}/${path_name_machine.nebulizers}`,
+						},
+					]}
+				/>
+				<Item
+					TypeMenus={"menu"}
+					name="Pruebas"
+					subMenus={[
+						{
+							name: "Negocios",
+							url: `/${base_path.not_category}/${path_name_not_category.bussines_name}`,
+						},
+						{
+							name: "roles",
+							url: `/${base_path.not_category}/${path_name_not_category.role}`,
+						},
+						{
+							name: "Centro de Costos",
+							url: `/${base_path.not_category}/${path_name_not_category.cost_centers}`,
 						},
 					]}
 				/>

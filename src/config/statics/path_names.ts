@@ -14,3 +14,13 @@ export enum path_name {
 	varietys = "varieties",
 	sectors = "sectors",
 }
+
+export enum path_name_machine {
+	tractors = "tractors",
+	nebulizers = "nebulizers",
+}
+export enum path_name_not_category {
+	bussines_name = "business_names",
+	role = "roles",
+	cost_centers = "cost-centers",
+}
