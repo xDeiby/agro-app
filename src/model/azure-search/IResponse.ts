@@ -1,4 +1,5 @@
 export interface IResponse<T> {
-    data: T;
-    error: string | null;
+	data: T;
+	total?: number;
+	error: string | null;
 }

@@ -1,5 +1,6 @@
 // * Se utiliza para la ruta
 
 export enum base_path {
-    manteiner = "manteiner",
+	manteiner = "manteiner",
+	order = "orders",
 }

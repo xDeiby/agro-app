@@ -3,15 +3,6 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 const App: React.FunctionComponent = () => {
-	// React.useEffect(() => {
-	//     const fetchData = async () => {
-	//         const myWea = new AgroSearch();
-	//         const wea = (await myWea.getEntities(1)).data;
-	//         console.log(wea);
-	//     };
-	//     fetchData();
-	// }, []);
-
 	return (
 		<div className="app">
 			<header
@@ -28,6 +19,9 @@ const App: React.FunctionComponent = () => {
 			</header>
 			<div className="react-body">
 				<Views />
+				{/* <Table tittle={"Nueva tabla"} entity={24} /> */}
+				{/* <TestComponent /> */}
+				{/* <PreOrder /> */}
 			</div>
 			{/* <footer
                 style={{

@@ -14,3 +14,10 @@ export enum path_name {
 	varietys = "varieties",
 	sectors = "sectors",
 }
+
+export enum order_pathname {
+	preorder = "preorders",
+	order_folder = "order_folders",
+	phenological = "phenologicals",
+	no_phenological = "no_phenologicals",
+}

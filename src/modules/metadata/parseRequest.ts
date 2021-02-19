@@ -3,86 +3,13 @@
 import { GeographyPoint } from "@azure/search-documents";
 import { EntityRelated, mdm, StringRelated } from "@trifenix/agro-data";
 import { EntityBaseSearch, EntityMetadata } from "@trifenix/mdm";
-import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
+import AgroSearch, {
+	searchInstance,
+} from "../../services/azure-search/indexs-instances/AgroSearch";
 
 type PropertyKeys<T> = {
 	[K in keyof T]: T[K] extends (infer U)[] ? K : never;
 }[keyof T];
-
-/**
- * Parses request
- * @template T Estructura a la cual se va a parsear el objeto
- * @param object Estructura base del objeto de Azure Search
- * @returns Retorna el objeto parseado a T
- */
-export default function parseRequest<T extends { id: string }>(
-	object: EntityBaseSearch<GeographyPoint>
-): T {
-	const parseObj: T = {} as T;
-
-	// type Types = PropertyTypes<EntityBaseSearch>;
-	// * Solo se definen las propiedades de interes
-
-	parseObj.id = object.id;
-	for (const K in object) {
-		const key = K as PropertyKeys<EntityBaseSearch<GeographyPoint>>;
-
-		if (Array.isArray(object[key])) {
-			object[key].forEach((property: any) => {
-				parseObj[getNameProperty<T>(key, object, property.index)] =
-					key === "rel" ? property.id : property.value;
-			});
-		}
-	}
-
-	return parseObj;
-}
-
-export async function parseRequestComplete<T extends { id: string }>(
-	object: EntityBaseSearch<GeographyPoint>,
-	search: AgroSearch
-): Promise<T> {
-	const parseObj: T = {} as T;
-
-	// type Types = PropertyTypes<EntityBaseSearch>;
-	// * Solo se definen las propiedades de interes
-
-	parseObj.id = object.id;
-	for (const K in object) {
-		const key = K as PropertyKeys<EntityBaseSearch<GeographyPoint>>;
-
-		if (Array.isArray(object[key])) {
-			if (key !== "rel") {
-				object[key].forEach((property: any) => {
-					parseObj[getNameProperty<T>(key, object, property.index)] = property.value;
-				});
-			} else {
-				const result = await Promise.all(
-					object[key]
-						.filter((property) => property.index !== EntityRelated.SEASON)
-						.map(
-							async (property) =>
-								(
-									await search.getSpecificEntitie(
-										property.index === 23 ? 21 : property.index,
-										property.id,
-										["str", "index"]
-									)
-								).data[0]
-						)
-				);
-
-				result.forEach((wea) => {
-					parseObj[getNameProperty<T>(key, object, wea.index)] = wea.str.filter(
-						(prop) => prop.index === StringRelated.GENERIC_NAME
-					)[0].value as any;
-				});
-			}
-		}
-	}
-
-	return parseObj;
-}
 
 /**
  * Gets name property
@@ -92,7 +19,7 @@ export async function parseRequestComplete<T extends { id: string }>(
  * @param index_property El numero de la propiedad
  * @returns Retorna una propiedad del objeto T
  */
-export function getNameProperty<T>(
+export function getMetaNameProperty<T>(
 	key_property: PropertyKeys<EntityBaseSearch<GeographyPoint>>,
 	entity: EntityBaseSearch<GeographyPoint>,
 	index_property: number
@@ -134,3 +61,82 @@ export function getNameProperty<T>(
 export function getEntityMetadata(entity: EntityRelated): EntityMetadata {
 	return mdm.indexes.filter((meta_entity) => meta_entity.index === entity)[0];
 }
+
+const parseRequest = async <T = any>(
+	object: EntityBaseSearch<GeographyPoint>,
+	relsId = true,
+	relInfo?: EntityRelated[]
+): Promise<T> => {
+	let parseObj = {} as any;
+
+	parseObj.id = object.id;
+
+	for (const K in object) {
+		const key = K as PropertyKeys<EntityBaseSearch<GeographyPoint>>;
+
+		if (Array.isArray(object[key]) && key !== "rel") {
+			object[key].forEach((property: any) => {
+				parseObj[getMetaNameProperty<T>(key, object, property.index)] = property.value;
+			});
+		}
+	}
+
+	if (!relsId) {
+		const entities = await Promise.all(
+			object.rel.map(async (entity) => ({
+				realIndex: entity.index,
+				entity: (
+					await searchInstance.getSpecificEntitie(
+						// * Debido al puto pollinator
+						entity.index === EntityRelated.POLLINATOR
+							? EntityRelated.VARIETY
+							: entity.index,
+						entity.id
+					)
+				).data[0],
+			}))
+		);
+
+		entities.forEach(
+			({
+				realIndex,
+				entity,
+			}: {
+				realIndex: number;
+				entity: EntityBaseSearch<GeographyPoint>;
+			}) => {
+				if (relInfo && relInfo.includes(realIndex)) {
+					const wea = parseRequest2(entity);
+					parseObj = { ...wea, ...parseObj };
+				}
+
+				parseObj[getMetaNameProperty<T>("rel", object, realIndex)] = entity.str.find(
+					(property) => property.index === StringRelated.GENERIC_NAME
+				)?.value;
+			}
+		);
+	}
+
+	return parseObj;
+};
+
+const parseRequest2 = <T = any>(object: EntityBaseSearch<GeographyPoint>) => {
+	const parseObj = {} as any;
+
+	parseObj.id = object.id;
+
+	for (const K in object) {
+		const key = K as PropertyKeys<EntityBaseSearch<GeographyPoint>>;
+
+		if (Array.isArray(object[key]) && key !== "rel") {
+			object[key].forEach((property: any) => {
+				parseObj[getMetaNameProperty<T>(key, object, property.index)] =
+					property.value instanceof Date ? property.value.toString() : property.value;
+			});
+		}
+	}
+
+	return parseObj;
+};
+
+export default parseRequest;

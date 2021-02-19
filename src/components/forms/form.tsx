@@ -43,7 +43,7 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 			// ID
 			if (currentId) {
 				const search_entity = await search.getSpecificEntitie(currentEntity, currentId);
-				const wea = parseRequest<T>(search_entity.data[0]);
+				const wea = await parseRequest<T>(search_entity.data[0]);
 
 				!search_entity.error && setInitValues(wea);
 			}
@@ -52,8 +52,6 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 			// Options
 			const index_rels = getRelEntities(currentEntity);
 			const all_fields = getFieldsName<T>(currentEntity);
-
-			console.log(all_fields);
 
 			if (index_rels.length) {
 				const options = await getRelOptions(index_rels, search, currentEntity);

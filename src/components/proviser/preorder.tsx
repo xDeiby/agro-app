@@ -5,16 +5,18 @@ import { useHistory } from "react-router";
 import { useTable } from "react-table";
 import getFieldsName from "../../modules/metadata/getFieldsName";
 import parseRequest from "../../modules/metadata/parseRequest";
-import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
+import AgroSearch, {
+	searchInstance,
+} from "../../services/azure-search/indexs-instances/AgroSearch";
 import { Edit } from "@styled-icons/boxicons-regular";
 import ButtonLineal from "../buttons/button-lineal";
-import "./table.css";
+// import "./table.css";
 
-interface TableProps {
-	currentEntity: EntityRelated;
-	pathname: string;
-}
-function Table<T>(props: TableProps): JSX.Element {
+// interface TableProps {
+// 	currentEntity: EntityRelated;
+// 	pathname: string;
+// }
+function PreOrder<T>(): JSX.Element {
 	// const columns = React.useMemo(() => COLUMNS, []);
 	// const data = React.useMemo(() => DATA, []);
 
@@ -24,60 +26,65 @@ function Table<T>(props: TableProps): JSX.Element {
 	const [columns, setColumns] = React.useState<any>([]);
 	const [loading, setLoading] = React.useState(false);
 
-	const { currentEntity, pathname } = props;
+	// const { currentEntity, pathname } = props;
 
 	// TODO: Cambiar
 	React.useEffect(() => {
 		const fetchData = async () => {
 			setLoading(true);
 			// Headers
-			const cols: any = getFieldsName<T>(currentEntity).map((column) => ({
+			const cols = getFieldsName(24, [], [10]).map((column) => ({
 				Header: column.header,
 				accessor: column.field,
 			}));
 			//
 
 			// data
-			const search = new AgroSearch();
 
 			// Los rels
-			const entities = (await search.getEntities(currentEntity)).data;
+			// const entities = (await search.getEntities(currentEntity)).data;
 			// const propertys = entities.map((entity) => parseRequest(entity));
 
 			// test
-			const wea = await Promise.all(
-				entities.map(async (entity) => await parseRequest(entity, false, [21]))
+			// const wea = await Promise.all(
+			// 	entities.map(async (entity) => await parseRequest(entity, false, [21]))
+			// );
+
+			const { data } = await searchInstance.getEntities(24, []);
+
+			const entities = await Promise.all(
+				data.map(async (entity) => await parseRequest(entity, false, [10]))
 			);
 
 			// TODO: Cambiar todo esto
-			wea.forEach((nose: any) => {
-				for (const k in nose) {
-					if (nose[k] instanceof Date) {
-						// console.log(wea[k], "AKIIII");
+			// wea.forEach((nose: any) => {
+			// 	for (const k in nose) {
+			// 		if (nose[k] instanceof Date) {
+			// 			// console.log(wea[k], "AKIIII");
 
-						nose[k] = nose[k].toString() as any;
-					}
-				}
-			});
+			// 			nose[k] = nose[k].toString() as any;
+			// 		}
+			// 	}
+			// });
 
 			cols.push({
 				Header: "Editar",
-				accessor: "id" as keyof T,
+				accessor: "id",
 				// eslint-disable-next-line react/display-name
 				Cell: (pr: any) => (
 					<ButtonLineal
 						typeButton="danger"
 						icon={Edit}
 						size="small"
-						onClick={() => history.push(`${pathname}/${pr.cell.value}`)}
+						onClick={() => history.push(`/preorders/${pr.value}`)}
 					>
-						Editar
+						Preorder
 					</ButtonLineal>
 				),
-			});
+			} as any);
 
 			setColumns(cols);
-			setData(wea);
+			setData(entities);
 			setLoading(false);
 		};
 
@@ -121,4 +128,4 @@ function Table<T>(props: TableProps): JSX.Element {
 	);
 }
 
-export default Table;
+export default PreOrder;

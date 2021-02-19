@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ManteinerRoutes, HomeRoute, TablesRoutes } from "../routes";
+import { ManteinerRoutes, HomeRoute, TablesRoutes, SpecificPreorderRoute } from "../routes";
 
 const Views: React.FC = () => {
 	return (
@@ -7,6 +7,7 @@ const Views: React.FC = () => {
 			<HomeRoute />
 			<ManteinerRoutes />
 			<TablesRoutes />
+			<SpecificPreorderRoute />
 		</>
 	);
 };
