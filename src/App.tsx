@@ -2,7 +2,6 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-import List from "./components/list/List";
 import { mdm } from "@trifenix/agro-data";
 
 const App: React.FunctionComponent = () => {
@@ -48,7 +47,6 @@ const App: React.FunctionComponent = () => {
 				<Views />
 			</div>
 
-			<List />
 			{/* <footer
                 style={{
                     position: "fixed",
