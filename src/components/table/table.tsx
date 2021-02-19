@@ -8,7 +8,8 @@ import parseRequest from "../../modules/metadata/parseRequest";
 import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
 import { Edit } from "@styled-icons/boxicons-regular";
 import ButtonLineal from "../buttons/button-lineal";
-import "./table.css";
+import { StyledTable, StyledTh, StyledTd, StyledTr } from "./styled.Table";
+import Loading from "../loading/Loading";
 
 interface TableProps {
 	currentEntity: EntityRelated;
@@ -53,8 +54,6 @@ function Table<T>(props: TableProps): JSX.Element {
 			wea.forEach((nose: any) => {
 				for (const k in nose) {
 					if (nose[k] instanceof Date) {
-						// console.log(wea[k], "AKIIII");
-
 						nose[k] = nose[k].toString() as any;
 					}
 				}
@@ -83,7 +82,6 @@ function Table<T>(props: TableProps): JSX.Element {
 
 		fetchData();
 	}, []);
-
 	const table_instance = useTable({
 		columns: columns,
 		data: data,
@@ -91,33 +89,37 @@ function Table<T>(props: TableProps): JSX.Element {
 
 	const { headerGroups, rows, prepareRow, getTableBodyProps } = table_instance;
 
-	return loading ? (
-		<h1>loading...</h1>
-	) : (
-		<table>
-			<thead>
-				{headerGroups.map((headerGroup) => (
-					<tr {...headerGroup.getHeaderGroupProps()}>
-						{headerGroup.headers.map((column) => (
-							<th {...column.getHeaderProps()}>{column.render("Header")}</th>
-						))}
-					</tr>
-				))}
-			</thead>
-
-			<tbody {...getTableBodyProps()}>
-				{rows.map((row) => {
-					prepareRow(row);
-					return (
-						<tr {...row.getRowProps()}>
-							{row.cells.map((cell) => (
-								<td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+	return (
+		<Loading isLoading={loading}>
+			<StyledTable>
+				<thead>
+					{headerGroups.map((headerGroup) => (
+						<StyledTr {...headerGroup.getHeaderGroupProps()}>
+							{headerGroup.headers.map((column) => (
+								<StyledTh {...column.getHeaderProps()}>
+									{column.render("Header")}
+								</StyledTh>
 							))}
-						</tr>
-					);
-				})}
-			</tbody>
-		</table>
+						</StyledTr>
+					))}
+				</thead>
+
+				<tbody {...getTableBodyProps()}>
+					{rows.map((row) => {
+						prepareRow(row);
+						return (
+							<StyledTr {...row.getRowProps()}>
+								{row.cells.map((cell) => (
+									<StyledTd {...cell.getCellProps()}>
+										{cell.render("Cell")}
+									</StyledTd>
+								))}
+							</StyledTr>
+						);
+					})}
+				</tbody>
+			</StyledTable>
+		</Loading>
 	);
 }
 

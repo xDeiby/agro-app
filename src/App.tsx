@@ -2,6 +2,8 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
+import { mdm } from "@trifenix/agro-data";
+
 const App: React.FunctionComponent = () => {
 	return (
 		<div className="app">
@@ -23,6 +25,7 @@ const App: React.FunctionComponent = () => {
 				{/* <TestComponent /> */}
 				{/* <PreOrder /> */}
 			</div>
+
 			{/* <footer
                 style={{
                     position: "fixed",

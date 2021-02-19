@@ -19,6 +19,8 @@ interface IPropertys {
 	className?: string;
 	children?: React.ReactNode;
 	disabled?: boolean;
+	display?: string;
+	maxWidth?: string;
 }
 interface IMouseEvents {
 	onClick?: MouseEventHandler<HTMLButtonElement>;

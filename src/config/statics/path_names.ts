@@ -21,3 +21,14 @@ export enum order_pathname {
 	phenological = "phenologicals",
 	no_phenological = "no_phenologicals",
 }
+export enum path_name_machine {
+	tractors = "tractors",
+	nebulizers = "nebulizers",
+}
+
+// TODO: Cambiar
+export enum path_name_not_category {
+	bussines_name = "business_names",
+	role = "roles",
+	cost_centers = "cost-centers",
+}

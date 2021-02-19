@@ -42,6 +42,7 @@ export const StyledSection = styled.section<ISection>`
     padding: 40px 0;
     background: #fff;
 `;
+
 export const StyledImage = styled.img<IImage>`
     src: ${(pr) => (pr.src ? pr.src : "")};
     height: ${(pr) => (pr.height ? pr.height : "450px")};

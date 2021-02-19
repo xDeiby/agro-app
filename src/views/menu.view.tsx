@@ -1,22 +1,24 @@
 import * as React from "react";
+import Boton from "../components/buttons/button";
 import Menu from "../components/menu";
+import Burger from "../components/menu/burger/burger";
 import Item from "../components/menu/item";
 import MenuItem from "../components/menu/menu-item";
-import logoAresa from "../config/logos/aresa.e3676c3d.png";
-import { base_path, path_name } from "../config/statics";
+import { base_path, path_name, path_name_machine, path_name_not_category } from "../config/statics";
 
 const MenuView: React.FunctionComponent = () => {
 	return (
 		<Menu>
-			<img
+			{/* <img
 				src={logoAresa}
 				alt="Logo de Aresa"
 				width={150}
 				style={{ cursor: "pointer", marginLeft: "30px" }}
-			/>
+			/> */}
 			<MenuItem>
-				<Item name="Inicio" active={true} />
+				<Item name="Inicio" active={true} TypeMenus={"menu"} />
 				<Item
+					TypeMenus={"menu"}
 					name="Ordenes"
 					subMenus={[
 						{ name: "Pre-Ordenes" },
@@ -24,8 +26,9 @@ const MenuView: React.FunctionComponent = () => {
 						{ name: "No Fenologicas" },
 					]}
 				/>
-				<Item name="Monitoreo" />
+				<Item name="Monitoreo" TypeMenus={"menu"} />
 				<Item
+					TypeMenus={"menu"}
 					name="Mantenedores"
 					subMenus={[
 						{ name: "Parcelas", url: `/${base_path.manteiner}/${path_name.plotlands}` },
@@ -55,10 +58,47 @@ const MenuView: React.FunctionComponent = () => {
 							name: "Eventos Fenologicos",
 							url: `/${base_path.manteiner}/${path_name.phenological_events}`,
 						},
+						{
+							name: "Variedades",
+							url: `/${base_path.manteiner}/${path_name.varietys}`,
+						},
+					]}
+				/>
+				<Item
+					TypeMenus={"menu"}
+					name="Maquinas"
+					subMenus={[
+						{
+							name: "Tractores ",
+							url: `/${base_path.machine}/${path_name_machine.tractors}`,
+						},
+						{
+							name: "Nebulizador",
+							url: `/${base_path.machine}/${path_name_machine.nebulizers}`,
+						},
+					]}
+				/>
+				<Item
+					TypeMenus={"menu"}
+					name="Pruebas"
+					subMenus={[
+						{
+							name: "Negocios",
+							url: `/${base_path.not_category}/${path_name_not_category.bussines_name}`,
+						},
+						{
+							name: "roles",
+							url: `/${base_path.not_category}/${path_name_not_category.role}`,
+						},
+						{
+							name: "Centro de Costos",
+							url: `/${base_path.not_category}/${path_name_not_category.cost_centers}`,
+						},
 					]}
 				/>
 			</MenuItem>
-			USER
+			<Boton typeButton="user"> Usuario</Boton>
+			<Burger />
 		</Menu>
 	);
 };
