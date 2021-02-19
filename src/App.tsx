@@ -4,6 +4,8 @@ import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import List from "./components/list/List";
 import { mdm } from "@trifenix/agro-data";
+import User from "./components/user/user";
+import ViewProfile from "./components/user/viewProfile/viewProfile";
 
 const App: React.FunctionComponent = () => {
 	// const [nombre, setNombre] = useState<string[][]>();
@@ -47,8 +49,8 @@ const App: React.FunctionComponent = () => {
 			<div className="react-body">
 				<Views />
 			</div>
-
-			<List />
+			<User/>
+			<ViewProfile name="Cristian" rut="21" email="aasd" idJob="2" idNebulizer="12" idTractor="111"/>
 			{/* <footer
                 style={{
                     position: "fixed",
