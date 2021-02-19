@@ -2,7 +2,6 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-import List from "./components/list/List";
 import { mdm } from "@trifenix/agro-data";
 import User from "./components/user/user";
 import ViewProfile from "./components/user/viewProfile/viewProfile";
@@ -50,7 +49,7 @@ const App: React.FunctionComponent = () => {
 				<Views />
 			</div>
 			<User/>
-			<ViewProfile name="Cristian" rut="21" email="aasd" idJob="2" idNebulizer="12" idTractor="111"/>
+			<ViewProfile/>
 			{/* <footer
                 style={{
                     position: "fixed",
