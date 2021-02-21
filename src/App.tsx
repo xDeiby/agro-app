@@ -2,7 +2,6 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
-import { mdm } from "@trifenix/agro-data";
 
 const App: React.FunctionComponent = () => {
 	return (
@@ -21,11 +20,7 @@ const App: React.FunctionComponent = () => {
 			</header>
 			<div className="react-body">
 				<Views />
-				{/* <Table tittle={"Nueva tabla"} entity={24} /> */}
-				{/* <TestComponent /> */}
-				{/* <PreOrder /> */}
 			</div>
-
 			{/* <footer
                 style={{
                     position: "fixed",

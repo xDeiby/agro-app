@@ -1,13 +1,15 @@
-import React from "react";
+import React, { ElementType } from "react";
 import { ReactNode } from "react";
+import ButtonLineal from "../buttons/button-lineal";
 import { ContainerModal, StyledModal } from "./modal.style";
 
 interface IModalProps {
-	button: string;
+	buttonName: string;
+	buttonIcon: ElementType;
 	children: ReactNode;
 }
 
-const Modal: React.FC<IModalProps> = ({ button, children }) => {
+const Modal: React.FC<IModalProps> = ({ buttonName, children, buttonIcon }) => {
 	const [open, setOpen] = React.useState(false);
 
 	return open ? (
@@ -20,7 +22,9 @@ const Modal: React.FC<IModalProps> = ({ button, children }) => {
 			</StyledModal>
 		</ContainerModal>
 	) : (
-		<button onClick={() => setOpen(true)}>{button}</button>
+		<ButtonLineal icon={buttonIcon} typeButton="ghost" onClick={() => setOpen(true)}>
+			{buttonName}
+		</ButtonLineal>
 	);
 };
 

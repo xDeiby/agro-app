@@ -1,13 +1,10 @@
-import EntityStore from "./stores/EntityStore";
-import { TableStore } from "./stores/TableStore";
+import TableStore from "./stores/EntityStore";
 
 export class RootStore {
 	tableStore: TableStore;
-	entitieStore: EntityStore;
 
 	constructor() {
 		this.tableStore = new TableStore(this);
-		this.entitieStore = new EntityStore(this);
 	}
 }
 

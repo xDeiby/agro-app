@@ -64,6 +64,19 @@ export default class AgroSearch extends AzureSearch<EntityBaseSearch<GeographyPo
 
 		return res;
 	}
+
+	public async getEntitiesExclude(
+		entity_index: EntityRelated,
+		ids: string[],
+		selects?: (keyof EntityBaseSearch<GeographyPoint>)[]
+	): Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>> {
+		const query = `index eq ${entity_index} and not search.in(id, '${ids.join(",")}')`;
+		console.log(query);
+
+		const res = await this.searchEntities(query, selects);
+
+		return res;
+	}
 }
 
 export const searchInstance = new AgroSearch();

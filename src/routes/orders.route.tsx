@@ -1,16 +1,21 @@
 import { EntityRelated } from "@trifenix/agro-data";
 import * as React from "react";
 import { Route } from "react-router";
-import List from "../components/list";
 import { base_path, order_pathname } from "../config/statics";
+import ListPreorders from "../controllers/lists/list-preorders";
 import OrderFolderTable from "../controllers/tables/preorders/orderFolder-table";
+import FormManteiner from "../views/manteiners/forms/form-manteiner";
 
-const TablesRoutes: React.FC = () => {
+const OrdersRoutes: React.FC = () => {
 	return (
 		<>
 			{/* Carpeta de PreOrders */}
 			<Route exact path={`/${base_path.order}/${order_pathname.order_folder}`}>
-				<OrderFolderTable entity={EntityRelated.ORDER_FOLDER} />
+				<OrderFolderTable currentEntity={EntityRelated.ORDER_FOLDER} pathname={"aaa"} />
+			</Route>
+
+			<Route exact path={`/${base_path.order}/${order_pathname.order_folder}/:id`}>
+				<FormManteiner />
 			</Route>
 
 			{/* Lista de Preordenes */}
@@ -18,7 +23,11 @@ const TablesRoutes: React.FC = () => {
 				{/* 
 					TODO: Cambiar
 				*/}
-				<List />
+				<ListPreorders
+					entity={EntityRelated.PREORDER}
+					entity_rel={EntityRelated.ORDER_FOLDER}
+					buttonName={"Editar"}
+				/>
 			</Route>
 
 			{/* Ordenes Fenologicas */}
@@ -34,4 +43,4 @@ const TablesRoutes: React.FC = () => {
 	);
 };
 
-export default TablesRoutes;
+export default OrdersRoutes;

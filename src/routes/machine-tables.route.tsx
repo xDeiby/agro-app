@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route } from "react-router";
 import { base_path, path_name_machine } from "../config/statics";
-import TableMachine from "../views/manteiners/table/table-machine.view";
+import TableSimple from "../views/manteiners/table/tableSimple-entities.view";
 
 const MachineTablesRoutes: React.FC = () => {
 	return (
@@ -10,7 +10,7 @@ const MachineTablesRoutes: React.FC = () => {
 				.map((path) => `/${base_path.machine}/${path}`)
 				.map((path_url) => (
 					<Route key={path_url} exact path={path_url}>
-						<TableMachine />
+						<TableSimple />
 					</Route>
 				))}
 		</>

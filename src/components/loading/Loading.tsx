@@ -1,4 +1,3 @@
-import React, { ReactNode } from "react";
 import { StyledLoading, StyledDiv, StyledSpinner } from "./styled.Loading";
 import Tractor from "../../config/images/Tractor.gif";
 
@@ -7,7 +6,7 @@ interface LoadingProps {
 	isLoading: boolean;
 }
 
-export default function Loading(props: LoadingProps) {
+export default function Loading(props: LoadingProps): JSX.Element {
 	const { children, isLoading } = props;
 
 	return isLoading ? (

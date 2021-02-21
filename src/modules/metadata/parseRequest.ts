@@ -67,19 +67,7 @@ const parseRequest = async <T = any>(
 	relsId = true,
 	relInfo?: EntityRelated[]
 ): Promise<T> => {
-	let parseObj = {} as any;
-
-	parseObj.id = object.id;
-
-	for (const K in object) {
-		const key = K as PropertyKeys<EntityBaseSearch<GeographyPoint>>;
-
-		if (Array.isArray(object[key]) && key !== "rel") {
-			object[key].forEach((property: any) => {
-				parseObj[getMetaNameProperty<T>(key, object, property.index)] = property.value;
-			});
-		}
-	}
+	let parseObj = { ...getSearchPropertys(object) };
 
 	if (!relsId) {
 		const entities = await Promise.all(
@@ -106,7 +94,7 @@ const parseRequest = async <T = any>(
 				entity: EntityBaseSearch<GeographyPoint>;
 			}) => {
 				if (relInfo && relInfo.includes(realIndex)) {
-					const wea = parseRequest2(entity);
+					const wea = getSearchPropertys(entity);
 					parseObj = { ...wea, ...parseObj };
 				}
 
@@ -120,7 +108,10 @@ const parseRequest = async <T = any>(
 	return parseObj;
 };
 
-const parseRequest2 = <T = any>(object: EntityBaseSearch<GeographyPoint>) => {
+export const getSearchPropertys = <T = any>(
+	object: EntityBaseSearch<GeographyPoint>,
+	relIncludes = false
+): any => {
 	const parseObj = {} as any;
 
 	parseObj.id = object.id;
@@ -128,10 +119,17 @@ const parseRequest2 = <T = any>(object: EntityBaseSearch<GeographyPoint>) => {
 	for (const K in object) {
 		const key = K as PropertyKeys<EntityBaseSearch<GeographyPoint>>;
 
-		if (Array.isArray(object[key]) && key !== "rel") {
+		if (Array.isArray(object[key]) && (key !== "rel" || relIncludes)) {
 			object[key].forEach((property: any) => {
-				parseObj[getMetaNameProperty<T>(key, object, property.index)] =
-					property.value instanceof Date ? property.value.toString() : property.value;
+				const field = getMetaNameProperty<T>(key, object, property.index);
+				parseObj[field]
+					? (parseObj[field] = [parseObj[field], property.id].flat())
+					: (parseObj[field] =
+							relIncludes && key === "rel"
+								? property.id
+								: property.value instanceof Date
+								? property.value.toString()
+								: property.value);
 			});
 		}
 	}

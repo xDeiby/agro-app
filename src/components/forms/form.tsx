@@ -2,7 +2,6 @@
 import { EntityRelated } from "@trifenix/agro-data";
 import { Formik, FormikProps } from "formik";
 import React from "react";
-import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
 import FormControl from "../form-control";
 import Input from "../input";
 import Select from "../select";
@@ -12,10 +11,11 @@ import getRelEntities, {
 	getRelOptions,
 	IDropdownOptions,
 } from "../../modules/metadata/getRelEntities";
-import parseRequest, { getEntityMetadata } from "../../modules/metadata/parseRequest";
+import { getEntityMetadata, getSearchPropertys } from "../../modules/metadata/parseRequest";
 import ButtonLineal from "../buttons/button-lineal";
 import { Save, Trash } from "@styled-icons/boxicons-regular";
 import CrudManteinerRequest from "../../services/api/manteiner.service";
+import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 export interface IForm {
 	currentEntity: EntityRelated;
 	logo: string;
@@ -38,12 +38,14 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 	React.useEffect(() => {
 		async function fetchData() {
 			setLoad(true);
-			const search = new AgroSearch();
 
 			// ID
 			if (currentId) {
-				const search_entity = await search.getSpecificEntitie(currentEntity, currentId);
-				const wea = await parseRequest<T>(search_entity.data[0]);
+				const search_entity = await searchInstance.getSpecificEntitie(
+					currentEntity,
+					currentId
+				);
+				const wea = getSearchPropertys(search_entity.data[0], true);
 
 				!search_entity.error && setInitValues(wea);
 			}
@@ -54,7 +56,7 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 			const all_fields = getFieldsName<T>(currentEntity);
 
 			if (index_rels.length) {
-				const options = await getRelOptions(index_rels, search, currentEntity);
+				const options = await getRelOptions(index_rels, currentEntity);
 
 				// TODO: Remplazar por MobX
 				if (

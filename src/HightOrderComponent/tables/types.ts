@@ -6,14 +6,23 @@ export type Subtract<T, V> = Pick<T, Exclude<keyof T, keyof V>>;
 // * Props del HOC
 export type WithTableProps = TableFunction & TablePropertys;
 
+interface CellProps {
+	element: JSX.Element;
+	action: (param?: string) => void;
+	accessor: string;
+	Header: string;
+}
+
 /**
  * Table function
  * @param getHeaders Funcion que define como se van a extraer los headers
  * @param getData Funcion que define como se van a obtener los datos
+ * @param cellColumns Funcion que define las columnas en las que se va a retornar un componente
  */
 export interface TableFunction {
 	getHeaders: (entity: EntityRelated, relsInfo?: EntityRelated[]) => IHeadersTable[];
-	getData: (entity: EntityRelated, page: number, total: number) => Promise<any>;
+	getData: (entity: EntityRelated, page: number, total: number, ids?: string[]) => Promise<any>;
+	cellColumns?: (redirect: string) => IHeadersTable[];
 }
 
 /**

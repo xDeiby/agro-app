@@ -1,9 +1,9 @@
 import { EntityRelated, mdm } from "@trifenix/agro-data";
 import React from "react";
 import { useLocation } from "react-router";
-import Table from "../../../components/table";
+import ManteinerTable from "../../../controllers/tables/manteiners/manteiner-table";
 
-const TableManteiner: React.FC = () => {
+const TableSimple: React.FC = () => {
 	// const route = getEntityMetadata(entity).pathName;
 	const location = useLocation().pathname.split("/");
 
@@ -11,11 +11,11 @@ const TableManteiner: React.FC = () => {
 	console.log(entity);
 
 	return (
-		<Table
+		<ManteinerTable
 			pathname={`/${location[1]}/${location[2]}`}
 			currentEntity={entity as EntityRelated}
 		/>
 	);
 };
 
-export default TableManteiner;
+export default TableSimple;

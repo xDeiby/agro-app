@@ -1,4 +1,4 @@
-import List from "./List";
+import List from "./list";
 
-export * from "./List";
+export * from "./list";
 export default List;
