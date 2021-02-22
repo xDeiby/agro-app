@@ -1,7 +1,7 @@
 import { GeographyPoint } from "@azure/search-documents";
 import { EntityRelated, mdm, StringRelated } from "@trifenix/agro-data";
 import { EntityBaseSearch } from "@trifenix/mdm";
-import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
+import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 import { getEntityMetadata } from "./parseRequest";
 
 /**
@@ -42,14 +42,13 @@ export interface IDropdownOptions {
 
 export async function getRelOptions(
 	entities: EntityRelated[],
-	search: AgroSearch,
 	currentEntity: EntityRelated
 ): Promise<IDropdownOptions> {
 	const metadata = getEntityMetadata(currentEntity).relData;
 
 	const result = await Promise.all(
 		entities.map(
-			async (index) => (await search.getEntities(index, ["str", "index", "id"])).data
+			async (index) => (await searchInstance.getEntities(index, ["str", "index", "id"])).data
 		)
 	);
 

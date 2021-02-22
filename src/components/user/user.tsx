@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import { StyledButtonUser, StyledContainerUser, StyledHeaderUser } from "./styled.user";
+import Boton from "../buttons/button/Button";
+import ModalUser from "./modalUser";
 
 
 
 const User:React.FC = () => {
+    const [showModal, setShowModal] = useState<boolean>(false);
 
-    const [active, setActive] = useState(false);
-
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  };
 
     return (
-        <StyledContainerUser>
-            <StyledHeaderUser>Header</StyledHeaderUser>
-            <img src="https://img.favpng.com/15/13/21/computer-icons-user-login-desktop-wallpaper-png-favpng-50cVSt0m1jw7SRtPEv8KvVUvF.jpg" 
-            style={{width: "80px", height: "55px"}}/>
-            <div style={{ margin:"10px",fontFamily:"sans-serif",fontSize:"16px"}}>
-                Nombre Usuario 
-            </div>
-            <StyledButtonUser>
-                Ver perfil
-            </StyledButtonUser>
-            {/* <StyledFooterUser>
-                Footer
-            </StyledFooterUser> */}
-        </StyledContainerUser>
+        <div>
+            <Boton typeButton="user" onClick={openModal}>Usuario</Boton>
+            <ModalUser showModal={showModal} setShowModal={setShowModal}/>          
+        </div>
     );
 }
 

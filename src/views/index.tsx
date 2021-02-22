@@ -7,6 +7,7 @@ import {
 	TableMachineRoutes,
 	NotCategoryFormsRoute,
 	TableNotCategoryRoutes,
+	OrdersRoutes,
 } from "../routes";
 
 const Views: React.FC = () => {
@@ -19,6 +20,7 @@ const Views: React.FC = () => {
 			<TableMachineRoutes />
 			<TableNotCategoryRoutes />
 			<NotCategoryFormsRoute />
+			<OrdersRoutes />
 		</>
 	);
 };

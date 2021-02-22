@@ -9,8 +9,8 @@ interface INav {
 const Nav: React.FC<INav> = ({ open }) => {
 	return (
 		<Ul open={open}>
-			<li>{<Item name="Inicio" TypeMenus={"burger"} />}</li>
-			<div>
+			<div>{<Item name="Inicio" TypeMenus={"burger"} />}</div>
+			{/* <div>
 				<li>
 					{
 						<Item
@@ -23,10 +23,10 @@ const Nav: React.FC<INav> = ({ open }) => {
 							]}
 						/>
 					}
-				</li>
-			</div>
-			<li>{<Item name="Monitoreo" TypeMenus={"burger"} />}</li>
-			<li>
+				</div>
+			</div> */}
+			<div>{<Item name="Monitoreo" TypeMenus={"burger"} />}</div>
+			<div>
 				{
 					<Item
 						TypeMenus={"burger"}
@@ -71,8 +71,8 @@ const Nav: React.FC<INav> = ({ open }) => {
 						]}
 					/>
 				}
-			</li>
-			<li>{<Item name="Usuarios" TypeMenus={"burger"} />}</li>
+			</div>
+			<div>{<Item name="Usuarios" TypeMenus={"burger"} />}</div>
 		</Ul>
 	);
 };

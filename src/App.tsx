@@ -3,34 +3,10 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import { mdm } from "@trifenix/agro-data";
-import User from "./components/user/user";
 import ViewProfile from "./components/user/viewProfile/viewProfile";
 
-const App: React.FunctionComponent = () => {
-	// const [nombre, setNombre] = useState<string[][]>();
-	// React.useEffect(() => {
-	// 	async function fetchGetentities() {
-	// 		const busqueda = new AgroSearch();
-	// 		const entities = (await busqueda.getEntities(EntityRelated.BARRACK)).data;
-	// 		const res = entities.map((result) =>
-	// 			result.str
-	// 				.filter((lol) => lol.index === StringRelated.GENERIC_NAME)
-	// 				.map((valor) => valor.value)
-	// 		);
-	// 		setNombre(res);
-	// 		console.log(res);
-	// 	}
-	// 	fetchGetentities();
-	/* 	const fetchData = async () => {
-			const myWea = new AgroSearch();
-			const wea = (await myWea.getEntities(1)).data;
-			console.log(wea);
 
-			wea.map((nom) => console.log(nom.str));
-		};
-		fetchData(); */
-	// }, []);
-	console.log(mdm.indexes);
+const App: React.FunctionComponent = () => {
 	return (
 		<div className="app">
 			<header
@@ -48,7 +24,6 @@ const App: React.FunctionComponent = () => {
 			<div className="react-body">
 				<Views />
 			</div>
-			<User/>
 			<ViewProfile/>
 			{/* <footer
                 style={{

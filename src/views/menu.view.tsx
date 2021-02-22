@@ -4,7 +4,14 @@ import Menu from "../components/menu";
 import Burger from "../components/menu/burger/burger";
 import Item from "../components/menu/item";
 import MenuItem from "../components/menu/menu-item";
-import { base_path, path_name, path_name_machine, path_name_not_category } from "../config/statics";
+import User from "../components/user/user";
+import {
+	base_path,
+	order_pathname,
+	path_name,
+	path_name_machine,
+	path_name_not_category,
+} from "../config/statics";
 
 const MenuView: React.FunctionComponent = () => {
 	return (
@@ -21,7 +28,10 @@ const MenuView: React.FunctionComponent = () => {
 					TypeMenus={"menu"}
 					name="Ordenes"
 					subMenus={[
-						{ name: "Pre-Ordenes" },
+						{
+							name: "Pre-Ordenes",
+							url: `/${base_path.order}/${order_pathname.order_folder}`,
+						},
 						{ name: "Fenologicas" },
 						{ name: "No Fenologicas" },
 					]}
@@ -97,7 +107,7 @@ const MenuView: React.FunctionComponent = () => {
 					]}
 				/>
 			</MenuItem>
-			<Boton typeButton="user"> Usuario</Boton>
+			<User/>
 			<Burger />
 		</Menu>
 	);

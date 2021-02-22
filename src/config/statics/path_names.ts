@@ -15,12 +15,24 @@ export enum path_name {
 	sectors = "sectors",
 }
 
+export enum order_pathname {
+	preorder = "preorders",
+	order_folder = "order_folders",
+	phenological = "phenologicals",
+	no_phenological = "no_phenologicals",
+}
 export enum path_name_machine {
 	tractors = "tractors",
 	nebulizers = "nebulizers",
 }
+
+// TODO: Cambiar
 export enum path_name_not_category {
 	bussines_name = "business_names",
 	role = "roles",
 	cost_centers = "cost-centers",
+}
+
+export enum path_name_profile{
+	profile_user= "profile_user",
 }
