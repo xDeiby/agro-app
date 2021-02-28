@@ -6,7 +6,7 @@ import {
 	path_name_not_category,
 } from "../../config/statics/path_names";
 
-export const getPaginationManteinerModel = () => {
+export const getPaginationManteinerModel = (): any => {
 	const pagination_model = {} as any;
 	mdm.indexes
 		.filter((wea: any) =>
@@ -24,7 +24,7 @@ export const getPaginationManteinerModel = () => {
 	return pagination_model;
 };
 
-export const getPaginationManteinerModelTotal = () => {
+export const getPaginationManteinerModelTotal = (): any => {
 	const pagination_model = {} as any;
 	mdm.indexes
 		.filter((wea: any) =>

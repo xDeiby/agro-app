@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { config } from "../../config/azure-function/settings";
 // import { localSettings as searchConfig } from "../../config/azure-search/azure-search.conf";

@@ -1,5 +1,4 @@
 import { Update } from "@styled-icons/material-outlined/Update";
-import { EntityRelated } from "@trifenix/agro-data";
 import { observer } from "mobx-react";
 import React from "react";
 import { ComponentType } from "react";

@@ -57,6 +57,7 @@ function Form(props: IForm & WithFormProps): JSX.Element {
 					if (currentEntity === 1)
 						values["seasonId"] = "49fd8f3316a642c29c70cc47c3c4ce6f";
 
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					response = await CrudManteinerRequest.POST(values, pathname.split("/")[1]);
 				}
 				(props as any).changeLoad(false);
@@ -104,7 +105,6 @@ function Form(props: IForm & WithFormProps): JSX.Element {
 										<Select
 											id={field.field as string}
 											placeholder={field.placeholder}
-											isRequired={field.required}
 											option={getOption(
 												values[field.field as string],
 												field.field as string

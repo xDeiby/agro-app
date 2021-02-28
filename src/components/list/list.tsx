@@ -43,6 +43,7 @@ const List: React.FC<ListProps & WithListProps> = ({ data, id }) => {
 			barrackIds: newPreorden,
 		};
 
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const put = await CrudManteinerRequest.POST(new_preorder, "pre_orders");
 		setLoading(false);
 		location.reload();
@@ -107,6 +108,7 @@ const ElementList: React.FC<{ row: any; ignore_barracks: string[] }> = ({
 			barrackIds: selectBarracks,
 		};
 
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const put = await CrudManteinerRequest.PUT(new_preorder, "pre_orders", row.id);
 
 		setLoading(false);

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { EntityRelated } from "@trifenix/agro-data";
 import { EntityMetadata } from "@trifenix/mdm";
-import { getRelName } from "./getRelEntities";
 import { getEntityMetadata } from "./wea";
 
 type KeyFields<T> = {

@@ -23,7 +23,6 @@ export interface SelectProps
 	className?: string;
 	size?: ComponentSize;
 	disabled?: boolean;
-	isRequired?: boolean;
 	error?: boolean;
 	width?: string;
 	option?: SelectOption;
@@ -41,7 +40,6 @@ const Select: React.ForwardRefRenderFunction<HTMLDivElement, SelectProps> = (
 		size = "default",
 		className,
 		disabled = false,
-		isRequired = false,
 		error = false,
 		option,
 		listOptions,

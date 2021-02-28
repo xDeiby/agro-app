@@ -11,13 +11,6 @@ import {
 import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 import { RootStore } from "../rootStore";
 
-interface PaginationStore {
-	[page: number]: any[];
-}
-interface StoreManteinerStructure {
-	[entity: number]: PaginationStore[];
-}
-
 export interface ITableStore {
 	current_entity: EntityRelated;
 	current_page: number;

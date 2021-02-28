@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ComponentType } from "react";
-import { useParams } from "react-router";
 import Loading from "../../components/loading/Loading";
 import getFieldsName from "../../modules/metadata/getFieldsName";
 import getRelEntities, { getRelOptions } from "../../modules/metadata/getRelEntities";
-import parseRequest, {
-	getEntityMetadata,
-	getSearchPropertys,
-} from "../../modules/metadata/parseRequest";
+import { getSearchPropertys } from "../../modules/metadata/parseRequest";
+import { getEntityMetadata } from "../../modules/metadata/wea";
+
 import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 import { Subtract } from "../tables/types";
 import { WithFormProps } from "./types";
@@ -19,7 +17,7 @@ export function withForm(
 		function BadgeComponet(props: any): JSX.Element {
 			const [isWaiting, setIsWaiting] = useState<boolean>(true);
 
-			const { currentEntity, currentId, pathname } = props;
+			const { currentEntity, currentId } = props;
 
 			useEffect(() => {
 				const loadData = async () => {
