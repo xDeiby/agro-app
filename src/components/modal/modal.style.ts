@@ -15,13 +15,14 @@ export const ContainerModal = styled.div<{ typeDisplay: string }>`
 		width: 100%;
 		height: 100%;
 		background: rgba(0, 0, 0, 0.6);
-	
+		
 	`}
 `;
 
 export const StyledModal = styled.section`
+
 	position: fixed;
-	background: white;
+	background: transparent;
 	width: 80%;
 	height: auto;
 	top: 50%;

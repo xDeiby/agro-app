@@ -24,7 +24,7 @@ const List: React.FC<ListProps & WithListProps> = ({ data }) => {
 			.flat() || [];
 
 	const [newPreorden, setNewPreorder] = useState<string[]>([]);
-	console.log(newPreorden);
+	//console.log(newPreorden);
 
 	return (
 		<StyledContainer>
@@ -55,6 +55,52 @@ const ElementList: React.FC<{ row: any; ignore_barracks: string[] }> = ({
 					.map((entity: any) => entity.id)
 			: []
 	);
+	//parseRequest(row,false).then(result => console.log(result));
+	//console.log(row);
+
+	//const [result,useResult] = useState<string[]>([]);
+
+
+/* 	async function asyncCall() {
+		console.log('calling');
+		const result = await parseRequest(row,false).then(result => result);
+		console.log(result);
+		return(JSON.stringify(result));
+		// expected output: "resolved"
+} */
+/* useEffect(() => {
+	async function asyncCall() {
+		useResult(await (parseRequest(row,true)));
+} 
+    asyncCall();
+  }, []); */
+
+/*   const indexsView = ["ID","Nombre","Tipo de Preorden"];
+  
+    const arrayScores = Object.values(result).map((pene,index) => {
+		
+	return(
+		<table key = {Math.random()}>
+			
+				<thead>
+					<tr>	
+						<th>
+							{indexsView[index]}
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{pene}</td>
+					</tr>
+					
+				</tbody>
+		</table>
+		
+	);
+  });  */
+
+ 
 
 	return (
 		<StyledBox key={row.id}>
@@ -62,9 +108,10 @@ const ElementList: React.FC<{ row: any; ignore_barracks: string[] }> = ({
 				row.str.find((property: any) => property.index === StringRelated.GENERIC_NAME)
 					.value}
 			<div style={{ display: "flex", flexDirection: "row" }}>
-				<Modal buttonIcon={Eye} buttonName="Ver">
+				<Modal buttonIcon={Eye} buttonName="Ver">		
 					{JSON.stringify(row)}
 				</Modal>
+
 				<Modal buttonIcon={EditAlt} buttonName="Editar">
 					<TableSelectManteiner
 						currentEntity={EntityRelated.BARRACK}

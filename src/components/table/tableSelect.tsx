@@ -7,6 +7,8 @@ import { IHeadersTable, WithTableProps } from "../../HightOrderComponent/tables/
 import { withTable } from "../../HightOrderComponent/tables/withTable";
 import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 import parseRequest from "../../modules/metadata/parseRequest";
+import { StyledTable, StyledTh, StyledTd, StyledTr } from "./styled.Table";
+
 
 interface TableSelectProps {
 	selects: string[];
@@ -56,14 +58,14 @@ const TableSelect: React.FC<TableSelectProps & WithTableProps> = ({
 	);
 
 	return (
-		<table>
+		<StyledTable>
 			<thead>
 				{headerGroups.map((headerGroup) => (
-					<tr {...headerGroup.getHeaderGroupProps()}>
+					<StyledTr {...headerGroup.getHeaderGroupProps()}>
 						{headerGroup.headers.map((column) => (
-							<th {...column.getHeaderProps()}>{column.render("Header")}</th>
+							<StyledTh {...column.getHeaderProps()}>{column.render("Header")}</StyledTh>
 						))}
-					</tr>
+					</StyledTr>
 				))}
 			</thead>
 
@@ -71,15 +73,15 @@ const TableSelect: React.FC<TableSelectProps & WithTableProps> = ({
 				{rows.map((row) => {
 					prepareRow(row);
 					return (
-						<tr {...row.getRowProps()}>
+						<StyledTr {...row.getRowProps()}>
 							{row.cells.map((cell) => (
-								<td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+								<StyledTd {...cell.getCellProps()}>{cell.render("Cell")}</StyledTd>
 							))}
-						</tr>
+						</StyledTr>
 					);
 				})}
 			</tbody>
-		</table>
+		</StyledTable>
 	);
 };
 

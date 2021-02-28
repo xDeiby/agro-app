@@ -8,6 +8,7 @@ interface ITable {
 }
 
 export const StyledTable = styled.table<ITable>`
+	background: white;
 	font-family: sans-serif;
 	font-size: 0.9em;
 	border-collapse: collapse;

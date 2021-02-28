@@ -1,7 +1,6 @@
 import { EntityRelated } from "@trifenix/agro-data";
 import List from "../../components/list";
 import { withList } from "../../HightOrderComponent/lists/withList";
-import parseRequest, { getSearchPropertys } from "../../modules/metadata/parseRequest";
 import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 
 const ListPreorders = withList({

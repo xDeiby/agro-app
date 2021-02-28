@@ -1,3 +1,3 @@
 export const config = {
-    api_url: "https://ignacio-fenix.azurewebsites.net/api",
+    api_url: "https://fuction-agro-trifenix.azurewebsites.net/api",
 };

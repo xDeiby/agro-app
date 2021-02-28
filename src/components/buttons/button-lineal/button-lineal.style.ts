@@ -11,7 +11,7 @@ type StateColors = {
     hover: string;
 };
 
-const typeColors: { [key in ButtonType]: StateColors } = {
+export const typeColors: { [key in ButtonType]: StateColors } = {
     default: {
         regular: "#0018cf",
         hover: "#2e27cc",

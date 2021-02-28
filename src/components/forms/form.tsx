@@ -91,9 +91,9 @@ export default function IForm<T extends { id: string }>(props: IForm): JSX.Eleme
 			onSubmit={async (values) => {
 				let respones;
 				if (currentId) {
-					respones = await CrudManteinerRequest.PUT(values, pathname, currentId);
+					respones = await CrudManteinerRequest.PUT(values, pathname.split("/")[1], currentId);
 				} else {
-					respones = await CrudManteinerRequest.POST(values, pathname);
+					respones = await CrudManteinerRequest.POST(values, pathname.split("/")[1]);
 				}
 
 				console.log(respones);
