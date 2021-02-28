@@ -4,7 +4,6 @@ import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import ViewProfile from "./components/user/viewProfile/viewProfile";
 import { EntityRelated, mdm } from "@trifenix/agro-data";
-import Pagination from "./components/pagination/pagination";
 
 console.log(mdm.indexes.filter(xd=> xd.index == EntityRelated.COSTCENTER));
 
@@ -27,7 +26,6 @@ const App: React.FunctionComponent = () => {
 				<Views />
 			</div>
 			<ViewProfile/>
-			<Pagination />
 			{/* <footer
                 style={{
                     position: "fixed",
