@@ -1,5 +1,4 @@
 import { GeographyPoint } from "@azure/search-documents";
-import { Pages } from "@styled-icons/material-outlined";
 import { EntityRelated } from "@trifenix/agro-data";
 import { EntityBaseSearch } from "@trifenix/mdm";
 import { action, computed, makeObservable, observable, reaction, runInAction, toJS } from "mobx";
