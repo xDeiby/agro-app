@@ -32,6 +32,7 @@ export interface ITableStore {
 	) => Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>>;
 }
 
+// TODO: Corregir el bug del 3 al 2 (Un bug muy extraño)
 export default class TableStore implements ITableStore {
 	private rootStore: RootStore;
 
@@ -39,7 +40,7 @@ export default class TableStore implements ITableStore {
 	// TODO: CAMBIAR EL PUTO -1 POR ALGO MAS LOGICO
 	current_entity = -1;
 	current_page = 1;
-	total_rows = 5;
+	total_rows = 10;
 	total_data = getPaginationManteinerModelTotal();
 	loading = false;
 	data = getPaginationManteinerModel();
@@ -55,10 +56,12 @@ export default class TableStore implements ITableStore {
 			current_entity: observable,
 			current_page: observable,
 			total_rows: observable,
+			total_data: observable,
 			data: observable,
 			setEntityData: action,
 			setPage: action,
 			setTotalRows: action,
+			updateEntity: action,
 			info: computed,
 			allpages: computed,
 		});
@@ -81,10 +84,23 @@ export default class TableStore implements ITableStore {
 						this.loading = false;
 					});
 				}
-				console.log(toJS(this.data), "AKI");
 			}
 		);
 	}
+
+	updateEntity = async (entity: EntityRelated): Promise<void> => {
+		this.data[entity] = {};
+
+		this.loading = true;
+
+		const result = await this.getData(this.current_entity, this.current_page, this.total_rows);
+
+		runInAction(() => {
+			this.data[this.current_entity][this.current_page] = result.data;
+			this.total_data[this.current_entity] = result.total as number;
+			this.loading = false;
+		});
+	};
 
 	setEntityData = (entity: EntityRelated): void => {
 		this.current_entity = entity;
@@ -118,7 +134,11 @@ export default class TableStore implements ITableStore {
 
 	get allpages(): number[] {
 		const pages = [];
-		for (let page = 1; page <= this.total_data[this.current_page] / this.total_rows; page++) {
+		const total_pages =
+			this.total_data[this.current_entity] % this.total_rows
+				? this.total_data[this.current_entity] / this.total_rows + 1
+				: this.total_data[this.current_entity] / this.total_rows;
+		for (let page = 1; page <= total_pages; page++) {
 			pages.push(page);
 		}
 		return pages;

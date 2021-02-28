@@ -122,6 +122,9 @@ export const getSearchPropertys = <T = any>(
 		if (Array.isArray(object[key]) && (key !== "rel" || relIncludes)) {
 			object[key].forEach((property: any) => {
 				const field = getMetaNameProperty<T>(key, object, property.index);
+
+				// TODO: Cambiar esto (el if season id se veria remplazado por si el elemento tiene visible o no)
+				// if (field !== "seasonId")
 				parseObj[field]
 					? (parseObj[field] = [parseObj[field], property.id].flat())
 					: (parseObj[field] =

@@ -24,44 +24,7 @@ class AzureSearch<T> {
 				top: top,
 				skip: top && skip ? (skip - 1) * top : undefined,
 				includeTotalCount: isPaginate,
-			});
-
-			for await (const result of searchResults.results) {
-				// console.log(result);
-
-				results.push(result.document);
-			}
-
-			return {
-				data: results,
-				total: searchResults.count,
-				error: null,
-			};
-		} catch (error) {
-			return {
-				data: results,
-				error: error.message,
-			};
-		}
-	}
-
-	protected async searchEntities2(
-		query: string,
-		query2: string,
-		selects?: (keyof T)[],
-		top?: number,
-		skip?: number,
-		isPaginate?: boolean
-	): Promise<IResponse<T[]>> {
-		const results: T[] = [];
-
-		try {
-			const searchResults = await this.client.search("*", {
-				filter: query,
-				select: selects,
-				top: top,
-				skip: top && skip ? (skip - 1) * top : undefined,
-				includeTotalCount: isPaginate,
+				orderBy: ["created asc"],
 			});
 
 			for await (const result of searchResults.results) {

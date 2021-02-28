@@ -1,4 +1,4 @@
-import TableStore from "./stores/EntityStore";
+import TableStore from "./stores/TableStore";
 
 export class RootStore {
 	tableStore: TableStore;
