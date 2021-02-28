@@ -1,5 +1,5 @@
 import { GeographyPoint } from "@azure/search-documents";
-import { EntityRelated, mdm, StringRelated } from "@trifenix/agro-data";
+import { EntityRelated, StringRelated } from "@trifenix/agro-data";
 import { EntityBaseSearch } from "@trifenix/mdm";
 import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 import { getEntityMetadata } from "./parseRequest";
@@ -9,20 +9,27 @@ import { getEntityMetadata } from "./parseRequest";
  * @param entity Entidad de la vamos a extraer sus Rels en la metadata
  * @returns Array de index's de las entidades que contiene entity
  */
-export default function getRelEntities(entity: EntityRelated): EntityRelated[] {
+export default function getRelEntities(entity: EntityRelated): EntityRelated[] | number[] {
 	const metadata = getEntityMetadata(entity).relData;
 
 	return Object.values(metadata)
 		.map((property) => property.realIndex)
-		.filter((index) => index !== EntityRelated.SEASON);
+		.reduce(
+			(indexs: number[], index) =>
+				index !== EntityRelated.SEASON
+					? [...indexs, indexs.includes(index) ? EntityRelated.POLLINATOR : index]
+					: indexs,
+			[]
+		);
 }
 
-export function getRelName({ str }: EntityBaseSearch<GeographyPoint>): string {
-	// if (entity.index === EntityRelated.POLLINATOR) entity.index = EntityRelated.VARIETY;
+export function getRelName({ str, sug }: EntityBaseSearch<GeographyPoint>): string {
+	const value = (
+		str.find((elem) => elem.index === StringRelated.GENERIC_NAME) ||
+		sug.find((elem) => elem.index === StringRelated.GENERIC_NAME)
+	)?.value;
 
-	const value = str.filter((elem) => elem.index === StringRelated.GENERIC_NAME)[0].value;
-
-	return value;
+	return value as string;
 }
 export function getRelLabel(entity: EntityRelated, index: EntityRelated): string {
 	const metadata = getEntityMetadata(entity);
@@ -52,26 +59,25 @@ export async function getRelOptions(
 		)
 	);
 
-	const wea = result.flat();
-	console.log(mdm.indexes.filter((wea) => wea.index === 1));
+	const all_entities = result.flat();
 
-	const options = wea.reduce((acc: IDropdownOptions, re) => {
-		const key_index = metadata[re.index].nameProp;
-		if (!acc[key_index]) acc[key_index] = [];
+	const all_options = entities.reduce((options: IDropdownOptions, index) => {
+		const key_index = metadata[index].nameProp;
+		const current_entities = all_entities.filter(
+			(entity) =>
+				entity.index ===
+				(index === EntityRelated.POLLINATOR ? EntityRelated.VARIETY : index)
+		);
 
-		const option = {
-			value: re.id,
-			label: re.str.filter((property) => property.index === StringRelated.GENERIC_NAME)[0]
-				.value,
-		};
-		!acc[key_index].find((prop) => prop.value === option.value) && acc[key_index].push(option);
+		options[key_index] = current_entities.length
+			? current_entities.map((entity) => ({
+					value: entity.id,
+					label: getRelName(entity),
+			  }))
+			: [];
 
-		return acc;
+		return options;
 	}, {});
 
-	return options;
-
-	// console.log(rels.map((options, count) => all_options[getRelLabel(entities[count], )] getRelName(options[0])));
-
-	// console.log(rels);
+	return all_options;
 }

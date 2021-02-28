@@ -28,7 +28,7 @@ export function withList(
 
 			return (
 				<Loading isLoading={loading}>
-					<WrappedComponent {...props} {...config} />
+					<WrappedComponent {...props} {...config} id={id} />
 				</Loading>
 			);
 		};

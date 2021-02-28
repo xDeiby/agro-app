@@ -1,4 +1,5 @@
 import { EntityRelated } from "@trifenix/agro-data";
+import { IResponse } from "../../model/azure-search";
 
 // * Saca los elementos de la interfaz V a la interfaz T
 export type Subtract<T, V> = Pick<T, Exclude<keyof T, keyof V>>;
@@ -21,7 +22,12 @@ interface CellProps {
  */
 export interface TableFunction {
 	getHeaders: (entity: EntityRelated, relsInfo?: EntityRelated[]) => IHeadersTable[];
-	getData: (entity: EntityRelated, page: number, total: number, ids?: string[]) => Promise<any>;
+	getData: (
+		entity: EntityRelated,
+		page: number,
+		total: number,
+		ids?: string[]
+	) => Promise<IResponse<any>>;
 	cellColumns?: (redirect: string) => IHeadersTable[];
 }
 

@@ -15,7 +15,7 @@ import { searchInstance } from "../../../services/azure-search/indexs-instances/
 const OrderFolderTable = withTable({
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	getData: async (entity: EntityRelated, page: number, total: number) => {
-		const entities = await searchInstance.getEntities(entity);
+		const entities = await searchInstance.getEntities(entity, [], total, page);
 
 		const data = await Promise.all(
 			entities.data.map(
@@ -24,7 +24,11 @@ const OrderFolderTable = withTable({
 			)
 		);
 
-		return data;
+		return {
+			data: data,
+			error: entities.error,
+			total: entities.total,
+		};
 	},
 	getHeaders: (entity: EntityRelated) => {
 		const columns: IHeadersTable[] = getFieldsName(

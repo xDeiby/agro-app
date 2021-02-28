@@ -11,6 +11,9 @@ type KeyFields<T> = {
 export interface IFieldDefined<T> {
 	field: keyof T;
 	header: string;
+	placeholder: string;
+	required: boolean;
+	// type: string;
 }
 
 export default function getFieldsName<T>(
@@ -29,11 +32,18 @@ export default function getFieldsName<T>(
 		if (entity_metadata[key_dict] instanceof Object && !validate(key_dict)) {
 			Object.keys(entity_metadata[key_dict]).forEach((num_key: any) => {
 				const field = entity_metadata[key_dict][num_key];
-				if (relsInfo?.includes(field.realIndex)) {
-					fields = [...fields, ...getFieldsName(field.realIndex, ["relData"])];
+				if (relsInfo?.includes((field as any).realIndex)) {
+					fields = [...fields, ...getFieldsName((field as any).realIndex, ["relData"])];
 				} else {
 					field.hasInput &&
-						fields.push({ field: field.nameProp as keyof T, header: field.info.title });
+						field.nameProp !== "seasonId" &&
+						fields.push({
+							field: field.nameProp as keyof T,
+							header: field.info.title,
+							placeholder: field.info.description,
+							required: field.required,
+							// type: field.
+						});
 				}
 			});
 		}

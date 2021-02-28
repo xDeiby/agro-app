@@ -27,10 +27,11 @@ export default class AgroSearch extends AzureSearch<EntityBaseSearch<GeographyPo
 		select?: (keyof EntityBaseSearch<GeographyPoint>)[],
 		elements?: number,
 		page?: number,
+		ids = Array<string>(),
 		isPaginate = true
 	): Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>> {
 		const res = await this.searchEntities(
-			`index eq ${entity}`,
+			`index eq ${entity} and not search.in(id, '${ids.join(",")}')`,
 			select,
 			elements,
 			page,
@@ -65,15 +66,8 @@ export default class AgroSearch extends AzureSearch<EntityBaseSearch<GeographyPo
 		return res;
 	}
 
-	public async getEntitiesExclude(
-		entity_index: EntityRelated,
-		ids: string[],
-		selects?: (keyof EntityBaseSearch<GeographyPoint>)[]
-	): Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>> {
-		const query = `index eq ${entity_index} and not search.in(id, '${ids.join(",")}')`;
-		console.log(query);
-
-		const res = await this.searchEntities(query, selects);
+	public async getWea(query: string): Promise<IResponse<EntityBaseSearch<GeographyPoint>[]>> {
+		const res = await this.searchEntities(query);
 
 		return res;
 	}

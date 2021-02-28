@@ -9,12 +9,18 @@ import FormManteiner from "../views/manteiners/forms/form-manteiner";
 const OrdersRoutes: React.FC = () => {
 	return (
 		<>
-			{/* Carpeta de PreOrders */}
+			{/* Carpeta de Preordenes */}
 			<Route exact path={`/${base_path.order}/${order_pathname.order_folder}`}>
 				<OrderFolderTable currentEntity={EntityRelated.ORDER_FOLDER} pathname={"aaa"} />
 			</Route>
 
-			<Route exact path={`/${base_path.order}/${order_pathname.order_folder}/:id`}>
+			<Route
+				exact
+				path={[
+					`/${base_path.order}/${order_pathname.order_folder}/add`,
+					`/${base_path.order}/${order_pathname.order_folder}/:id`,
+				]}
+			>
 				<FormManteiner />
 			</Route>
 
