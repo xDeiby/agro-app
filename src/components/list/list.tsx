@@ -1,80 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
+import { Edit } from "@styled-icons/boxicons-regular";
+import ButtonLineal from "../buttons/button-lineal";
 import { StyledContainer, StyledBox } from "./styled.List";
+import AgroSearch from "../../services/azure-search/indexs-instances/AgroSearch";
 import { EntityRelated, StringRelated } from "@trifenix/agro-data";
-import { WithListProps } from "../../HightOrderComponent/lists/types";
-import Modal from "../modal";
-import { AddToQueue, EditAlt } from "@styled-icons/boxicons-regular";
-import TableSelectManteiner from "../table/tableSelect";
-import { Eye } from "@styled-icons/fa-solid";
+import { useState } from "react";
 
-export interface ListProps {
-	entity: EntityRelated;
-	buttonName: string;
-	entity_rel?: EntityRelated;
-}
+export const elements = ["Especie 1", "Especie 2", "Especie 3", "Especie 4", "Especie 5"];
 
-const List: React.FC<ListProps & WithListProps> = ({ data }) => {
-	const all_barracks =
-		data
-			?.map(({ rel }) =>
-				rel
-					.filter(({ index }: any) => index === EntityRelated.BARRACK)
-					.map((entity: any) => entity.id)
-			)
-			.flat() || [];
+const List: React.FC = () => {
+	const [nombre, setNombre] = useState<string[][]>();
+	React.useEffect(() => {
+		async function fetchGetentities() {
+			const busqueda = new AgroSearch();
+			const entities = (await busqueda.getEntities(EntityRelated.COSTCENTER)).data;
+			const res = entities.map((result) =>
+				result.str
+					.filter((lol) => lol.index === StringRelated.GENERIC_NAME)
+					.map((valor) => valor.value)
+			);
+			setNombre(res);
+		}
+		fetchGetentities();
+	}, []);
 
-	const [newPreorden, setNewPreorder] = useState<string[]>([]);
-	console.log(newPreorden);
-
-	return (
-		<StyledContainer>
-			{data?.map((row: any) => (
-				<ElementList key={row.id} row={row} ignore_barracks={all_barracks} />
-			))}
-
-			<Modal buttonIcon={AddToQueue} buttonName="Nueva Preorden">
-				<TableSelectManteiner
-					currentEntity={EntityRelated.BARRACK}
-					selects={newPreorden}
-					chageSelects={setNewPreorder}
-					ids={all_barracks}
-				/>
-			</Modal>
-		</StyledContainer>
-	);
-};
-
-const ElementList: React.FC<{ row: any; ignore_barracks: string[] }> = ({
-	row,
-	ignore_barracks,
-}) => {
-	const [selectBarracks, setSelectBarracks] = React.useState<string[]>(
-		row.rel[EntityRelated.BARRACK]
-			? row.rel
-					.filter((property: any) => property.index === EntityRelated.BARRACK)
-					.map((entity: any) => entity.id)
-			: []
-	);
+	const listElement = nombre?.map((element) => {
+		return (
+			<StyledBox key={Math.random()}>
+				{element}
+				<ButtonLineal typeButton="danger" icon={Edit} size="small">
+					Editar
+				</ButtonLineal>
+			</StyledBox>
+		);
+	});
 
 	return (
-		<StyledBox key={row.id}>
-			{row.sug.find((property: any) => property.index === StringRelated.GENERIC_NAME).value ||
-				row.str.find((property: any) => property.index === StringRelated.GENERIC_NAME)
-					.value}
-			<div style={{ display: "flex", flexDirection: "row" }}>
-				<Modal buttonIcon={Eye} buttonName="Ver">
-					{JSON.stringify(row)}
-				</Modal>
-				<Modal buttonIcon={EditAlt} buttonName="Editar">
-					<TableSelectManteiner
-						currentEntity={EntityRelated.BARRACK}
-						selects={selectBarracks}
-						chageSelects={setSelectBarracks}
-						ids={ignore_barracks.filter((id: string) => !selectBarracks.includes(id))}
-					/>
-				</Modal>
-			</div>
-		</StyledBox>
+		<div>
+			<StyledContainer>{listElement}</StyledContainer>
+		</div>
 	);
 };
 
