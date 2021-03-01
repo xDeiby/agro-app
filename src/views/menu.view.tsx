@@ -1,9 +1,10 @@
 import * as React from "react";
+import Boton from "../components/buttons/button/Button";
 import Menu from "../components/menu";
 import Burger from "../components/menu/burger/burger";
 import Item from "../components/menu/item";
 import MenuItem from "../components/menu/menu-item";
-import User from "../components/user/user";
+
 import {
 	base_path,
 	order_pathname,
@@ -106,7 +107,7 @@ const MenuView: React.FunctionComponent = () => {
 					]}
 				/>
 			</MenuItem>
-			<User/>
+			<Boton typeButton="user">Usuario</Boton>
 			<Burger />
 		</Menu>
 	);
