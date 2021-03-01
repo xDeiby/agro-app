@@ -1,7 +1,15 @@
 import React from "react";
-import { A, StyledButtonUser, StyledContainerUser, StyledHeaderUser } from "./styled.user";
+import { useHistory } from "react-router";
+import { StyledButtonUser, StyledContainerUser, StyledHeaderUser } from "./styled.user";
 
 const ModalUser: React.FC<any> = ({ showModal }) => {
+
+	const history = useHistory();
+	
+	const redirect = () => {
+		history.push(`/profile_user`)
+	}
+
 	return (
 		<>
 			{showModal ? (
@@ -16,8 +24,8 @@ const ModalUser: React.FC<any> = ({ showModal }) => {
 						<div style={{ margin: "10px", fontFamily: "sans-serif", fontSize: "16px" }}>
 							Nombre Usuario
 						</div>
-						<StyledButtonUser>
-							<A href="http://localhost:3000/profile_user">Ver perfil</A>
+						<StyledButtonUser onClick={redirect}>
+							Ver perfil
 						</StyledButtonUser>
 					</StyledContainerUser>
 				</div>

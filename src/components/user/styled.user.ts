@@ -37,8 +37,3 @@ export const StyledButtonUser = styled.button`
     border: 1px solid #009879;
     border-radius: 5px;
 `
-export const A = styled.a`
-    font-family: sans-serif;
-    text-decoration:none;
-    color: black;
-`
