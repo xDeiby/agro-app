@@ -3,6 +3,7 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import { EntityRelated, mdm } from "@trifenix/agro-data";
+import ViewProfile from "./components/user/viewProfile/viewProfile";
 
 console.log(mdm.indexes.filter(xd=> xd.index == EntityRelated.COSTCENTER));
 
@@ -23,6 +24,7 @@ const App: React.FunctionComponent = () => {
 			</header>
 			<div className="react-body">
 				<Views />
+				<ViewProfile/>
 			</div>
 			{/* <footer
                 style={{
