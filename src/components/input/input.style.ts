@@ -8,13 +8,13 @@ import {
 } from "../../config/styles/constants/sizes";
 
 interface StyledWrapperProps {
-    width: string;
+    widthWrapper?: string;
     innerSize: ComponentSize;
 }
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
     position: relative;
-    width: ${(pr) => pr.width};
+    width: ${(pr) => pr.widthWrapper};
     height: ${(pr) => heights[pr.innerSize]}px;
 `;
 
@@ -22,7 +22,7 @@ interface StyledTextInputProps {
     innerSize: ComponentSize;
     disabled: boolean;
     error: boolean;
-    width: string;
+    width?: string;
     withIcon: boolean;
     withCross: boolean;
 }

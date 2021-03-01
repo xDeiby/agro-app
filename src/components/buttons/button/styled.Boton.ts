@@ -31,7 +31,7 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
 	},
 	default: {
 		color: "#fff",
-		backgroundColor: "#868383",
+		backgroundColor: "#e4335f",
 	},
 	add: {
 		color: "white",
@@ -47,7 +47,7 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
 	},
 	save: {
 		color: "white",
-		backgroundColor: "#697367",
+		backgroundColor: "#009879",
 	},
 	view: {
 		color:"black",
@@ -75,6 +75,7 @@ interface IStyledButton extends IModelButton {
 	display?: string;
 	maxWidth?: string;
 	marginRight?:string;
+	float?:string;
 }
 const StyledButton = styled.button<IStyledButton>`
 	border: ${(pr) => (pr.border ? pr.border : "none")};
@@ -87,6 +88,7 @@ const StyledButton = styled.button<IStyledButton>`
 	font-size: ${(pr) => (pr.fontSize ? pr.fontSize : "13")}px;
 	padding: ${(pr) => (pr.paddingf ? pr.paddingf : "10")}px;
 	background-color: ${(pr) => TypeStyle[pr.typeButton].backgroundColor};
+	float: ${(pr) => (pr.float ? pr.float : "")};
 	&:hover {
 		opacity: 0.8;
 		transition: 0.5s;

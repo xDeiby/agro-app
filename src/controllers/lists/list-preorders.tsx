@@ -12,6 +12,8 @@ import TableSelectManteiner from "../../components/table/tableSelect";
 import Modal from "../../components/modal";
 
 import styled from "styled-components";
+import Boton from "../../components/buttons/button/Button";
+import Input from "../../components/input";
 
 export const StyledContainer = styled.div`
 	margin: 0 auto;
@@ -85,12 +87,11 @@ const List: React.FC<ListProps & WithListProps> = ({ data, id }) => {
 			<Loading isLoading={loading}>
 				<Modal buttonIcon={AddToQueue} buttonName="Nueva Preorden">
 					<>
-						<input
-							type="text"
+					<div style={{width:"91%", margin:"auto", textAlign:"left"}}>
+						<Input width="50%" widthWrapper="50%" type="text"
 							value={nameNewPreorder}
-							onChange={(e) => setNameNewPreorder(e.target.value)}
-						/>
-
+							onChange={(e:any) => setNameNewPreorder(e.target.value)}/>
+					</div>
 						<TableSelectManteiner
 							currentEntity={EntityRelated.BARRACK}
 							selects={newPreorden}
@@ -98,7 +99,10 @@ const List: React.FC<ListProps & WithListProps> = ({ data, id }) => {
 							folder_id={id as string}
 							ids={all_barracks}
 						/>
-						<button onClick={() => savePreorder()}>guardar</button>
+						<div style={{width:"91%", margin:"auto", textAlign:"end"}}>
+							<Boton typeButton = "save" onClick={() => savePreorder()}>Guardar</Boton>
+						</div>
+
 					</>
 				</Modal>
 			</Loading>
@@ -154,11 +158,13 @@ const ElementList: React.FC<{ row: any; ignore_barracks: string[] }> = ({
 				<Loading isLoading={loading}>
 					<Modal buttonIcon={EditAlt} buttonName="Editar">
 						<>
-							<input
+						<div style={{width:"91%", margin:"auto", textAlign:"left"}}>
+							<Input width="50%"
 								type="text"
 								value={name}
-								onChange={(e) => setName(e.target.value)}
+								onChange={(e:any) => setName(e.target.value)}
 							/>
+						</div>
 							<TableSelectManteiner
 								currentEntity={EntityRelated.BARRACK}
 								selects={selectBarracks}
@@ -173,8 +179,9 @@ const ElementList: React.FC<{ row: any; ignore_barracks: string[] }> = ({
 									(id: string) => !selectBarracks.includes(id)
 								)}
 							/>
-
-							<button onClick={() => savePreorder()}>guardar</button>
+							<div style={{width:"91%", margin:"auto", textAlign:"end"}}>
+								<Boton typeButton = "save" onClick={() => savePreorder()}>Guardar</Boton>
+							</div>
 						</>
 					</Modal>
 				</Loading>

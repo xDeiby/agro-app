@@ -24,6 +24,7 @@ interface IPropertys {
 	maxWidth?: string;
 	marginLeft?:string;
 	marginRight?:string;
+	float?:string;
 
 }
 interface IMouseEvents {

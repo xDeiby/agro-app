@@ -30,7 +30,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (pro
 		value,
 		onChange,
 		placeholder,
-		width = "100%",
+	
 		readonly = false,
 		clearable = false,
 		...rest
@@ -40,13 +40,13 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (pro
 		innerSize: size,
 		disabled: disabled,
 		error,
-		width,
+		
 		withIcon: icon !== undefined,
 		withCross: clearable,
 	};
 
 	return (
-		<StyledWrapper width={width} innerSize={size}>
+		<StyledWrapper innerSize={size}>
 			<StyledInput
 				type={rest.type || "text"}
 				value={value}
