@@ -9,7 +9,6 @@ import FormManteiner from "../views/manteiners/forms/form-manteiner";
 
 const OrdersRoutes: React.FC = () => {
 	const history = useHistory();
-
 	return (
 		<>
 			{/* Carpeta de Preordenes */}

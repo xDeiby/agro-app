@@ -30,9 +30,9 @@ export enum path_name_machine {
 export enum path_name_not_category {
 	bussines_name = "business_names",
 	role = "roles",
-	cost_centers = "cost-centers",
+	cost_centers = "cost_centers",
 }
 
-export enum path_name_profile{
-	profile_user= "profile_user",
+export enum path_name_profile {
+	profile_user = "profile_user",
 }

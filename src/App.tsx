@@ -3,8 +3,11 @@ import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
 import ViewProfile from "./components/user/viewProfile/viewProfile";
+import { EntityRelated, mdm } from "@trifenix/agro-data";
 
 const App: React.FunctionComponent = () => {
+	console.log(mdm.indexes.find((wea) => wea.index === EntityRelated.BUSINESSNAME));
+
 	return (
 		<div className="app">
 			<header
