@@ -9,8 +9,6 @@ import { withTable } from "../../../HightOrderComponent/tables/withTable";
 import getFieldsName from "../../../modules/metadata/getFieldsName";
 import parseRequest from "../../../modules/metadata/parseRequest";
 import { searchInstance } from "../../../services/azure-search/indexs-instances/AgroSearch";
-// import { FilePaper} from "@styled-icons/remix-fill/FilePaper";
-
 
 const OrderFolderTable = withTable({
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -54,10 +52,11 @@ const OrderFolderTable = withTable({
 
 					return (
 						<ButtonLineal
-						typeButton="danger" 
-						onClick={() => push(`/orders/order_folders/${row.original.id}`)} 
-						icon={Edit}
-						size="small">
+							typeButton="danger"
+							onClick={() => push(`/orders/order_folders/${row.original.id}`)}
+							icon={Edit}
+							size="small"
+						>
 							Editar
 						</ButtonLineal>
 					);
@@ -70,10 +69,12 @@ const OrderFolderTable = withTable({
 					const { push } = useHistory();
 
 					return (
-						<ButtonLineal  typeButton="default" 
-						onClick={() => push(`/orders/preorders/${row.original.id}`)}
-						icon={Edit}
-						size="small">
+						<ButtonLineal
+							typeButton="default"
+							onClick={() => push(`/orders/preorders/${row.original.id}`)}
+							icon={Edit}
+							size="small"
+						>
 							Preorden
 						</ButtonLineal>
 					);
