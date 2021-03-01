@@ -1,11 +1,10 @@
 import React from "react";
 import {  A, StyledButtonUser, StyledContainerUser, StyledHeaderUser } from "./styled.user";
-import styled from "styled-components";
 
 
 
 
-const ModalUser = ({showModal, setShowModal}:any) => {
+const ModalUser = ({showModal}:any) => {
     
 
     return(

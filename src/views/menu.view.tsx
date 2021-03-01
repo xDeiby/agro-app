@@ -1,5 +1,4 @@
 import * as React from "react";
-import Boton from "../components/buttons/button";
 import Menu from "../components/menu";
 import Burger from "../components/menu/burger/burger";
 import Item from "../components/menu/item";

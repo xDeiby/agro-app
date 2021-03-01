@@ -1,27 +1,9 @@
 import React from "react";
 import { Route } from "react-router";
 import { path_name_profile } from "../../../config/statics";
-import { StyledContainerUser, StyledHeaderUser } from "../styled.user";
+import {  StyledHeaderUser } from "../styled.user";
 import { ContainerProfile, StyledBoxUser } from "./styled.Viewprofile";
 
-
-// interface IInfoUser{
-//     name?: string;
-//     rut?: string;
-//     email?: string;
-//     idJob?: string;
-//     idsRoles?: string[];
-//     idNebulizer?: string;
-//     idTractor?: string;
-// }
-// const Usuario = (user:IInfoUser) => {
-//     user.name= "Cristian",
-//     user.rut="20326589-4",
-//     user.email="asda@asda.com",
-//     user.idJob="1234",
-//     user.idNebulizer="44444",
-//     user.idTractor="55555"
-// }
 
 
 const TestUser = ["Nombre Usuario", "123456789-0", "IdJob" ,"IdNebulizer" ,"IdTractor", "email@gmail.com"]
