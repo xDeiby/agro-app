@@ -32,3 +32,7 @@ export enum path_name_not_category {
 	role = "roles",
 	cost_centers = "cost-centers",
 }
+
+export enum path_name_profile{
+	profile_user= "profile_user",
+}

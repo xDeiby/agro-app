@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import ButtonLineal from "../buttons/button-lineal";
 import { ContainerModal, StyledModal } from "./modal.style";
 
+
 interface IModalProps {
 	buttonName: string;
 	buttonIcon: ElementType;
@@ -17,7 +18,7 @@ const Modal: React.FC<IModalProps> = ({ buttonName, children, buttonIcon }) => {
 			<StyledModal>
 				{children}
 				<button type="button" onClick={() => setOpen(false)}>
-					Close
+					Cerrar
 				</button>
 			</StyledModal>
 		</ContainerModal>

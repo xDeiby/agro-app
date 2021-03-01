@@ -4,6 +4,8 @@ import * as React from "react";
 import { useRowSelect, useTable } from "react-table";
 import getFieldsName from "../../modules/metadata/getFieldsName";
 import parseRequest from "../../modules/metadata/parseRequest";
+import { StyledTable, StyledTh, StyledTd, StyledTr } from "./styled.Table";
+
 import { searchInstance } from "../../services/azure-search/indexs-instances/AgroSearch";
 import Loading from "../loading/Loading";
 
@@ -170,14 +172,14 @@ const TableSelect: React.FC<TableSelectProps> = ({
 
 	return (
 		<Loading isLoading={loading}>
-			<table>
+			<StyledTable>
 				<thead>
 					{headerGroups.map((headerGroup) => (
-						<tr {...headerGroup.getHeaderGroupProps()}>
+						<StyledTr {...headerGroup.getHeaderGroupProps()}>
 							{headerGroup.headers.map((column) => (
-								<th {...column.getHeaderProps()}>{column.render("Header")}</th>
+								<StyledTh {...column.getHeaderProps()}>{column.render("Header")}</StyledTh>
 							))}
-						</tr>
+						</StyledTr>
 					))}
 				</thead>
 
@@ -185,15 +187,15 @@ const TableSelect: React.FC<TableSelectProps> = ({
 					{rows.map((row) => {
 						prepareRow(row);
 						return (
-							<tr {...row.getRowProps()}>
+							<StyledTr {...row.getRowProps()}>
 								{row.cells.map((cell) => (
-									<td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+									<StyledTd {...cell.getCellProps()}>{cell.render("Cell")}</StyledTd>
 								))}
-							</tr>
+							</StyledTr>
 						);
 					})}
 				</tbody>
-			</table>
+			</StyledTable>
 		</Loading>
 	);
 };

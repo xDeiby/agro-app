@@ -3,7 +3,7 @@ import { Route } from "react-router";
 import { base_path, path_name } from "../config/statics";
 import FormManteiner from "../views/manteiners/forms/form-manteiner";
 
-const routes = Object.values(path_name).map((path) => `/${base_path.manteiner}/${path}`);
+export const routes = Object.values(path_name).map((path) => `/${base_path.manteiner}/${path}`);
 
 const ManteinerFormsRoute: React.FC = () => {
 	return (

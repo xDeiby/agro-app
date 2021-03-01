@@ -9,7 +9,8 @@ export type TypeButton =
 	| "user"
 	| "delete"
 	| "save"
-	| "home";
+	| "home"
+	| "view"
 
 const TypeStyle: { [key in TypeButton]: IModelButton } = {
 	accept: {
@@ -34,7 +35,7 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
 	},
 	add: {
 		color: "white",
-		backgroundColor: "#108128",
+		backgroundColor: "#009879",
 	},
 	delete: {
 		color: "white",
@@ -48,6 +49,10 @@ const TypeStyle: { [key in TypeButton]: IModelButton } = {
 		color: "white",
 		backgroundColor: "#697367",
 	},
+	view: {
+		color:"black",
+		backgroundColor: "#C8C7CA",
+	}
 };
 export const styloIcon = {
 	marginRight: 5,
@@ -69,6 +74,7 @@ interface IStyledButton extends IModelButton {
 	className?: string;
 	display?: string;
 	maxWidth?: string;
+	marginRight?:string;
 }
 const StyledButton = styled.button<IStyledButton>`
 	border: ${(pr) => (pr.border ? pr.border : "none")};
@@ -77,6 +83,7 @@ const StyledButton = styled.button<IStyledButton>`
 	width: ${(pr) => (pr.width ? pr.width : "150")}px;
 	margin: ${(pr) => (pr.margin ? pr.margin : "10")}px;
 	margin-left: ${(pr) => (pr.marginLeft ? pr.marginLeft : "10")}px;
+	margin-right: ${(pr) => (pr.marginRight ? pr.marginRight : "10")}px;
 	font-size: ${(pr) => (pr.fontSize ? pr.fontSize : "13")}px;
 	padding: ${(pr) => (pr.paddingf ? pr.paddingf : "10")}px;
 	background-color: ${(pr) => TypeStyle[pr.typeButton].backgroundColor};

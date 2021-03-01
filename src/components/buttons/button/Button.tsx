@@ -8,6 +8,7 @@ import { Add } from "@styled-icons/material-rounded/Add";
 import { Delete } from "@styled-icons/material-outlined/Delete";
 import { HomeCircle } from "@styled-icons/boxicons-regular/HomeCircle";
 import { Save } from "@styled-icons/feather/Save";
+import { Eye } from "@styled-icons/fa-solid/Eye";
 
 interface IPropertys {
 	color?: string;
@@ -21,6 +22,9 @@ interface IPropertys {
 	disabled?: boolean;
 	display?: string;
 	maxWidth?: string;
+	marginLeft?:string;
+	marginRight?:string;
+
 }
 interface IMouseEvents {
 	onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -90,6 +94,13 @@ const Boton: React.FC<IButton> = (props) => {
 					{children}
 				</StyledButton>
 			);
+			case "view":
+				return (
+					<StyledButton {...props}>
+						<Eye size="20px" style={styloIcon} />
+						{children}
+					</StyledButton>
+				);
 
 		case "default":
 			return <StyledButton {...props}>{children}</StyledButton>;
