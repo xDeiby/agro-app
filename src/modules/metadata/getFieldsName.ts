@@ -36,7 +36,8 @@ export default function getFieldsName<T>(
 					fields = [...fields, ...getFieldsName((field as any).realIndex, ["relData"])];
 				} else {
 					field.hasInput &&
-						field.nameProp !== "seasonId" &&
+						field.visible &&
+						// field.nameProp !== "idSeason" &&
 						fields.push({
 							field: field.nameProp as keyof T,
 							header: field.info.title,

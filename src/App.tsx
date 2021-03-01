@@ -2,8 +2,11 @@ import * as React from "react";
 import MenuView from "./views/menu.view";
 import fondo from "./config/images/dashboard.jpg";
 import Views from "./views";
+import { EntityRelated, mdm } from "@trifenix/agro-data";
 
 const App: React.FunctionComponent = () => {
+	console.log(mdm.indexes.find((entity) => entity.index === EntityRelated.BARRACK));
+
 	return (
 		<div className="app">
 			<header

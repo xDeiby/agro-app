@@ -10,12 +10,12 @@
 		"@styled-icons/icomoon": "^10.18.0",
 		"@styled-icons/material-outlined": "^10.28.0",
 		"@styled-icons/material-rounded": "^10.28.0",
-		"@trifenix/agro-data": "^0.1.26",
+		"@trifenix/agro-data": "^0.1.29",
 		"@trifenix/mdm": "^1.6.26",
 		"axios": "^0.21.1",
 		"azure-search": "^0.0.21",
 		"formik": "^2.2.6",
-		"mobx": "^6.1.7",
+		"mobx": "^6.1.8",
 		"mobx-react": "^7.1.0",
 		"react": "^17.0.1",
 		"react-datepicker": "^3.6.0",
@@ -73,7 +73,7 @@
 		"@types/styled-components": "^5.1.7",
 		"@typescript-eslint/eslint-plugin": "^4.15.2",
 		"@typescript-eslint/parser": "^4.15.2",
-		"eslint": "^7.20.0",
+		"eslint": "^7.21.0",
 		"eslint-plugin-react": "^7.22.0"
 	}
 }
